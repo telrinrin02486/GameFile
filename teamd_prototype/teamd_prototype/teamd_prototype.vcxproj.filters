@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{b3e1c43b-5061-4d33-b43f-144b8ff4c204}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\my">
+      <UniqueIdentifier>{8a9182bd-fce0-4072-90c3-d0268d8e9edc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\teru">
+      <UniqueIdentifier>{0a1321db-baad-485d-9e93-76191c991508}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\moca">
+      <UniqueIdentifier>{c1d5f07e-d5b2-49eb-8ed9-78014fab7b31}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Camera.cpp">
+      <Filter>Source\my</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CB_1.cpp">
+      <Filter>Source\my</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CB_2.cpp">
+      <Filter>Source\my</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Collision.cpp">
+      <Filter>Source\my</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CrushedBox.cpp">
+      <Filter>Source\my</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Player.cpp">
+      <Filter>Source\my</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Point2.cpp">
+      <Filter>Source\my</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Range2.cpp">
+      <Filter>Source\my</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rect2.cpp">
+      <Filter>Source\my</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Vector2.cpp">
+      <Filter>Source\my</Filter>
+    </ClCompile>
+    <ClCompile Include="MocaSource\BaseScene.cpp">
+      <Filter>Source\moca</Filter>
+    </ClCompile>
+    <ClCompile Include="MocaSource\Dust.cpp">
+      <Filter>Source\moca</Filter>
+    </ClCompile>
+    <ClCompile Include="MocaSource\Effect.cpp">
+      <Filter>Source\moca</Filter>
+    </ClCompile>
+    <ClCompile Include="MocaSource\EffectManager.cpp">
+      <Filter>Source\moca</Filter>
+    </ClCompile>
+    <ClCompile Include="MocaSource\GameScene.cpp">
+      <Filter>Source\moca</Filter>
+    </ClCompile>
+    <ClCompile Include="MocaSource\ImageMng.cpp">
+      <Filter>Source\moca</Filter>
+    </ClCompile>
+    <ClCompile Include="MocaSource\main.cpp">
+      <Filter>Source\moca</Filter>
+    </ClCompile>
+    <ClCompile Include="MocaSource\SceneManager.cpp">
+      <Filter>Source\moca</Filter>
+    </ClCompile>
+    <ClCompile Include="MocaSource\Smoke.cpp">
+      <Filter>Source\moca</Filter>
+    </ClCompile>
+    <ClCompile Include="TeruSource\SoundManager.cpp">
+      <Filter>Source\teru</Filter>
+    </ClCompile>
+    <ClCompile Include="MocaSource\KeyInput.cpp">
+      <Filter>Source\moca</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Camera.h">
+      <Filter>Source\my</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CB_1.h">
+      <Filter>Source\my</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CB_2.h">
+      <Filter>Source\my</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Collision.h">
+      <Filter>Source\my</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CrushedBox.h">
+      <Filter>Source\my</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Player.h">
+      <Filter>Source\my</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Point2.h">
+      <Filter>Source\my</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Range2.h">
+      <Filter>Source\my</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rect2.h">
+      <Filter>Source\my</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Vector2.h">
+      <Filter>Source\my</Filter>
+    </ClInclude>
+    <ClInclude Include="MocaSource\BaseScene.h">
+      <Filter>Source\moca</Filter>
+    </ClInclude>
+    <ClInclude Include="MocaSource\Dust.h">
+      <Filter>Source\moca</Filter>
+    </ClInclude>
+    <ClInclude Include="MocaSource\Effect.h">
+      <Filter>Source\moca</Filter>
+    </ClInclude>
+    <ClInclude Include="MocaSource\EffectManager.h">
+      <Filter>Source\moca</Filter>
+    </ClInclude>
+    <ClInclude Include="MocaSource\GameScene.h">
+      <Filter>Source\moca</Filter>
+    </ClInclude>
+    <ClInclude Include="MocaSource\ImageMng.h">
+      <Filter>Source\moca</Filter>
+    </ClInclude>
+    <ClInclude Include="MocaSource\SceneManager.h">
+      <Filter>Source\moca</Filter>
+    </ClInclude>
+    <ClInclude Include="MocaSource\Smoke.h">
+      <Filter>Source\moca</Filter>
+    </ClInclude>
+    <ClInclude Include="TeruSource\SoundManager.h">
+      <Filter>Source\teru</Filter>
+    </ClInclude>
+    <ClInclude Include="MocaSource\KeyInput.h">
+      <Filter>Source\moca</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Const.h" />
+  </ItemGroup>
+</Project>
