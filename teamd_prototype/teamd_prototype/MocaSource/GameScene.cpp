@@ -5,6 +5,7 @@
 using namespace std;
 
 // GameScene.h
+
 #include "BaseScene.h"
 #include "Vector2.h"			// 使用なし
 #include "Effect.h"				// Vector2
@@ -12,12 +13,13 @@ using namespace std;
 #include "GameScene.h"			// BaseScene、EffectManager
 
 // GameScene.cpp
-#include "KeyInput.h"		// 使用なし
+#include "KeyInput.h"			// 使用なし
 #include "DxLib.h"
 
 #include "Camera.h"
 
 #include "Player.h"
+//#include "EnemyManager.h"
 #include "CB_1.h"
 
 #include "Collision.h"
@@ -43,17 +45,12 @@ GameScene::~GameScene()
 //---------------------------------------------------------------------
 void GameScene::Initialize()
 {
-	//シーン切り替えフラグ
-	_isChange = false;
-
-	//エフェクト管理
-	_effectManager = new EffectManager();
-
+	
+	_isChange = false;						//シーン切り替えフラグ
+	_effectManager = new EffectManager();	//エフェクト管理
 	_player = new Player();
-
-
 	_cb = new CB_1(*_effectManager);
-
+	//_EM = new EnemyManager();
 
 }
 

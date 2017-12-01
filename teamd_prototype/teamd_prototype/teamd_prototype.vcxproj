@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="MocaSource\BaseScene.cpp" />
     <ClCompile Include="MocaSource\Dust.cpp" />
     <ClCompile Include="MocaSource\Effect.cpp" />
@@ -43,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h" />
+    <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="MocaSource\BaseScene.h" />
     <ClInclude Include="MocaSource\Dust.h" />
     <ClInclude Include="MocaSource\Effect.h" />

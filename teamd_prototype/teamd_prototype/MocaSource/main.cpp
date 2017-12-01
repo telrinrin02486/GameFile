@@ -43,23 +43,17 @@ int main(void)
 
 	while ( ProcessMessage() == 0 && CheckHitKey( KEY_INPUT_ESCAPE ) == 0 )
 	{
-		//　キー入力の更新-----------------------------------------------------
-		KeyInput::GetInstance().Update();
-
-		//	ゲームの制御・更新-------------------------------------------------
-		SceneManager::GetInstance().Update();
-
-		//カメラ
-		Camera::Instance().Update();
-		//	ゲームの描画　-----------------------------------------------------
-		//画面の初期化
-		ClearDrawScreen();
 		
-		//シーンの描画
-		SceneManager::GetInstance().Draw();
+		//	ゲームの制御・更新-------------------------------------------------
+		KeyInput::GetInstance().Update();		//　キー入力の更新
+		SceneManager::GetInstance().Update();	//シーンの更新
+		Camera::Instance().Update();			//カメラ
 
-		//画面の更新
-		ScreenFlip();
+
+		//	ゲームの描画　-----------------------------------------------------
+		ClearDrawScreen();					//画面の初期化
+		SceneManager::GetInstance().Draw();	//シーンの描画
+		ScreenFlip();						//画面の更新
 	}
 
 	//DxLibの終了処理

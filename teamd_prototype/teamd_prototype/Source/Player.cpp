@@ -34,7 +34,7 @@ void Player::Update() {
 	_rect.Move(_vec);
 
 	Vector2& __pos = _rect.pos;
-	//‰æ–Ê‚Æ‚Ì“–‚½‚è”»’è‚µ‚Æ‚±
+	//‰æ–Ê‚Æ‚Ì“–‚½‚è”»’è‚µ‚Æ‚±(Player‚Ì‰æ–Ê“àˆÚ“®§Œä)
 	if (__pos.y < 0.0f) {
 		__pos.y = 0.0f;
 	}

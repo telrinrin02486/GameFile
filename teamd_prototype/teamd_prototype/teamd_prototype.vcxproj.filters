@@ -82,6 +82,9 @@
     <ClCompile Include="MocaSource\KeyInput.cpp">
       <Filter>Source\moca</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyManager.cpp">
+      <Filter>Source\teru</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Camera.h">
@@ -148,5 +151,8 @@
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Source\Const.h" />
+    <ClInclude Include="EnemyManager.h">
+      <Filter>Source\teru</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

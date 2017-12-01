@@ -35,8 +35,8 @@ void CB_2::Draw(const Vector2& offset_) {
 	const Vector2 rt = _rt - offset_;
 	const Vector2 rb = _rb - offset_;
 
-	//変形させると補正がかかる
-	//凹みの部分が円形になった。
+	/*変形させると補正がかかる
+	凹みの部分が円形になった。*/
 	DrawModiGraphF(lt.x, lt.y, rt.x, rt.y, rb.x, rb.y, lb.x, lb.y,
 					_handle, true);
 

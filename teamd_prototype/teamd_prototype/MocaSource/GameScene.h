@@ -9,7 +9,7 @@
 
 class CB_1;
 class Player;
-
+class EnemyManager;
 class GameScene : public BaseScene
 {
 private:
@@ -18,6 +18,7 @@ private:
 	CB_1		*_cb;
 	Player		*_player;
 
+	EnemyManager *_EM;//’Ç‹L
 
 	Vector2 _playerStartPos;
 	Rect2 _cbStartRect;

@@ -54,6 +54,7 @@ void CB_1::Draw(const Vector2& offset_) {
 	DrawExtendGraphF(s.x,s.y,n.x,n.y,_handle, true);
 
 }
+
 //壊れちゃうぅ！！
 void CB_1::Crushed(const Player& player) {
 	//ここ使うだけでメモリ使いすぎぃ！
