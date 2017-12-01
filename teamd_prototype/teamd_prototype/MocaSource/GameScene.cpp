@@ -5,7 +5,6 @@
 using namespace std;
 
 // GameScene.h
-
 #include "BaseScene.h"
 #include "Vector2.h"			// Žg—p‚È‚µ
 #include "Effect.h"				// Vector2
@@ -19,7 +18,7 @@ using namespace std;
 #include "Camera.h"
 
 #include "Player.h"
-//#include "EnemyManager.h"
+#include "EnemyManager.h"
 #include "CB_1.h"
 
 #include "Collision.h"

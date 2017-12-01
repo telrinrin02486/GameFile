@@ -1,6 +1,2 @@
-﻿  CB_2.cpp
-  CB_1.cpp
-c:\users\1501321\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\source\cb_1.cpp(95): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  コードを生成中...
-  teamd_prototype.vcxproj -> C:\Users\1501321\Desktop\TeamD\GameFile\teamd_prototype\Debug\teamd_prototype.exe
+﻿  teamd_prototype.vcxproj -> C:\Users\1501321\Desktop\TeamD\GameFile\teamd_prototype\Debug\teamd_prototype.exe
   teamd_prototype.vcxproj -> C:\Users\1501321\Desktop\TeamD\GameFile\teamd_prototype\Debug\teamd_prototype.pdb (Full PDB)

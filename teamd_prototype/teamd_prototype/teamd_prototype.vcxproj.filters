@@ -82,7 +82,7 @@
     <ClCompile Include="MocaSource\KeyInput.cpp">
       <Filter>Source\moca</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyManager.cpp">
+    <ClCompile Include="TeruSource\EnemyManager.cpp">
       <Filter>Source\teru</Filter>
     </ClCompile>
   </ItemGroup>
@@ -151,7 +151,7 @@
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Source\Const.h" />
-    <ClInclude Include="EnemyManager.h">
+    <ClInclude Include="TeruSource\EnemyManager.h">
       <Filter>Source\teru</Filter>
     </ClInclude>
   </ItemGroup>

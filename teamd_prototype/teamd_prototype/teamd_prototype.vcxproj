@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="MocaSource\BaseScene.cpp" />
     <ClCompile Include="MocaSource\Dust.cpp" />
     <ClCompile Include="MocaSource\Effect.cpp" />
@@ -40,11 +39,11 @@
     <ClCompile Include="Source\Range2.cpp" />
     <ClCompile Include="Source\Rect2.cpp" />
     <ClCompile Include="Source\Vector2.cpp" />
+    <ClCompile Include="TeruSource\EnemyManager.cpp" />
     <ClCompile Include="TeruSource\SoundManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h" />
-    <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="MocaSource\BaseScene.h" />
     <ClInclude Include="MocaSource\Dust.h" />
     <ClInclude Include="MocaSource\Effect.h" />
@@ -65,6 +64,7 @@
     <ClInclude Include="Source\Range2.h" />
     <ClInclude Include="Source\Rect2.h" />
     <ClInclude Include="Source\Vector2.h" />
+    <ClInclude Include="TeruSource\EnemyManager.h" />
     <ClInclude Include="TeruSource\SoundManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
