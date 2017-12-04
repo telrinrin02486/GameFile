@@ -1,2 +1,35 @@
-﻿  teamd_prototype.vcxproj -> C:\Users\1501321\Desktop\TeamD\GameFile\teamd_prototype\Debug\teamd_prototype.exe
-  teamd_prototype.vcxproj -> C:\Users\1501321\Desktop\TeamD\GameFile\teamd_prototype\Debug\teamd_prototype.pdb (Full PDB)
+﻿  SoundManager.cpp
+  EnemyManager.cpp
+  Vector2.cpp
+  Rect2.cpp
+  Range2.cpp
+  Point2.cpp
+  Player.cpp
+c:\users\1501320\desktop\gamefile\teamd_prototype\teamd_prototype\source\player.cpp(55): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  CrushedBox.cpp
+  Collision.cpp
+  CB_2.cpp
+  CB_1.cpp
+c:\users\1501320\desktop\gamefile\teamd_prototype\teamd_prototype\source\cb_1.cpp(54): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+c:\users\1501320\desktop\gamefile\teamd_prototype\teamd_prototype\source\cb_1.cpp(95): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  Camera.cpp
+  Smoke.cpp
+c:\users\1501320\desktop\gamefile\teamd_prototype\teamd_prototype\mocasource\smoke.cpp(78): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  SceneManager.cpp
+  main.cpp
+  KeyInput.cpp
+c:\users\1501320\desktop\gamefile\teamd_prototype\teamd_prototype\mocasource\keyinput.cpp(70): warning C4800: 'char': ブール値を 'true' または 'false' に強制的に設定します (警告の処理)
+  ImageMng.cpp
+c:\users\1501320\desktop\gamefile\teamd_prototype\teamd_prototype\mocasource\imagemng.cpp(131): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  GameScene.cpp
+  EffectManager.cpp
+  Effect.cpp
+  コードを生成中...
+  コンパイル中...
+  Dust.cpp
+c:\users\1501320\desktop\gamefile\teamd_prototype\teamd_prototype\mocasource\dust.cpp(78): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  BaseScene.cpp
+  コードを生成中...
+  LINK : 前回のインクリメンタル リンクで C:\Users\1501320\Desktop\GameFile\teamd_prototype\Debug\teamd_prototype.exe が見つからなかったか、ビルドされませんでした。フル リンクを行います。
+  teamd_prototype.vcxproj -> C:\Users\1501320\Desktop\GameFile\teamd_prototype\Debug\teamd_prototype.exe
+  teamd_prototype.vcxproj -> C:\Users\1501320\Desktop\GameFile\teamd_prototype\Debug\teamd_prototype.pdb (Full PDB)
