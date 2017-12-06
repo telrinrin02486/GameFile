@@ -19,25 +19,21 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GameMain.cpp" />
-    <ClCompile Include="Source\main.cpp" />
-    <ClCompile Include="Source\Point2.cpp" />
-    <ClCompile Include="Source\Range2.cpp" />
-    <ClCompile Include="Source\Rect2.cpp" />
-    <ClCompile Include="Source\Vector2.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="GameMain.h" />
-    <ClInclude Include="resource.h" />
+    <ClInclude Include="Point2.h" />
+    <ClInclude Include="Range2.h" />
+    <ClInclude Include="Rect2.h" />
     <ClInclude Include="Singleton.h" />
-    <ClInclude Include="Source\Point2.h" />
-    <ClInclude Include="Source\Range2.h" />
-    <ClInclude Include="Source\Rect2.h" />
-    <ClInclude Include="Source\Var2.h" />
-    <ClInclude Include="Source\Vector2.h" />
+    <ClInclude Include="Var2.h" />
+    <ClInclude Include="Vector2.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Resource.rc" />
+    <ClCompile Include="GameMain.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Point2.cpp" />
+    <ClCompile Include="Range2.cpp" />
+    <ClCompile Include="Rect2.cpp" />
+    <ClCompile Include="Vector2.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6B937437-733D-4D4A-B490-2855185F5383}</ProjectGuid>
@@ -109,7 +105,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\DxLib_VC;Source</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\DxLib_VC</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>

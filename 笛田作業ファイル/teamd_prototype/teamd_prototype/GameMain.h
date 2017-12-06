@@ -1,7 +1,6 @@
 #pragma once
 #include "Singleton.h"
 
-
 class GameMain
 	: public Singleton<GameMain>
 {
@@ -9,10 +8,10 @@ class GameMain
 public:
 	int Run();
 
+
 private:
 	GameMain();
-	~GameMain();
-
+	~GameMain() override;
 
 
 };

@@ -17,6 +17,15 @@
     <Filter Include="Source\moca">
       <UniqueIdentifier>{c1d5f07e-d5b2-49eb-8ed9-78014fab7b31}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\my\test">
+      <UniqueIdentifier>{93b18644-531c-449c-9a59-781675154599}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\my\test\Mover">
+      <UniqueIdentifier>{ad301d7b-0a87-4a22-9e39-1a0c3e8c5455}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\my\test\Manipulator">
+      <UniqueIdentifier>{9762e313-f60e-4ce9-8064-dd0cf34789c0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Camera.cpp">
@@ -82,6 +91,16 @@
     <ClCompile Include="MocaSource\KeyInput.cpp">
       <Filter>Source\moca</Filter>
     </ClCompile>
+    <ClCompile Include="Earthquake.cpp">
+      <Filter>Source\my\test\Mover</Filter>
+    </ClCompile>
+    <ClCompile Include="Mover.cpp">
+      <Filter>Source\my\test\Mover</Filter>
+    </ClCompile>
+    <ClCompile Include="MoverManager.cpp">
+      <Filter>Source\my\test\Mover</Filter>
+    </ClCompile>
+    <ClCompile Include="Manipulator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Camera.h">
@@ -148,5 +167,15 @@
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Source\Const.h" />
+    <ClInclude Include="Earthquake.h">
+      <Filter>Source\my\test\Mover</Filter>
+    </ClInclude>
+    <ClInclude Include="Mover.h">
+      <Filter>Source\my\test\Mover</Filter>
+    </ClInclude>
+    <ClInclude Include="MoverManager.h">
+      <Filter>Source\my\test\Mover</Filter>
+    </ClInclude>
+    <ClInclude Include="Manipulator.h" />
   </ItemGroup>
 </Project>

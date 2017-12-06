@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Earthquake.cpp" />
+    <ClCompile Include="Manipulator.cpp" />
     <ClCompile Include="MocaSource\BaseScene.cpp" />
     <ClCompile Include="MocaSource\Dust.cpp" />
     <ClCompile Include="MocaSource\Effect.cpp" />
@@ -29,6 +31,8 @@
     <ClCompile Include="MocaSource\main.cpp" />
     <ClCompile Include="MocaSource\SceneManager.cpp" />
     <ClCompile Include="MocaSource\Smoke.cpp" />
+    <ClCompile Include="Mover.cpp" />
+    <ClCompile Include="MoverManager.cpp" />
     <ClCompile Include="Source\Camera.cpp" />
     <ClCompile Include="Source\CB_1.cpp" />
     <ClCompile Include="Source\CB_2.cpp" />
@@ -43,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h" />
+    <ClInclude Include="Earthquake.h" />
+    <ClInclude Include="Manipulator.h" />
     <ClInclude Include="MocaSource\BaseScene.h" />
     <ClInclude Include="MocaSource\Dust.h" />
     <ClInclude Include="MocaSource\Effect.h" />
@@ -52,6 +58,8 @@
     <ClInclude Include="MocaSource\KeyInput.h" />
     <ClInclude Include="MocaSource\SceneManager.h" />
     <ClInclude Include="MocaSource\Smoke.h" />
+    <ClInclude Include="Mover.h" />
+    <ClInclude Include="MoverManager.h" />
     <ClInclude Include="Source\Camera.h" />
     <ClInclude Include="Source\CB_1.h" />
     <ClInclude Include="Source\CB_2.h" />

@@ -1,2 +1,43 @@
-﻿  teamd_prototype.vcxproj -> C:\Users\1501347\Desktop\teamd_prototype\Debug\teamd_prototype.exe
-  teamd_prototype.vcxproj -> C:\Users\1501347\Desktop\teamd_prototype\Debug\teamd_prototype.pdb (Full PDB)
+﻿  main.cpp
+c:\program files (x86)\microsoft visual studio 14.0\vc\include\memory(1195): error C2248: 'GameMain::~GameMain': private メンバー (クラス 'GameMain' で宣言されている) にアクセスできません。
+  c:\users\1501347\desktop\gamefile\笛田作業ファイル\teamd_prototype\teamd_prototype\gamemain.h(17): note: コンパイラが 'GameMain::~GameMain' をここに生成しました。
+  c:\users\1501347\desktop\gamefile\笛田作業ファイル\teamd_prototype\teamd_prototype\gamemain.h(5): note: 'GameMain' の宣言を確認してください
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\memory(1192): note: クラス テンプレート のメンバー関数 'void std::default_delete<_Ty>::operator ()(_Ty *) noexcept const' のコンパイル中
+          with
+          [
+              _Ty=GameMain
+          ]
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\memory(1397): note: コンパイル対象の関数 テンプレート インスタンス化 'void std::default_delete<_Ty>::operator ()(_Ty *) noexcept const' のリファレンスを確認してください
+          with
+          [
+              _Ty=GameMain
+          ]
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\memory(1227): note: コンパイル対象のクラス テンプレート インスタンス化 'std::default_delete<_Ty>' のリファレンスを確認してください
+          with
+          [
+              _Ty=GameMain
+          ]
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\memory(1236): note: コンパイル対象のクラス テンプレート インスタンス化 'std::_Get_deleter_pointer_type<_Ty,std::default_delete<_Ty>>' のリファレンスを確認してください
+          with
+          [
+              _Ty=GameMain
+          ]
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\memory(1279): note: コンパイル対象のクラス テンプレート インスタンス化 'std::_Unique_ptr_base<_Ty,_Dx>' のリファレンスを確認してください
+          with
+          [
+              _Ty=GameMain,
+              _Dx=std::default_delete<GameMain>
+          ]
+  c:\users\1501347\desktop\gamefile\笛田作業ファイル\teamd_prototype\teamd_prototype\singleton.h(19): note: コンパイル対象のクラス テンプレート インスタンス化 'std::unique_ptr<T,std::default_delete<_Ty>>' のリファレンスを確認してください
+          with
+          [
+              T=GameMain,
+              _Ty=GameMain
+          ]
+  c:\users\1501347\desktop\gamefile\笛田作業ファイル\teamd_prototype\teamd_prototype\singleton.h(14): note: クラス テンプレート のメンバー関数 'GameMain &Singleton<GameMain>::Instance(void)' のコンパイル中
+  c:\users\1501347\desktop\gamefile\笛田作業ファイル\teamd_prototype\teamd_prototype\main.cpp(7): note: コンパイル対象の関数 テンプレート インスタンス化 'GameMain &Singleton<GameMain>::Instance(void)' のリファレンスを確認してください
+  c:\users\1501347\desktop\gamefile\笛田作業ファイル\teamd_prototype\teamd_prototype\gamemain.h(6): note: コンパイル対象のクラス テンプレート インスタンス化 'Singleton<GameMain>' のリファレンスを確認してください
+  コードを生成中...
+  コンパイル中...
+  GameMain.cpp
+  コードを生成中...

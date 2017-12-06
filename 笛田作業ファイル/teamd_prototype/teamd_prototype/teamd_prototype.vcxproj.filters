@@ -6,56 +6,50 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="Source">
-      <UniqueIdentifier>{b3e1c43b-5061-4d33-b43f-144b8ff4c204}</UniqueIdentifier>
+      <UniqueIdentifier>{deff02b3-7f04-4c0c-9250-dfa9ef4e2aa3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\main.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Range2.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Rect2.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Vector2.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Point2.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="GameMain.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Source\Vector2.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Point2.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Range2.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Rect2.h">
-      <Filter>Source</Filter>
-    </ClInclude>
     <ClInclude Include="GameMain.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Point2.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Range2.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Rect2.h">
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Singleton.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Var2.h">
+    <ClInclude Include="Var2.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h" />
+    <ClInclude Include="Vector2.h">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Resource.rc">
-      <Filter>リソース ファイル</Filter>
-    </ResourceCompile>
+    <ClCompile Include="GameMain.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Point2.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Range2.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Rect2.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

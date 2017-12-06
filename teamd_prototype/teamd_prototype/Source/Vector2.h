@@ -2,7 +2,7 @@
 
 #include "Point2.h"
 
-
+//1206_Œã‚Ù‚Ç•ÒW—\’è
 struct Vector2
 {
 	float x, y;
