@@ -1,9 +1,26 @@
 #pragma once
 
 #include "Rect2.h"
+#define IMG_DIV_CNT_X 4
+#define IMG_DIV_CNT_Y 4
+#define IMG_SIZE_X 120
+#define IMG_SIZE_Y 120
 
+#define ANIM_SPEED 10
 
-//‘€ì‚·‚él
+#define EXT_RATE_X 1.0f	//1.0‚Í“™”{
+#define EXT_RATE_Y 1.0f
+#define PI 3.14
+
+enum ANIM
+{
+	ANI_WALK,
+	ANI_TAMPLE,
+	ANI_JUMP,
+	ANI_MAX
+};
+
+class KeyInput;
 class Player
 {
 public:
@@ -39,9 +56,14 @@ private:
 	Vector2		_vec;
 	int		_weight;
 
-	int _handle;
+	int  _handle[IMG_DIV_CNT_Y][IMG_DIV_CNT_X]={};
+	ANIM state;
+	int aniFram;
+	int aniCnt;
+	bool isDirRight;
 
 
-
+	void setState(KeyInput& key);//“ü—Íkey‚É‰‚¶‚½state‚ğset
+	void setMove();
 };
 
