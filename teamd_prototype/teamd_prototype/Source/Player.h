@@ -8,8 +8,8 @@
 
 #define ANIM_SPEED 10
 
-#define EXT_RATE_X 1.0f	//1.0‚Í“™”{
-#define EXT_RATE_Y 1.0f
+#define EXT_RATE_X 2.0f	//1.0‚Í“™”{
+#define EXT_RATE_Y 2.0f
 #define PI 3.14
 
 enum ANIM
@@ -47,7 +47,9 @@ public:
 	inline void SetRect(const Rect2& rect_) {
 		_rect = rect_;
 	}
-	void CuddleUp(const Rect2& rect_);
+	inline void SetGroundFlg(bool flg_) {
+		_isGround = flg_;
+	}
 
 private:
 	Vector2		_startPos;
@@ -55,6 +57,7 @@ private:
 	Rect2		_rect;//À•W‚Æ”ÍˆÍ
 	Vector2		_vec;
 	int		_weight;
+	bool _isGround;
 
 	int  _handle[IMG_DIV_CNT_Y][IMG_DIV_CNT_X]={};
 	ANIM state;

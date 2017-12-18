@@ -19,53 +19,58 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MocaSource\BaseScene.cpp" />
-    <ClCompile Include="MocaSource\Dust.cpp" />
-    <ClCompile Include="MocaSource\Effect.cpp" />
-    <ClCompile Include="MocaSource\EffectManager.cpp" />
-    <ClCompile Include="MocaSource\GameScene.cpp" />
-    <ClCompile Include="MocaSource\ImageMng.cpp" />
-    <ClCompile Include="MocaSource\KeyInput.cpp" />
-    <ClCompile Include="MocaSource\main.cpp" />
-    <ClCompile Include="MocaSource\SceneManager.cpp" />
-    <ClCompile Include="MocaSource\Smoke.cpp" />
-    <ClCompile Include="Source\Camera.cpp" />
-    <ClCompile Include="Source\CB_1.cpp" />
-    <ClCompile Include="Source\CB_2.cpp" />
-    <ClCompile Include="Source\Collision.cpp" />
-    <ClCompile Include="Source\CrushedBox.cpp" />
-    <ClCompile Include="Source\Player.cpp" />
-    <ClCompile Include="Source\Point2.cpp" />
-    <ClCompile Include="Source\Range2.cpp" />
-    <ClCompile Include="Source\Rect2.cpp" />
-    <ClCompile Include="Source\Vector2.cpp" />
-    <ClCompile Include="TeruSource\EnemyManager.cpp" />
-    <ClCompile Include="TeruSource\SoundManager.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="common.h" />
-    <ClInclude Include="MocaSource\BaseScene.h" />
-    <ClInclude Include="MocaSource\Dust.h" />
-    <ClInclude Include="MocaSource\Effect.h" />
-    <ClInclude Include="MocaSource\EffectManager.h" />
-    <ClInclude Include="MocaSource\GameScene.h" />
-    <ClInclude Include="MocaSource\ImageMng.h" />
-    <ClInclude Include="MocaSource\KeyInput.h" />
-    <ClInclude Include="MocaSource\SceneManager.h" />
-    <ClInclude Include="MocaSource\Smoke.h" />
+    <ClInclude Include="Source\BaseScene.h" />
     <ClInclude Include="Source\Camera.h" />
     <ClInclude Include="Source\CB_1.h" />
     <ClInclude Include="Source\CB_2.h" />
     <ClInclude Include="Source\Collision.h" />
     <ClInclude Include="Source\Const.h" />
     <ClInclude Include="Source\CrushedBox.h" />
+    <ClInclude Include="Source\Dust.h" />
+    <ClInclude Include="Source\Effect.h" />
+    <ClInclude Include="Source\EffectManager.h" />
+    <ClInclude Include="Source\Enemy.h" />
+    <ClInclude Include="Source\GameMain.h" />
+    <ClInclude Include="Source\GameScene.h" />
+    <ClInclude Include="Source\ImageMng.h" />
+    <ClInclude Include="Source\KeyInput.h" />
     <ClInclude Include="Source\Player.h" />
     <ClInclude Include="Source\Point2.h" />
     <ClInclude Include="Source\Range2.h" />
     <ClInclude Include="Source\Rect2.h" />
+    <ClInclude Include="Source\SceneManager.h" />
+    <ClInclude Include="Source\Singleton.h" />
+    <ClInclude Include="Source\Smoke.h" />
+    <ClInclude Include="Source\SoundManager.h" />
+    <ClInclude Include="Source\Var2.h" />
     <ClInclude Include="Source\Vector2.h" />
-    <ClInclude Include="TeruSource\EnemyManager.h" />
-    <ClInclude Include="TeruSource\SoundManager.h" />
+    <ClInclude Include="TestEnemy.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\BaseScene.cpp" />
+    <ClCompile Include="Source\Camera.cpp" />
+    <ClCompile Include="Source\CB_1.cpp" />
+    <ClCompile Include="Source\CB_2.cpp" />
+    <ClCompile Include="Source\Collision.cpp" />
+    <ClCompile Include="Source\CrushedBox.cpp" />
+    <ClCompile Include="Source\Dust.cpp" />
+    <ClCompile Include="Source\Effect.cpp" />
+    <ClCompile Include="Source\EffectManager.cpp" />
+    <ClCompile Include="Source\Enemy.cpp" />
+    <ClCompile Include="Source\GameMain.cpp" />
+    <ClCompile Include="Source\GameScene.cpp" />
+    <ClCompile Include="Source\ImageMng.cpp" />
+    <ClCompile Include="Source\KeyInput.cpp" />
+    <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\Player.cpp" />
+    <ClCompile Include="Source\Point2.cpp" />
+    <ClCompile Include="Source\Range2.cpp" />
+    <ClCompile Include="Source\Rect2.cpp" />
+    <ClCompile Include="Source\SceneManager.cpp" />
+    <ClCompile Include="Source\Smoke.cpp" />
+    <ClCompile Include="Source\SoundManager.cpp" />
+    <ClCompile Include="Source\Vector2.cpp" />
+    <ClCompile Include="TestEnemy.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6B937437-733D-4D4A-B490-2855185F5383}</ProjectGuid>
@@ -137,7 +142,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\DxLib_VC;MocaSource;TeruSource;SasakiSource;Source</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\DxLib_VC;Source</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>

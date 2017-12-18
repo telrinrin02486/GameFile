@@ -5,8 +5,10 @@
 
 #include "Const.h"
 
+
+
 Player::Player()
-	:_startPos(PLAYER_RECT.pos),
+	:_startPos(PLAYER_RECT.LT()),
 	_rect(PLAYER_RECT), _vec(Vector2())
 {
 	LoadDivGraph("../image/player.png", 
@@ -17,6 +19,7 @@ Player::Player()
 	aniFram = 0;
 	aniCnt = 0;
 	isDirRight = false;
+	_isGround = false;
 
 }
 
@@ -27,30 +30,37 @@ Player::~Player()
 
 void Player::Update() {
     KeyInput& key = KeyInput::GetInstance();
-	Vector2 dir = Vector2();
-	float moveSpeed = 5.0f;
-	if (key.GetKey(KEY_INPUT_RETURN)) {
-		dir.y += moveSpeed * 3.0f;
+	
+	_vec.x = 0.0f;
+	if (_isGround) {
+		_vec.y = 0.0f;
 	}
-	else {
-		dir.y -= moveSpeed*2.0f;
+	Vector2 dir = _vec;
+	constexpr float moveSpeed = 5.0f;
+	constexpr float jumpPower = 7.0f;
+	constexpr float stampPower = 15.0f;
+	constexpr float a = 8.2f*(1.0f / 20.0f);
+	//移動
+	if (key.GetKey(KEY_INPUT_LEFT)) {
+		dir.x = -moveSpeed;
 	}
+	if (key.GetKey(KEY_INPUT_RIGHT)) {
+		dir.x = moveSpeed;
+	}
+	if (key.GetKey(KEY_INPUT_UP)) {
+		dir.y = -jumpPower;
+	}
+	//攻撃（踏みつぶし
+	if (key.GetKey(KEY_INPUT_DOWN)) {
+		dir.y += stampPower;
+	}
+	dir.y += a;
+
 	_vec = dir;
 	_rect.Move(_vec);
 
 	setState(key);	//入力keyに応じたstateをset
 	setMove();		//stateに応じたaniCntの更新
-
-	
-	//画面との当たり判定しとこ
-	Vector2& __pos = _rect.pos;
-	if (__pos.y < 0.0f) {
-		__pos.y = 0.0f;
-	}
-	if (_rect.Bottom() > static_cast<float>(WINDOW_HEIGHT)) {
-		__pos.y = static_cast<float>(WINDOW_HEIGHT) - 
-			static_cast<int>(_rect.size.y);
-	}
 
 }
 
@@ -62,15 +72,10 @@ void Player::Draw(const Vector2& offset_) {
 	DrawRotaGraph3(s.x + ((n.x - s.x) / 2), s.y + ((n.y - s.y) / 2),
 					(IMG_SIZE_X / 2), (IMG_SIZE_Y / 2), EXT_RATE_X, EXT_RATE_Y, (PI * 0),
 					_handle[state][aniCnt], true, isDirRight);
+	DrawBox(s.x, s.y, n.x, n.y, 0xffffffff, false);
 	aniFram++;
 }
 
-void Player::CuddleUp(const Rect2& rect_) {
-
-	//まず、自身と対象の位置関係調べるゾ
-	const Rect2& other = rect_;
-	Vector2 distance = other.Center() - _rect.Center();
-}
 
 void Player::setState(KeyInput& key)
 {
