@@ -1,2 +1,43 @@
-﻿  teamd_prototype.vcxproj -> C:\Users\TERUAKI　SATO\Desktop\新しいフォルダー\GameFile\teamd_prototype\Debug\teamd_prototype.exe
-  teamd_prototype.vcxproj -> C:\Users\TERUAKI　SATO\Desktop\新しいフォルダー\GameFile\teamd_prototype\Debug\teamd_prototype.pdb (Full PDB)
+﻿  TestEnemy.cpp
+  Vector2.cpp
+  SoundManager.cpp
+  Smoke.cpp
+c:\users\yunam\desktop\gamefile\teamd_prototype\teamd_prototype\source\smoke.cpp(78): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  SceneManager.cpp
+  Rect2.cpp
+  Range2.cpp
+  Point2.cpp
+  Player.cpp
+  main.cpp
+  KeyInput.cpp
+c:\users\yunam\desktop\gamefile\teamd_prototype\teamd_prototype\source\keyinput.cpp(71): warning C4800: 'char': ブール値を 'true' または 'false' に強制的に設定します (警告の処理)
+  ImageMng.cpp
+c:\users\yunam\desktop\gamefile\teamd_prototype\teamd_prototype\source\imagemng.cpp(131): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  GameScene.cpp
+c:\users\yunam\desktop\gamefile\teamd_prototype\teamd_prototype\source\gamescene.cpp(101): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+c:\users\yunam\desktop\gamefile\teamd_prototype\teamd_prototype\source\gamescene.cpp(196): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+c:\users\yunam\desktop\gamefile\teamd_prototype\teamd_prototype\source\gamescene.cpp(203): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  GameMain.cpp
+  Enemy.cpp
+  EffectManager.cpp
+  Effect.cpp
+  Dust.cpp
+c:\users\yunam\desktop\gamefile\teamd_prototype\teamd_prototype\source\dust.cpp(78): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  CrushedBox.cpp
+  Collision.cpp
+c:\users\yunam\desktop\gamefile\teamd_prototype\teamd_prototype\source\collision.cpp(46): warning C4244: '初期化中': 'int' から 'float' への変換です。データが失われる可能性があります。
+c:\users\yunam\desktop\gamefile\teamd_prototype\teamd_prototype\source\collision.cpp(47): warning C4244: '初期化中': 'int' から 'float' への変換です。データが失われる可能性があります。
+c:\users\yunam\desktop\gamefile\teamd_prototype\teamd_prototype\source\collision.cpp(48): warning C4244: '初期化中': 'int' から 'float' への変換です。データが失われる可能性があります。
+c:\users\yunam\desktop\gamefile\teamd_prototype\teamd_prototype\source\collision.cpp(49): warning C4244: '初期化中': 'int' から 'float' への変換です。データが失われる可能性があります。
+c:\users\yunam\desktop\gamefile\teamd_prototype\teamd_prototype\source\collision.cpp(51): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  コードを生成中...
+  コンパイル中...
+  CB_2.cpp
+  CB_1.cpp
+c:\users\yunam\desktop\gamefile\teamd_prototype\teamd_prototype\source\cb_1.cpp(95): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+c:\users\yunam\desktop\gamefile\teamd_prototype\teamd_prototype\source\cb_1.cpp(135): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  Camera.cpp
+  BaseScene.cpp
+  コードを生成中...
+  teamd_prototype.vcxproj -> C:\Users\yunam\Desktop\GameFile\teamd_prototype\Debug\teamd_prototype.exe
+  teamd_prototype.vcxproj -> C:\Users\yunam\Desktop\GameFile\teamd_prototype\Debug\teamd_prototype.pdb (Full PDB)
