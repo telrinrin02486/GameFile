@@ -56,6 +56,11 @@ void GameScene::Initialize()
 		float rSize = static_cast<float>((rand() % 150) + 15);
 		_cb1List.push_back(new CB_1(Rect2(Vector2(static_cast<float>(rand() % 1000), 300.0f), Vector2(rSize, rSize))));
 	}
+
+	
+	//îwåiâÊëúÇÉçÅ[Éh
+	backImg = LoadGraph("../image/haikei.jpg");
+	
 }
 
 //---------------------------------------------------------------------
@@ -192,6 +197,9 @@ void GameScene::Update()
 //---------------------------------------------------------------------
 void GameScene::Draw()
 {
+	//îwåiÇï`âÊÇ∑ÇÈÇ∫
+	DrawGraph(0, 0, backImg, false);
+
 	EffectManager& efcMng = EffectManager::Instance();
 	Camera& camera = Camera::Instance();
 	Vector2 offset = camera.Pos() + camera.Offset();
@@ -212,4 +220,7 @@ void GameScene::Draw()
 	//	_cb->Draw(offset);
 	//}
 	efcMng.Draw();						//ÉGÉtÉFÉNÉg
+
+
+	
 }

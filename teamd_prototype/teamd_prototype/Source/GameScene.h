@@ -24,6 +24,10 @@ private:
 	const Rect2 _ground;
 	bool _prevPlayerGroundFlg;
 	int	_crusheCount;
+
+	//背景画像
+	int backImg;
+
 public:
 	GameScene();	//コンストラクタ
 	~GameScene();	//　デストラクタ
