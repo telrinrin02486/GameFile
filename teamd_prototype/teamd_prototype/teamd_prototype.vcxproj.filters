@@ -47,6 +47,9 @@
     <Filter Include="Source\Actor\Player">
       <UniqueIdentifier>{b4f10604-b3c1-4716-b0b0-89c61957f1dc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\MapEdit">
+      <UniqueIdentifier>{11bc2f97-2873-4d2a-9a17-0c1dd143e51b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Const.h" />
@@ -125,6 +128,15 @@
     <ClInclude Include="Source\Player.h">
       <Filter>Source\Actor\Player</Filter>
     </ClInclude>
+    <ClInclude Include="Source\EditCursor.h">
+      <Filter>Source\MapEdit</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MapCtl.h">
+      <Filter>Source\MapEdit</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Obj.h">
+      <Filter>Source\MapEdit</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\CB_1.cpp">
@@ -198,6 +210,15 @@
     </ClCompile>
     <ClCompile Include="Source\Player.cpp">
       <Filter>Source\Actor\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EditCursor.cpp">
+      <Filter>Source\MapEdit</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MapCtl.cpp">
+      <Filter>Source\MapEdit</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Obj.cpp">
+      <Filter>Source\MapEdit</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

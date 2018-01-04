@@ -27,6 +27,7 @@
     <ClInclude Include="Source\Const.h" />
     <ClInclude Include="Source\CrushedBox.h" />
     <ClInclude Include="Source\Dust.h" />
+    <ClInclude Include="Source\EditCursor.h" />
     <ClInclude Include="Source\Effect.h" />
     <ClInclude Include="Source\EffectManager.h" />
     <ClInclude Include="Source\Enemy.h" />
@@ -34,6 +35,8 @@
     <ClInclude Include="Source\GameScene.h" />
     <ClInclude Include="Source\ImageMng.h" />
     <ClInclude Include="Source\KeyInput.h" />
+    <ClInclude Include="Source\MapCtl.h" />
+    <ClInclude Include="Source\Obj.h" />
     <ClInclude Include="Source\Player.h" />
     <ClInclude Include="Source\Point2.h" />
     <ClInclude Include="Source\Range2.h" />
@@ -54,6 +57,7 @@
     <ClCompile Include="Source\Collision.cpp" />
     <ClCompile Include="Source\CrushedBox.cpp" />
     <ClCompile Include="Source\Dust.cpp" />
+    <ClCompile Include="Source\EditCursor.cpp" />
     <ClCompile Include="Source\Effect.cpp" />
     <ClCompile Include="Source\EffectManager.cpp" />
     <ClCompile Include="Source\Enemy.cpp" />
@@ -62,6 +66,8 @@
     <ClCompile Include="Source\ImageMng.cpp" />
     <ClCompile Include="Source\KeyInput.cpp" />
     <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\MapCtl.cpp" />
+    <ClCompile Include="Source\Obj.cpp" />
     <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\Point2.cpp" />
     <ClCompile Include="Source\Range2.cpp" />
