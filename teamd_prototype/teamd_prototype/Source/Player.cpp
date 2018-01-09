@@ -11,11 +11,12 @@ Player::Player()
 	:_startPos(PLAYER_RECT.LT()),
 	_rect(PLAYER_RECT), _vec(Vector2())
 {
-	LoadDivGraph("../image/player.png", 
-		(IMG_DIV_CNT_X * IMG_DIV_CNT_Y), IMG_DIV_CNT_X, IMG_DIV_CNT_Y,
-		 IMG_SIZE_X, IMG_SIZE_Y, *_handle);
+	if (LoadDivGraph("../image/player.png", (IMG_DIV_CNT_X * IMG_DIV_CNT_Y), IMG_DIV_CNT_X, IMG_DIV_CNT_Y, IMG_SIZE_X, IMG_SIZE_Y, *_handle) == -1)
+	{
+		printfDx("playerImage“Ç‚Ýž‚ÝŽ¸”s");
+	}
 	_weight = 10;
-	state = ANI_MAX;
+	state = ANI_DEF;
 	aniFram = 0;
 	aniCnt = 0;
 	isDirRight = false;
@@ -85,9 +86,9 @@ void Player::Draw(const Vector2& offset_) {
 void Player::setState(KeyInput& key)
 {
 	//jumpAtample’†‚ÉˆÚ“®ƒAƒjƒ[ƒVƒ‡ƒ“‚É“ü‚é‚±‚Æ–hŽ~
-	if (state != ANI_TAMPLE && state != ANI_JUMP)
+	if (state != ANI_TAMPLE && state != ANI_JUMP && state != ANI_DAMAGE)
 	{
-		if (key.GetKeyDown(KEY_INPUT_SPACE))
+		if (key.GetKeyDown(KEY_INPUT_UP))
 		{
 			state = ANI_JUMP;
 			aniFram = 0;
@@ -107,18 +108,31 @@ void Player::setState(KeyInput& key)
 			state = ANI_WALK;
 			isDirRight = true;
 		}
+		else if (key.GetKey(KEY_INPUT_SPACE))
+		{
+			state = ANI_DAMAGE;
+			aniFram = 0;
+		}
 		else
 		{
-			state = ANI_MAX;
+			state = ANI_DEF;
 		}
+	}
+	else
+	{
+		//Œ»Ýstate‚ªjump–”‚Ítmple
 	}
 	
 }
+
 
 void Player::setMove()
 {
 	switch (state)
 	{
+	case ANI_DEF:
+		aniCnt = 0;
+		break;
 	case ANI_WALK:
 		(aniFram / ANIM_SPEED) % 2 == 1 ? aniCnt = 0: aniCnt = 1;
 		break;
@@ -126,9 +140,9 @@ void Player::setMove()
 		if (aniFram % ANIM_SPEED == 0)
 		{
 			aniCnt++;
-			if (aniCnt > IMG_DIV_CNT_X)
+			if (aniCnt > (IMG_DIV_CNT_X - 1))
 			{
-				state = ANI_MAX;
+				state = ANI_DEF;
 				aniCnt = 0;
 			}
 		}
@@ -137,15 +151,24 @@ void Player::setMove()
 		if (aniFram % ANIM_SPEED == 0)
 		{
 			aniCnt++;
-			if (aniCnt > IMG_DIV_CNT_X)
+			if (aniCnt > (IMG_DIV_CNT_X - 2))
 			{
-				state = ANI_MAX;
+				state = ANI_DEF;
 				aniCnt = 0;
 			}
 		}
 		break;
+	case ANI_DAMAGE:
+		if (aniFram > (IMG_SIZE_X/2))
+		{
+			state = ANI_DEF;
+		}
+		else
+		{
+			(aniFram / (ANIM_SPEED / 2)) % 2 == 1 ? aniCnt = 0 : aniCnt = 1;
+		}
+		break;
 	case ANI_MAX:
-		aniCnt = 0;
 		break;
 	default:
 		break;

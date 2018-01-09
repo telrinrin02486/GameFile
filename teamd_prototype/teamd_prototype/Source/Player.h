@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Rect2.h"
-#define IMG_DIV_CNT_X 4
-#define IMG_DIV_CNT_Y 4
+#define IMG_DIV_CNT_X 6
+#define IMG_DIV_CNT_Y 5
 #define IMG_SIZE_X 120
 #define IMG_SIZE_Y 120
 
@@ -14,9 +14,11 @@
 
 enum ANIM
 {
+	ANI_DEF,
 	ANI_WALK,
 	ANI_TAMPLE,
 	ANI_JUMP,
+	ANI_DAMAGE,
 	ANI_MAX
 };
 
