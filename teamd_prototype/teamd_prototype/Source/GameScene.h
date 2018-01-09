@@ -25,12 +25,11 @@ private:
 	bool _prevPlayerGroundFlg;
 	int	_crusheCount;
 
-	//背景画像
-	int backImg;
+	
 
 public:
 	GameScene();	//コンストラクタ
-	~GameScene();	//　デストラクタ
+	~GameScene();	//デストラクタ
 
 	//　通常のメソッド-----------------------------------------------------
 	void Initialize();	//初期化

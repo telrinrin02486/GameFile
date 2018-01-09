@@ -137,6 +137,12 @@
     <ClInclude Include="Source\Obj.h">
       <Filter>Source\MapEdit</Filter>
     </ClInclude>
+    <ClInclude Include="Source\TitleScene.h">
+      <Filter>Source\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ResultScene.h">
+      <Filter>Source\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\CB_1.cpp">
@@ -219,6 +225,12 @@
     </ClCompile>
     <ClCompile Include="Source\Obj.cpp">
       <Filter>Source\MapEdit</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TitleScene.cpp">
+      <Filter>Source\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ResultScene.cpp">
+      <Filter>Source\Scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

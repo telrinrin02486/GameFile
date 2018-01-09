@@ -1,70 +1,40 @@
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\vc140.pdb
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\vc140.idb
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\collision.obj
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\crushedbox.obj
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\dust.obj
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\effect.obj
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\effectmanager.obj
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\enemy.obj
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\gamemain.obj
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\gamescene.obj
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\imagemng.obj
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\keyinput.obj
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\main.obj
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\player.obj
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\point2.obj
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\range2.obj
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\rect2.obj
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\scenemanager.obj
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\smoke.obj
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\soundmanager.obj
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\vector2.obj
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\testenemy.obj
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\basescene.obj
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\camera.obj
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\cb_1.obj
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\cb_2.obj
-c:\users\xxmizukixx\desktop\teamed\gamefile\teamd_prototype\teamd_prototype\debug\vc140.pdb
-c:\users\xxmizukixx\desktop\teamed\gamefile\teamd_prototype\teamd_prototype\debug\vc140.idb
-c:\users\xxmizukixx\desktop\teamed\gamefile\teamd_prototype\teamd_prototype\debug\editcursor.obj
-c:\users\xxmizukixx\desktop\teamed\gamefile\teamd_prototype\teamd_prototype\debug\effect.obj
-c:\users\xxmizukixx\desktop\teamed\gamefile\teamd_prototype\teamd_prototype\debug\effectmanager.obj
-c:\users\xxmizukixx\desktop\teamed\gamefile\teamd_prototype\teamd_prototype\debug\enemy.obj
-c:\users\xxmizukixx\desktop\teamed\gamefile\teamd_prototype\teamd_prototype\debug\gamemain.obj
-c:\users\xxmizukixx\desktop\teamed\gamefile\teamd_prototype\teamd_prototype\debug\gamescene.obj
-c:\users\xxmizukixx\desktop\teamed\gamefile\teamd_prototype\teamd_prototype\debug\imagemng.obj
-c:\users\xxmizukixx\desktop\teamed\gamefile\teamd_prototype\teamd_prototype\debug\keyinput.obj
-c:\users\xxmizukixx\desktop\teamed\gamefile\teamd_prototype\teamd_prototype\debug\main.obj
-c:\users\xxmizukixx\desktop\teamed\gamefile\teamd_prototype\teamd_prototype\debug\mapctl.obj
-c:\users\xxmizukixx\desktop\teamed\gamefile\teamd_prototype\teamd_prototype\debug\obj.obj
-c:\users\xxmizukixx\desktop\teamed\gamefile\teamd_prototype\teamd_prototype\debug\player.obj
-c:\users\xxmizukixx\desktop\teamed\gamefile\teamd_prototype\teamd_prototype\debug\point2.obj
-c:\users\xxmizukixx\desktop\teamed\gamefile\teamd_prototype\teamd_prototype\debug\range2.obj
-c:\users\xxmizukixx\desktop\teamed\gamefile\teamd_prototype\teamd_prototype\debug\rect2.obj
-c:\users\xxmizukixx\desktop\teamed\gamefile\teamd_prototype\teamd_prototype\debug\scenemanager.obj
-c:\users\xxmizukixx\desktop\teamed\gamefile\teamd_prototype\teamd_prototype\debug\smoke.obj
-c:\users\xxmizukixx\desktop\teamed\gamefile\teamd_prototype\teamd_prototype\debug\soundmanager.obj
-c:\users\xxmizukixx\desktop\teamed\gamefile\teamd_prototype\teamd_prototype\debug\vector2.obj
-c:\users\xxmizukixx\desktop\teamed\gamefile\teamd_prototype\teamd_prototype\debug\testenemy.obj
-c:\users\xxmizukixx\desktop\teamed\gamefile\teamd_prototype\teamd_prototype\debug\basescene.obj
-c:\users\xxmizukixx\desktop\teamed\gamefile\teamd_prototype\teamd_prototype\debug\camera.obj
-c:\users\xxmizukixx\desktop\teamed\gamefile\teamd_prototype\teamd_prototype\debug\cb_1.obj
-c:\users\xxmizukixx\desktop\teamed\gamefile\teamd_prototype\teamd_prototype\debug\cb_2.obj
-c:\users\xxmizukixx\desktop\teamed\gamefile\teamd_prototype\teamd_prototype\debug\collision.obj
-c:\users\xxmizukixx\desktop\teamed\gamefile\teamd_prototype\teamd_prototype\debug\crushedbox.obj
-c:\users\xxmizukixx\desktop\teamed\gamefile\teamd_prototype\teamd_prototype\debug\dust.obj
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\editcursor.obj
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\mapctl.obj
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\obj.obj
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\debug\teamd_prototype.ilk
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\debug\teamd_prototype.exe
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\debug\teamd_prototype.pdb
-c:\users\xxmizukixx\desktop\teamed\gamefile\teamd_prototype\debug\teamd_prototype.ilk
-c:\users\xxmizukixx\desktop\teamed\gamefile\teamd_prototype\debug\teamd_prototype.exe
-c:\users\xxmizukixx\desktop\teamed\gamefile\teamd_prototype\debug\teamd_prototype.pdb
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\teamd_prototype.tlog\cl.command.1.tlog
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\teamd_prototype.tlog\cl.read.1.tlog
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\teamd_prototype.tlog\cl.write.1.tlog
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\teamd_prototype.tlog\link.command.1.tlog
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\teamd_prototype.tlog\link.read.1.tlog
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\debug\teamd_prototype.tlog\link.write.1.tlog
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\vc140.pdb
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\vc140.idb
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\effectmanager.obj
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\enemy.obj
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\gamemain.obj
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\gamescene.obj
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\imagemng.obj
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\keyinput.obj
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\main.obj
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\mapctl.obj
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\obj.obj
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\player.obj
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\point2.obj
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\range2.obj
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\rect2.obj
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\resultscene.obj
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\scenemanager.obj
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\smoke.obj
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\soundmanager.obj
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\titlescene.obj
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\vector2.obj
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\testenemy.obj
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\basescene.obj
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\camera.obj
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\cb_1.obj
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\cb_2.obj
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\collision.obj
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\crushedbox.obj
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\dust.obj
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\editcursor.obj
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\effect.obj
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\debug\teamd_prototype.ilk
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\debug\teamd_prototype.exe
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\debug\teamd_prototype.pdb
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\teamd_prototype.tlog\cl.command.1.tlog
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\teamd_prototype.tlog\cl.read.1.tlog
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\teamd_prototype.tlog\cl.write.1.tlog
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\teamd_prototype.tlog\link.command.1.tlog
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\teamd_prototype.tlog\link.read.1.tlog
+c:\users\teruaki　sato\desktop\teamd\gamefile\teamd_prototype\teamd_prototype\debug\teamd_prototype.tlog\link.write.1.tlog

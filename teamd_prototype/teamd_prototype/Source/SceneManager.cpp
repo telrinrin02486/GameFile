@@ -9,7 +9,9 @@ using namespace std;
 #include "Vector2.h"			// 使用なし
 #include "Effect.h"				// Vector2
 #include "EffectManager.h"		// Effect、Vector2、std
+#include "TitleScene.h"	
 #include "GameScene.h"			// BaseScene、EffectManager
+#include "ResultScene.h"	
 #include "SceneManager.h"		// BaseScene
 
 //SceneManager.cpp
@@ -35,7 +37,10 @@ SceneManager::~SceneManager()
 //-------------------------------------------------------------------
 void SceneManager::Initialize()
 {
-	_scene = new GameScene();
+	
+	//titleからの遷移がわずらわしければ
+	//ココの生成をgameに変えて
+	_scene = new TitleScene();
 	_st = SType_TITLE;
 	_scene->Initialize();
 }
@@ -77,12 +82,21 @@ void SceneManager::ChangeScene( SCENE_TYPE st )
 
 	switch ( st )
 	{
+	case SType_TITLE:
+		_scene = new TitleScene();
+		_st = SType_TITLE;
+		_scene->Initialize();
+		break;
 	case SType_GAME:
 		_scene = new GameScene();
 		_scene->Initialize();
 		_st = SType_GAME;
 		break;
-
+	case SType_RESULT:
+		_scene = new ResultScene();
+		_st = SType_RESULT;
+		_scene->Initialize();
+		break;
 	default:
 		break;
 	}

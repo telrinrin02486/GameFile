@@ -41,10 +41,12 @@
     <ClInclude Include="Source\Point2.h" />
     <ClInclude Include="Source\Range2.h" />
     <ClInclude Include="Source\Rect2.h" />
+    <ClInclude Include="Source\ResultScene.h" />
     <ClInclude Include="Source\SceneManager.h" />
     <ClInclude Include="Source\Singleton.h" />
     <ClInclude Include="Source\Smoke.h" />
     <ClInclude Include="Source\SoundManager.h" />
+    <ClInclude Include="Source\TitleScene.h" />
     <ClInclude Include="Source\Var2.h" />
     <ClInclude Include="Source\Vector2.h" />
     <ClInclude Include="TestEnemy.h" />
@@ -72,9 +74,11 @@
     <ClCompile Include="Source\Point2.cpp" />
     <ClCompile Include="Source\Range2.cpp" />
     <ClCompile Include="Source\Rect2.cpp" />
+    <ClCompile Include="Source\ResultScene.cpp" />
     <ClCompile Include="Source\SceneManager.cpp" />
     <ClCompile Include="Source\Smoke.cpp" />
     <ClCompile Include="Source\SoundManager.cpp" />
+    <ClCompile Include="Source\TitleScene.cpp" />
     <ClCompile Include="Source\Vector2.cpp" />
     <ClCompile Include="TestEnemy.cpp" />
   </ItemGroup>

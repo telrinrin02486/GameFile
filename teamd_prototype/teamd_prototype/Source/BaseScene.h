@@ -12,6 +12,9 @@ protected:
 	int _texID;
 	bool _isChange;
 
+	
+	int backImg;//”wŒi‰æ‘œ
+
 public:
 	//ƒˆ‰¼‘zŠÖ”
 	//Œp³æ‚É‚æ‚Á‚Äˆ—‚ª•Ï‚í‚é
