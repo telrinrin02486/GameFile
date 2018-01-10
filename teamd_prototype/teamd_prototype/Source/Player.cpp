@@ -85,18 +85,20 @@ void Player::Draw(const Vector2& offset_) {
 
 void Player::setState(KeyInput& key)
 {
-	//jump、tample中に移動アニメーションに入ること防止
+	//jump、tample、damage中に移動アニメーションに入ること防止
 	if (state != ANI_TAMPLE && state != ANI_JUMP && state != ANI_DAMAGE)
 	{
 		if (key.GetKeyDown(KEY_INPUT_UP))
 		{
 			state = ANI_JUMP;
-			aniFram = 0;
+			aniFram = 1;
+			aniCnt = 0;
 		}
 		else if (key.GetKeyDown(KEY_INPUT_DOWN))
 		{
 			state = ANI_TAMPLE;
-			aniFram = 0;
+			aniFram = 1;
+			aniCnt = 0;
 		}
 		else if (key.GetKey(KEY_INPUT_LEFT))
 		{
@@ -120,7 +122,7 @@ void Player::setState(KeyInput& key)
 	}
 	else
 	{
-		//現在stateがjump又はtmple
+		//現在stateがjump、tmple、damage
 	}
 	
 }
@@ -140,10 +142,10 @@ void Player::setMove()
 		if (aniFram % ANIM_SPEED == 0)
 		{
 			aniCnt++;
-			if (aniCnt > (IMG_DIV_CNT_X - 1))
+			if (aniCnt > (IMG_DIV_CNT_X -1))
 			{
 				state = ANI_DEF;
-				aniCnt = 0;
+				aniCnt = 0;//この代入を入れないと1フレ消える(冬休みぼけの頭では現在原因不明）
 			}
 		}
 		break;
@@ -151,7 +153,7 @@ void Player::setMove()
 		if (aniFram % ANIM_SPEED == 0)
 		{
 			aniCnt++;
-			if (aniCnt > (IMG_DIV_CNT_X - 2))
+			if (aniCnt > (IMG_DIV_CNT_X -2))
 			{
 				state = ANI_DEF;
 				aniCnt = 0;
@@ -169,6 +171,7 @@ void Player::setMove()
 		}
 		break;
 	case ANI_MAX:
+		//現状来ない
 		break;
 	default:
 		break;
