@@ -60,7 +60,6 @@ void ResultScene::Finalize()
 //---------------------------------------------------------------------
 void ResultScene::Update()
 {
-
 	KeyInput& key = KeyInput::GetInstance();
 	//title‚Ö
 	if (key.GetKeyUp(KEY_INPUT_2))
@@ -72,6 +71,7 @@ void ResultScene::Update()
 	{
 		SceneManager::GetInstance().ChangeScene(SType_GAME);
 	}
+
 
 }
 

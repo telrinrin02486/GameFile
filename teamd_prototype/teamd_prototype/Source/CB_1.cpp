@@ -66,7 +66,7 @@ int CB_1::Update() {
 		_dirx = -_dirx;
 	}
 
-	//_vec.x = _dirx;
+	_vec.x = _dirx;
 	_vec.y += gravity;
 	_rect.Move(_vec);
 	//•ûŒüî•ñ
@@ -130,7 +130,6 @@ void CB_1::Crushed(const Player& player) {
 		int r1 = MY_RANDOM;
 		int r2 = MY_RANDOM;
 		//‚±ª‚±«â‘Î’l‚¶‚á‚È‚¢‚Æ‚Ü‚¸‚¢ƒ]
-
 		Vector2 absSize = ol.Size().Absolute();
 		Vector2 value = (Vector2(r1, r2) % absSize) * damageNrmVec * 5;
 		smashedValue += value;
@@ -143,7 +142,6 @@ void CB_1::Crushed(const Player& player) {
 	//‚±‚Ì•Ó‚è‚Í‚Ç‚¤‚·‚éƒ]`H
 
 	_rect.TopCrushed(smashedValue.y);
-
 
 
 

@@ -33,6 +33,9 @@ private:
 	SceneManager &operator = ( const SceneManager &Inst );
 
 
+private:
+	unsigned int _score;
+
 public:
 	//　インスタンス取得---------------------------------------------------
 	static SceneManager &GetInstance()
@@ -50,6 +53,10 @@ public:
 
 	void ChangeScene( SCENE_TYPE st );	//シーン切り替え
 
+	//撃破した数をセット
+	void SetScore(unsigned int score_);
+	//撃破した数をゲット
+	unsigned int GetScore() const;
 	//　アクセサ-----------------------------------------------------------
 	BaseScene *GetScene(){ return _scene; }
 };

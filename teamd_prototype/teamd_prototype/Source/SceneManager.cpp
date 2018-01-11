@@ -101,3 +101,12 @@ void SceneManager::ChangeScene( SCENE_TYPE st )
 		break;
 	}
 }
+
+//撃破した数をセット
+void SceneManager::SetScore(unsigned int score_) {
+	_score = score_;
+}
+//撃破した数をゲット
+unsigned int SceneManager::GetScore() const {
+	return _score;
+}
