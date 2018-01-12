@@ -83,5 +83,6 @@ void ResultScene::Draw()
 	//”wŒi‚ğ•`‰æ‚·‚é‚º
 	DrawGraph(0, 0, backImg, false);
 	DxLib::DrawGraph(0, 0, _texID, false);	//”wŒi
+	DrawFormatString(250, 250, 0xffffff00, "”j‰óƒXƒRƒAF%d", SceneManager::GetInstance().GetScore());
 
 }

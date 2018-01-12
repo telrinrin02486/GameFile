@@ -112,6 +112,7 @@ void GameScene::Update()
 				float rSize = static_cast<float>((rand() % 150) + 15);
 				(*it)->Init(Rect2(Vector2(rand() % 1000, 300), Vector2(rSize, rSize)));
 				++_crusheCount;
+				SceneManager::GetInstance().SetScore(_crusheCount);//score‚ÌƒZƒbƒg
 				continue;
 			}
 			++it;
