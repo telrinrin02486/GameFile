@@ -9,6 +9,9 @@
 //						ゲーム管理クラス
 //=====================================================================
 
+//MAX 60秒
+#define TIME_MAX 60
+
 class CB_1;
 class Player;
 
@@ -24,6 +27,13 @@ private:
 	const Rect2 _ground;
 	bool _prevPlayerGroundFlg;
 	int	_crusheCount;
+
+	//開始時間
+	unsigned int timeStart;
+	//経過時間
+	unsigned int timeCun;
+
+	void TimeCunter();
 
 	
 
