@@ -17,6 +17,8 @@
 #define MY_RANDOM (rand())
 #define HP_RESET(x) ((MY_RANDOM % x))
 
+
+
 constexpr char* const imgPaths[] = {
 	"../image/humen/boy1.png",
 	"../image/humen/boy2.png",
@@ -51,6 +53,9 @@ void CB_1::Init(const Rect2& rect_) {
 	_dirx = 2.0f;
 	_isRightDir = true;
 	_isGround = false;
+
+	//追加(佐々木)
+	pattern = MOVE_RETURN;
 }
 int CB_1::Update() {
 	EffectManager& efm = EffectManager::Instance();
@@ -60,6 +65,24 @@ int CB_1::Update() {
 		_vec.y = 0.0f;
 	}
 	int err = 0;
+
+	//追加(佐々木)
+	switch (pattern)
+	{
+	case MOVE_NORMAL:
+	{
+
+	}
+	break;
+	case MOVE_RETURN:
+	{
+
+	}
+	break;
+	default:
+		break;
+
+	}
 	//移動
 	if (_count++ > 50) {
 		_count = 0;
@@ -69,6 +92,7 @@ int CB_1::Update() {
 	_vec.x = _dirx;
 	_vec.y += gravity;
 	_rect.Move(_vec);
+
 	//方向情報
 	if (_dirx < 0) {
 		_isRightDir = false;
@@ -145,4 +169,15 @@ void CB_1::Crushed(const Player& player) {
 
 
 
+}
+
+
+//追加(佐々木)
+void CB_1::MoveReturnUpdata()
+{
+	//プレイヤーが自分より右にいたら
+	/*if (_rect.Left() < プレイヤー)
+	{
+		_dirx
+	}*/
 }

@@ -6,16 +6,27 @@
 //壊れ方１
 //■をつぶすだけ。
 
+
+//追加(佐々木)
+//行動パターン
+enum MOVE_PATTERN
+{
+	MOVE_NORMAL,//ランダムで動く
+	MOVE_RETURN,//足マンのいる方向とは逆に動く
+};
+
 class Player;
 
 class CB_1 :
 	public CrushedBox
 {
 public:
+	
 	CB_1(const Rect2& rect_);
 	~CB_1()
 	{}
 
+	
 	//何パターンか忘れた。
 	//メモリ再確保したくないから、initでデータだけ入れて使いまわす。
 	void Init(const Rect2& rect_);
@@ -31,6 +42,10 @@ public:
 	inline const Rect2& Rect() const {
 		return _rect;
 	}
+
+	//追加(佐々木)
+	//MOVE_RETURNの処理
+	void MoveReturnUpdata();
 
 
 	//セッタ
@@ -52,6 +67,10 @@ private:
 	float		_durability;//固さ
 	int		_hitPoint;
 	int		_maxHitPoint;
+
+	//追加(佐々木)
+	MOVE_PATTERN pattern;
+	const Rect2 *playerPos;
 
 };
 
