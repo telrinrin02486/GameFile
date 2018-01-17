@@ -1,6 +1,9 @@
 #pragma once
 class TitleScene : public BaseScene
 {
+private:
+	int titleImage;
+	int startButtom;
 public:
 	TitleScene();
 	~TitleScene();
