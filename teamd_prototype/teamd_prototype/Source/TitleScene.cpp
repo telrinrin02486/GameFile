@@ -78,8 +78,8 @@ void TitleScene::Update()
 void TitleScene::Draw()
 {
 	//”wŒi‚ð•`‰æ‚·‚é‚º
-	DrawGraph(1080 / 2, 480 / 3, titleImage, false);
-	DrawGraph(1080 / 2, 480 / 2, startButtom, false);
+	DrawGraph(1080 / 2, 480 / 3, titleImage, true);
+	DrawGraph(1080 / 2, 480 / 2, startButtom, true);
 	DrawGraph(0, 0, backImg, false);
 	DxLib::DrawGraph(0, 0, _texID, false);	//”wŒi
 	

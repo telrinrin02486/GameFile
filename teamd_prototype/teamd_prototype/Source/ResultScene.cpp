@@ -83,8 +83,8 @@ void ResultScene::Update()
 void ResultScene::Draw()
 {
 	//îwåiÇï`âÊÇ∑ÇÈÇ∫
-	DrawGraph(1080 / 2, 480 / 3, resultButtom1, false);
-	DrawGraph(1080 / 2, 480 / 2, resultButtom2, false);
+	DrawGraph(1080 / 2, 480 / 3, resultButtom1, true);
+	DrawGraph(1080 / 2, 480 / 2, resultButtom2, true);
 	DrawGraph(0, 0, backImg, false);
 	DxLib::DrawGraph(0, 0, _texID, false);	//îwåi
 	DrawFormatString(250, 250, 0xffffff00, "îjâÛÉXÉRÉAÅF%d", SceneManager::GetInstance().GetScore());
