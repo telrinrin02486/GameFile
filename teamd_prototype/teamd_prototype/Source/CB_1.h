@@ -22,7 +22,7 @@ class CB_1 :
 {
 public:
 	
-	CB_1(const Rect2& rect_);
+	CB_1(const Rect2& rect_, Player *player_);
 	~CB_1()
 	{}
 
@@ -70,7 +70,7 @@ private:
 
 	//í«â¡(ç≤ÅXñÿ)
 	MOVE_PATTERN pattern;
-	const Rect2 *playerPos;
+	Player *playerPos;
 
 };
 

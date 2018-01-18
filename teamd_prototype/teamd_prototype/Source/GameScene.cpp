@@ -55,7 +55,7 @@ void GameScene::Initialize()
 
 	for (int i = 0; i < 3; ++i) {
 		float rSize = static_cast<float>((rand() % 150) + 15);
-		_cb1List.push_back(new CB_1(Rect2(Vector2(static_cast<float>(rand() % 1000), 300.0f), Vector2(rSize, rSize))));
+		_cb1List.push_back(new CB_1(Rect2(Vector2(static_cast<float>(rand() % 1000), 300.0f), Vector2(rSize, rSize)), _player));
 	}
 
 	

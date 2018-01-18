@@ -26,7 +26,7 @@ constexpr char* const imgPaths[] = {
 	"../image/humen/boy4.png",
 };
 
-CB_1::CB_1(const Rect2& rect_)
+CB_1::CB_1(const Rect2& rect_, Player *player_)
 	:_rect(rect_){
 	//矩形がクラスなために、こういうときにめんどくさい。
 	//クラスが悪いんじゃなく、設計が悪いんだけどね？
@@ -55,7 +55,7 @@ void CB_1::Init(const Rect2& rect_) {
 	_isGround = false;
 
 	//追加(佐々木)
-	pattern = MOVE_RETURN;
+	pattern = MOVE_NORMAL;
 }
 int CB_1::Update() {
 	EffectManager& efm = EffectManager::Instance();
@@ -71,12 +71,15 @@ int CB_1::Update() {
 	{
 	case MOVE_NORMAL:
 	{
-
+		if (_count++ > 50) {
+		_count = 0;
+		_dirx = -_dirx;
+		}
 	}
 	break;
 	case MOVE_RETURN:
 	{
-
+		MoveReturnUpdata();
 	}
 	break;
 	default:
@@ -84,10 +87,10 @@ int CB_1::Update() {
 
 	}
 	//移動
-	if (_count++ > 50) {
+	/*if (_count++ > 50) {
 		_count = 0;
 		_dirx = -_dirx;
-	}
+	}*/
 
 	_vec.x = _dirx;
 	_vec.y += gravity;
@@ -176,8 +179,14 @@ void CB_1::Crushed(const Player& player) {
 void CB_1::MoveReturnUpdata()
 {
 	//プレイヤーが自分より右にいたら
-	/*if (_rect.Left() < プレイヤー)
+	if (_rect.Left() < playerPos->Rect().Left()&& _dirx > 0)
 	{
-		_dirx
-	}*/
+		_dirx = -_dirx;
+	}
+
+	//プレイヤーが自分より左にいたら
+	if (_rect.Left() > playerPos->Rect().Left() && _dirx < 0)
+	{
+		_dirx = -_dirx;
+	}
 }
