@@ -173,19 +173,17 @@ void CB_1::Crushed(const Player& player) {
 
 
 }
-
-
 //追加(佐々木)
 void CB_1::MoveReturnUpdata()
 {
 	//プレイヤーが自分より右にいたら
-	if (_rect.Left() < playerPos->Rect().Left()&& _dirx > 0)
+	if (_rect.Right() < playerPos->Rect().Left()&& _dirx > 0)
 	{
 		_dirx = -_dirx;
 	}
 
 	//プレイヤーが自分より左にいたら
-	if (_rect.Left() > playerPos->Rect().Left() && _dirx < 0)
+	if (_rect.Left() > playerPos->Rect().Right() && _dirx < 0)
 	{
 		_dirx = -_dirx;
 	}
