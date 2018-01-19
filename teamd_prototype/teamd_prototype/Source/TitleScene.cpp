@@ -80,7 +80,7 @@ void TitleScene::Draw()
 	//”wŒi‚ð•`‰æ‚·‚é‚º
 	DrawGraph(1080 / 2, 480 / 3, titleImage, true);
 	DrawGraph(1080 / 2, 480 / 2, startButtom, true);
-	DrawGraph(0, 0, backImg, false);
-	DxLib::DrawGraph(0, 0, _texID, false);	//”wŒi
+	//DrawGraph(0, 0, backImg, false);
+	//DxLib::DrawGraph(0, 0, _texID, false);	//”wŒi
 	
 }
