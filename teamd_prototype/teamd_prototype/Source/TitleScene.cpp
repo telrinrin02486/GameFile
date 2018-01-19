@@ -43,7 +43,7 @@ void TitleScene::Initialize()
 	//”wŒi‰æ‘œ‚ğƒ[ƒh
 	titleImage	= LoadGraph("../image/UI/title/titleImage.png");
 	startButtom = LoadGraph("../image/UI/title/startButtom.png");
-	backImg		= LoadGraph("../image/title.png");
+	backImg		= LoadGraph("../image/sceneBack/title/titleBack.png");
 
 }
 
@@ -78,9 +78,8 @@ void TitleScene::Update()
 void TitleScene::Draw()
 {
 	//”wŒi‚ğ•`‰æ‚·‚é‚º
-	DrawGraph(1080 / 2, 480 / 3, titleImage, true);
-	DrawGraph(1080 / 2, 480 / 2, startButtom, true);
-	//DrawGraph(0, 0, backImg, false);
-	//DxLib::DrawGraph(0, 0, _texID, false);	//”wŒi
+	DrawGraph(0, 0, backImg, false);
+	DrawGraph(400, 480 / 5, titleImage, true);
+	DrawGraph(475, 480 / 2, startButtom, true);
 	
 }

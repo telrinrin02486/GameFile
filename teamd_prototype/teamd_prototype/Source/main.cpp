@@ -13,7 +13,7 @@
 int main(void){
 	constexpr unsigned int WINDOW_WIDTH = 1080;
 	constexpr unsigned int WINDOW_HEIGHT = 480;
-	constexpr char* const WINDOW_TITLE = "TeamDestory_ƒ¿";
+	constexpr char* const WINDOW_TITLE = "TeamDestory_ƒÀ";
 	int err = 0;
 
 	err = ChangeWindowMode(TRUE);
