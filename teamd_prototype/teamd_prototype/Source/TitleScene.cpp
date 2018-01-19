@@ -16,6 +16,8 @@ using namespace std;
 
 
 
+
+
 //---------------------------------------------------------------------
 //　コンストラクタ
 //---------------------------------------------------------------------
@@ -41,9 +43,9 @@ void TitleScene::Initialize()
 	_isChange = false;
 
 	//背景画像をロード
-	titleImage	= LoadGraph("../image/UI/title/titleImage.png");
-	startButtom = LoadGraph("../image/UI/title/startButtom.png");
-	backImg		= LoadGraph("../image/sceneBack/title/titleBack.png");
+	titleImage[ID_title]		= LoadGraph("../image/UI/title/titleImage.png");
+	titleImage[ID_startButtom]	= LoadGraph("../image/UI/title/startButtom.png");
+	titleImage[ID_titleBack]	= LoadGraph("../image/sceneBack/title/titleBack.png");
 
 }
 
@@ -78,8 +80,9 @@ void TitleScene::Update()
 void TitleScene::Draw()
 {
 	//背景を描画するぜ
-	DrawGraph(0, 0, backImg, false);
-	DrawGraph(400, 480 / 5, titleImage, true);
-	DrawGraph(475, 480 / 2, startButtom, true);
+	DrawGraph(0, 0, titleImage[ID_titleBack], false);
+	DrawGraph(400, 480 / 5, titleImage[ID_title], true);
+	DrawGraph(475, 480 / 2, titleImage[ID_startButtom], true);
 	
 }
+
