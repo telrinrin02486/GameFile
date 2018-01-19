@@ -57,7 +57,7 @@ void EffectManager::TexLoading()
 	//テクスチャのロード
 	for ( int i = 0; i < EFFECT_TYPE_MAX; i++ )
 	{
-		_img[ i ] = ImageMng::GetInstance()->GetImgID( EffectImgData[ i ].filePath, EffectImgData[ i ].divCnt, EffectImgData[ i ].divSize );
+		_img[ i ] = ImageMng::GetInstance()->GetImgDivID( EffectImgData[ i ].filePath, EffectImgData[ i ].divCnt, EffectImgData[ i ].divSize );
 	}
 }
 

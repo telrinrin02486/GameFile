@@ -41,9 +41,7 @@ void ResultScene::Initialize()
 	_isChange = false;
 
 	//îwåiâÊëúÇÉçÅ[Éh
-	resultButtom1 = LoadGraph("../image/UI/result/resultButtom1.png");
-	resultButtom2 = LoadGraph("../image/UI/result/resultButtom2.png");
-	backImg		  = LoadGraph("../image/result.png");
+	
 
 }
 
@@ -83,10 +81,8 @@ void ResultScene::Update()
 void ResultScene::Draw()
 {
 	//îwåiÇï`âÊÇ∑ÇÈÇ∫
-	DrawGraph(1080 / 2, 480 / 3, resultButtom1, true);
-	DrawGraph(1080 / 2, 480 / 2, resultButtom2, true);
-	//DrawGraph(0, 0, backImg, false);
-	DxLib::DrawGraph(0, 0, _texID, false);	//îwåi
+	ImageMng::GetInstance()->UiDraw(ID_resultBack, ID_MAX);
 	DrawFormatString(250, 250, 0xffffff00, "îjâÛÉXÉRÉAÅF%d", SceneManager::GetInstance().GetScore());
 
 }
+

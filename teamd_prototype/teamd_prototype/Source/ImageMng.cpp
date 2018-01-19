@@ -20,18 +20,30 @@ ImageMng *ImageMng::_Instance = nullptr;		//インスタンス
 ImageMng::ImageMng()
 {
 	//インスタンス
-	_imageList = new int   [ IMG_LIST_SIZE ];
-	_nameList  = new string[ IMG_LIST_SIZE ];
+	_imageDivList = new int   [ IMG_LIST_SIZE ];
+	_nameDivList  = new string[ IMG_LIST_SIZE ];
 
 	//初期化
 	for ( int i = 0; i < IMG_LIST_SIZE; i++ )
 	{
-		_imageList[ i ] = 0;
-		_nameList [ i ] = "";
+		_imageDivList[ i ] = 0;
+		_nameDivList [ i ] = "";
 	}
 
 	//先頭はエラーコードとする
-	_imageList[ 0 ] = -1;
+	_imageDivList[ 0 ] = -1;
+
+
+	//titleUI、背景のロード
+	setUIID("../image/sceneBack/title/titleBack.png", ID_titleBack, { 0, 0 });
+	setUIID("../image/UI/title/titleImage.png", ID_title, { 400, 480 / 5 });
+	setUIID("../image/UI/title/startButtom.png", ID_startButtom, { 475, 480 / 2 });
+
+	//resultUI、背景のロード
+	setUIID("../image/result.png", ID_resultBack, { 0, 0 });
+	setUIID("../image/UI/result/resultButtom1.png", ID_resultButtom1, { 1080 / 2, 480 / 3 });
+	setUIID("../image/UI/result/resultButtom2.png", ID_resultButtom2, { 1080 / 2, 480 / 2 });
+	
 }
  
 //---------------------------------------------------------------------
@@ -42,8 +54,8 @@ ImageMng::~ImageMng()
 	/*！注意！*/
 	//配列のdeleteでは必ず[]をつけてdeleteすること
 	//[]なしだと先頭しか削除されないのだ！
-	delete []_imageList;
-	delete []_nameList;
+	delete []_imageDivList;
+	delete []_nameDivList;
 }
 
 //---------------------------------------------------------------------
@@ -70,19 +82,30 @@ void ImageMng::Destroy()
 	_Instance = nullptr;
 }
 
+void ImageMng::setUIID(std::string fileName, ID_UI ui_id, Vector2 pos)
+{
+	uiList[ui_id].image[ui_id] = LoadGraph(fileName.c_str());
+	uiList[ui_id].pos[ui_id] = pos;
+}
+
+const UI *ImageMng::GetUIID(int ui_id)
+{
+	return &uiList[ui_id];
+}
+
 //---------------------------------------------------------------------
 //　画像リストから任意の画像の先頭を返す
 //---------------------------------------------------------------------
-const int *ImageMng::GetImgID( string fileName, Vector2 divCnt, Vector2 divSize )
+const int *ImageMng::GetImgDivID( string fileName, Vector2 divCnt, Vector2 divSize )
 {
 	int listIdx;		//リスト要素数
 
 	//読み込み済みかチェック
 	for ( listIdx = 0; listIdx < IMG_LIST_SIZE; listIdx++ )
 	{
-		if ( _nameList[ listIdx ] == fileName )
+		if ( _nameDivList[ listIdx ] == fileName )
 		{
-			return &_imageList[ listIdx ];
+			return &_imageDivList[ listIdx ];
 		}
 	}
 
@@ -91,7 +114,7 @@ const int *ImageMng::GetImgID( string fileName, Vector2 divCnt, Vector2 divSize 
 
 	for ( listIdx = 0; listIdx < IMG_LIST_SIZE; listIdx++ )
 	{
-		if ( _imageList[ listIdx ] == 0 )
+		if (_imageDivList[ listIdx ] == 0 )
 		{
 			flg = true;
 
@@ -105,7 +128,7 @@ const int *ImageMng::GetImgID( string fileName, Vector2 divCnt, Vector2 divSize 
 			//未使用チェック
 			for ( int i = 1; i < divCnt.x * divCnt.y; i++ )
 			{
-				if ( _imageList[ listIdx + i ] != 0 )
+				if (_imageDivList[ listIdx + i ] != 0 )
 				{
 					flg = false;
 					listIdx += i;
@@ -124,22 +147,34 @@ const int *ImageMng::GetImgID( string fileName, Vector2 divCnt, Vector2 divSize 
 	if ( flg )
 	{
 		//先頭を保存
-		_nameList[ listIdx ] = fileName;
+		_nameDivList[ listIdx ] = fileName;
 
 		//画像のロード
 		if ( LoadDivGraph( fileName.c_str(), divCnt.x * divCnt.y,
-							divCnt.x, divCnt.y, divSize.x, divSize.y, &_imageList[ listIdx ], false ) == -1 )
+							divCnt.x, divCnt.y, divSize.x, divSize.y, &_imageDivList[ listIdx ], false ) == -1 )
 		{
 
 			exit( 1 );
 		}
 
-		return &_imageList[ listIdx ];
+		return &_imageDivList[ listIdx ];
 	}
 	else
 	{
 		//エラー(-1)を返す
-		return &_imageList[ 0 ];
+		return &_imageDivList[ 0 ];
 	}
 	
+}
+
+
+void ImageMng::UiDraw(ID_UI startID, ID_UI endID)
+{
+	int id = startID;
+	while (id < endID)
+	{
+		DrawGraph(GetUIID(id)->pos[id].x, GetUIID(id)->pos[id].y,GetUIID(id)->image[id], true);
+		id++;
+	}
+
 }

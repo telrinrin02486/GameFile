@@ -10,12 +10,10 @@ using namespace std;
 #include "TitleScene.h"		// BaseSceneAEffectManager
 
 // TitleScene.cpp
+
 #include "KeyInput.h"		// Žg—p‚È‚µ
 #include "DxLib.h"
 #include "SceneManager.h"
-
-
-
 
 
 //---------------------------------------------------------------------
@@ -41,11 +39,7 @@ void TitleScene::Initialize()
 	
 	//ƒV[ƒ“Ø‚è‘Ö‚¦ƒtƒ‰ƒO
 	_isChange = false;
-
-	//”wŒi‰æ‘œ‚ðƒ[ƒh
-	titleImage[ID_title]		= LoadGraph("../image/UI/title/titleImage.png");
-	titleImage[ID_startButtom]	= LoadGraph("../image/UI/title/startButtom.png");
-	titleImage[ID_titleBack]	= LoadGraph("../image/sceneBack/title/titleBack.png");
+	
 
 }
 
@@ -80,9 +74,7 @@ void TitleScene::Update()
 void TitleScene::Draw()
 {
 	//”wŒi‚ð•`‰æ‚·‚é‚º
-	DrawGraph(0, 0, titleImage[ID_titleBack], false);
-	DrawGraph(400, 480 / 5, titleImage[ID_title], true);
-	DrawGraph(475, 480 / 2, titleImage[ID_startButtom], true);
-	
+	ImageMng::GetInstance()->UiDraw(ID_titleBack, ID_resultBack);
 }
+
 
