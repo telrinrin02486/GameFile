@@ -26,15 +26,25 @@ private:
 class Escape :
 	public EnemyNyn::State {
 public:
-	Escape(const Player& player_,EnemyNyn::Parameter& param_);
+	Escape(EnemyNyn::Parameter& param_);
 	~Escape();
 	int Update() override;
 private:
 
-	const Player& _player;
-
 	EnemyNyn::Parameter& _param;
 
+};
+//瀕死
+class Dying :
+	public EnemyNyn::State {
+public:
+	Dying(EnemyNyn::Parameter& param_);
+	~Dying();
+	int Update() override;
+
+private:
+
+	EnemyNyn::Parameter& _param;
 };
 
 constexpr float NYN_HEIGHT = 60;
@@ -61,7 +71,7 @@ int EnemyNyn::Update() {
 		__state = Enemy::State::isGhost;
 		--_param.ghostTime;
 	}
-	if (_param.life <= 0 || _param.size.y < NYN_HEIGHT*0.5f) {
+	if (_param.size.y < 2.0f) {
 		__state = Enemy::State::isDed;
 	}
 	if (__onHouse != nullptr) {
@@ -117,6 +127,12 @@ void EnemyNyn::OnCollided(const Player& player_) {
 		}
 	}
 }
+//これちょっと難しいなぁ。
+void EnemyNyn::OnCollided(const House& house_) {
+
+
+
+}
 //--
 
 EnemyNyn::State::State() {
@@ -136,6 +152,9 @@ Idle::Idle(EnemyNyn::Parameter& param_)
 	}
 int Idle::Update() {
 	int err = 0;
+	if (_param.size.y < NYN_HEIGHT*0.5f) {
+		_param.ChangeState(new Dying(_param));
+	}
 	constexpr float walkSpeed = 1.0f;
 	constexpr float gravity = 9.8f*(1.0f / 30.0f);
 	if (_param.isGround) {
@@ -165,10 +184,8 @@ int Idle::Update() {
 }
 
 //Escape
-Escape::Escape(const Player& player_,
-	EnemyNyn::Parameter& param_)
-	:_player(player_),
-	_param(param_) {
+Escape::Escape(EnemyNyn::Parameter& param_)
+	:_param(param_) {
 
 }
 Escape::~Escape() {
@@ -177,8 +194,39 @@ Escape::~Escape() {
 
 int Escape::Update() {
 	int err = 0;
+	constexpr float escapeSpeed = 3.0f;
+	constexpr float gravity = 9.8f*(1.0f / 30.0f);
+	if (_param.isGround) {
+		_param.vec.y = 0.0f;
+	}
+
+
+	_param.pos += _param.vec;
+	//重力加速度追加
+	_param.vec.y += gravity;
 
 
 	return err;
 }
 
+//Ded
+Dying::Dying(EnemyNyn::Parameter& param_)
+	:_param(param_) {
+
+}
+Dying::~Dying() {
+
+}
+int Dying::Update() {
+	int err = 0;
+	constexpr float gravity = 9.8f*(1.0f / 30.0f);
+	if (_param.isGround) {
+		_param.vec = Vector2::ZERO;
+	}
+	_param.pos += _param.vec;
+	//重力加速度追加
+	_param.vec.y += gravity;
+
+
+	return err;
+}

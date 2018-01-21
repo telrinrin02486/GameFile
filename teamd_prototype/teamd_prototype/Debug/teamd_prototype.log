@@ -27,7 +27,7 @@ c:\users\yunam\desktop\gamefile\teamd_prototype\teamd_prototype\source\gamescene
   GameMain.cpp
   EnemyNyn.cpp
 c:\users\yunam\desktop\gamefile\teamd_prototype\teamd_prototype\house.h(113): warning C4800: 'int': ブール値を 'true' または 'false' に強制的に設定します (警告の処理)
-c:\users\yunam\desktop\gamefile\teamd_prototype\teamd_prototype\source\enemynyn.cpp(83): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+c:\users\yunam\desktop\gamefile\teamd_prototype\teamd_prototype\source\enemynyn.cpp(93): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
   Enemy.cpp
   EffectManager.cpp
   コードを生成中...

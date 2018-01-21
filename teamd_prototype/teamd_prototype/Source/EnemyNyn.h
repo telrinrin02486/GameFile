@@ -2,6 +2,8 @@
 #include "Enemy.h"
 #include "Rect2.h"
 
+class CharaCollider;
+
 class Player;
 class House;
 class Camera;
@@ -32,11 +34,14 @@ public:
 		Vector2	vec;//力ベクトル値？
 		int		life;//体力
 		int		ghostTime;//無敵タイム
+		//判定用
+		std::vector<CharaCollider*> _collider;
+
 		//基礎クラスがもってるパラメタ
 		bool&	isGround;//接地フラグ
 		const House*& onHouse;//入ってる家
 		Enemy::State& enemyState;//状態
-
+		//state
 		EnemyNyn::State*	prevState;
 		EnemyNyn::State*	nowState;
 
@@ -64,6 +69,9 @@ public:
 	}
 
 	void OnCollided(const Player& player_) override;
+	void OnCollided(const House& house_) override;
+
+
 private:
 	Parameter _param;
 

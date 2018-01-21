@@ -20,6 +20,7 @@ public:
 	inline const std::vector<Blood>& Bloods() const {
 		return _bloods;
 	}
+	//一粒生成
 	void Create(const Point2& point_, const Point2& vec_);
 
 	inline const float& Radius() const {
@@ -27,6 +28,8 @@ public:
 	}
 private:
 	//要素の追加時に大幅なメモリ移動が起こり得る
+	//最初にある程度まとめて確保しておいて、後から追加する？
+	//でも最初からこんだけのものがメモリ上にあると邪魔だよね。
 
 	std::vector<Blood> _bloods;
 

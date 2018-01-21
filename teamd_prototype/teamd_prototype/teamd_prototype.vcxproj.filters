@@ -156,6 +156,7 @@
       <Filter>Source\Blood</Filter>
     </ClInclude>
     <ClInclude Include="BloodManager.h" />
+    <ClInclude Include="CharaCollider.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\CB_1.cpp">
@@ -252,5 +253,6 @@
       <Filter>Source\Blood</Filter>
     </ClCompile>
     <ClCompile Include="BloodManager.cpp" />
+    <ClCompile Include="CharaCollider.cpp" />
   </ItemGroup>
 </Project>
