@@ -14,19 +14,25 @@
 
 class CB_1;
 class Player;
-
+class House;
+class EnemyNyn;
 class GameScene : public BaseScene
 {
 private:
 
 	Player		*_player;
 	std::list<CB_1*> _cb1List;
+	std::list<EnemyNyn*> _nyns;
+	std::list<House*> _houses;
 
 	Vector2 _playerStartPos;
+	Rect2	_playerInFrame;//プレイヤーを追いかける枠（カメラ用
 
-	const Rect2 _ground;
+	float _groundPosY;
 	bool _prevPlayerGroundFlg;
 	int	_crusheCount;
+
+	int _minLimit, _maxLimit;
 
 	//開始時間
 	unsigned int timeStart;
@@ -34,8 +40,8 @@ private:
 	unsigned int timeCun;
 
 	void TimeCunter();
-
 	
+
 
 public:
 	GameScene();	//コンストラクタ

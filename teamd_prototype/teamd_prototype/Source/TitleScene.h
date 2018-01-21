@@ -5,8 +5,8 @@
 class TitleScene : public BaseScene
 {
 private:
-	
-	
+
+
 public:
 	TitleScene();
 	~TitleScene();
@@ -15,6 +15,6 @@ public:
 	void Finalize();	//I—¹ˆ—
 	void Update();		//XV
 	void Draw();		//•`‰æ
-	
+
 };
 

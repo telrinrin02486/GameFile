@@ -26,7 +26,7 @@ public:
 	//継承先で必ず同じ関数を実装する必要がある
 	virtual void Initialize()	= 0;
 	virtual void Update()		= 0;
-	virtual void Draw()			= 0;
+	virtual void Draw(const Vector2& offset_)			= 0;
 
 	//　アクセサ-----------------------------------------------------------
 	Vector2 GetPos()		{ return _pos; }			//座標参照

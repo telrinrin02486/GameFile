@@ -43,7 +43,7 @@ public:
 	void TexLoading();	//アニメーション読み込み
 	void Finalize();	//終了処理
 	void Update();		//更新処理
-	void Draw();		//描画処理
+	void Draw(const Vector2& offset_);		//描画処理
 	void Delete();		//消滅処理
 
 	//　機能---------------------------------------------------------------

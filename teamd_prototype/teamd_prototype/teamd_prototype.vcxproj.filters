@@ -50,6 +50,12 @@
     <Filter Include="Source\MapEdit">
       <UniqueIdentifier>{11bc2f97-2873-4d2a-9a17-0c1dd143e51b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Actor\House">
+      <UniqueIdentifier>{5ddf0b55-2aae-4105-860c-085deae1cd6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Blood">
+      <UniqueIdentifier>{ec7a187e-4aaa-4d38-95db-e178d1840986}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Const.h" />
@@ -122,9 +128,6 @@
     <ClInclude Include="Source\GameMain.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="TestEnemy.h">
-      <Filter>Source\Actor\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Player.h">
       <Filter>Source\Actor\Player</Filter>
     </ClInclude>
@@ -143,6 +146,16 @@
     <ClInclude Include="Source\ResultScene.h">
       <Filter>Source\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Source\EnemyNyn.h">
+      <Filter>Source\Actor\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="House.h">
+      <Filter>Source\Actor\House</Filter>
+    </ClInclude>
+    <ClInclude Include="Blood.h">
+      <Filter>Source\Blood</Filter>
+    </ClInclude>
+    <ClInclude Include="BloodManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\CB_1.cpp">
@@ -211,9 +224,6 @@
     <ClCompile Include="Source\GameMain.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="TestEnemy.cpp">
-      <Filter>Source\Actor\Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Player.cpp">
       <Filter>Source\Actor\Player</Filter>
     </ClCompile>
@@ -232,5 +242,15 @@
     <ClCompile Include="Source\ResultScene.cpp">
       <Filter>Source\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Source\EnemyNyn.cpp">
+      <Filter>Source\Actor\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="House.cpp">
+      <Filter>Source\Actor\House</Filter>
+    </ClCompile>
+    <ClCompile Include="Blood.cpp">
+      <Filter>Source\Blood</Filter>
+    </ClCompile>
+    <ClCompile Include="BloodManager.cpp" />
   </ItemGroup>
 </Project>

@@ -33,14 +33,12 @@ void Player::Update() {
     KeyInput& key = KeyInput::GetInstance();
 	
 	_vec.x = 0.0f;
-	if (_isGround) {
-		_vec.y = 0.0f;
-	}
+
 	Vector2 dir = _vec;
 	constexpr float moveSpeed = 5.0f;
 	constexpr float jumpPower = 15.0f;
 	constexpr float stampPower = 15.0f;
-	constexpr float a = 8.2f*(1.0f / 10.0f);
+	constexpr float a = 9.8f*(1.0f / 10.0f);
 	//ˆÚ“®
 	if (key.GetKey(KEY_INPUT_LEFT)) {
 		dir.x = -moveSpeed;
@@ -54,16 +52,18 @@ void Player::Update() {
 	//UŒ‚i“¥‚İ‚Â‚Ô‚µ
 	if (key.GetKey(KEY_INPUT_DOWN)) {
 		if (_isGround) {
-			dir.y = -jumpPower*3;
+			dir.y = -jumpPower*5;
 		}
 		else {
 			dir.y += stampPower;
 		}
 	}
+	_rect.Move(dir);
+	if (_isGround) {
+		dir.y = 0.0f;
+	}
 	dir.y += a;
-
 	_vec = dir;
-	_rect.Move(_vec);
 
 	setState(key);	//“ü—Íkey‚É‰‚¶‚½state‚ğset
 	setMove();		//state‚É‰‚¶‚½aniCnt‚ÌXV
@@ -71,8 +71,8 @@ void Player::Update() {
 }
 
 void Player::Draw(const Vector2& offset_) {
-	Point2 s = (_rect.LT() + offset_).ToPoint2();
-	Point2 n = (_rect.RB() + offset_).ToPoint2();
+	Point2 s = (_rect.LT() - offset_).ToPoint2();
+	Point2 n = (_rect.RB() - offset_).ToPoint2();
 
 
 	DrawRotaGraph3(s.x + ((n.x - s.x) / 2), s.y + ((n.y - s.y) / 2),

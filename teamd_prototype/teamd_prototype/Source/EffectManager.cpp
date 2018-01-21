@@ -88,7 +88,7 @@ void EffectManager::Update()
 //---------------------------------------------------------------------
 //　描画処理
 //---------------------------------------------------------------------
-void EffectManager::Draw()
+void EffectManager::Draw(const Vector2& offset_)
 {
 	//イテレータ
 	//ベクタ配列の要素にアクセスするためのもの
@@ -97,7 +97,7 @@ void EffectManager::Draw()
 	//エフェクトすべてを描画
 	for ( itr = _effects.begin(); itr != _effects.end(); itr++ )
 	{
-		( *itr )->Draw();
+		( *itr )->Draw(offset_);
 	}
 }
 

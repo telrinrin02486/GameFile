@@ -27,7 +27,7 @@ constexpr char* const imgPaths[] = {
 };
 
 CB_1::CB_1(const Rect2& rect_, Player *player_)
-	:_rect(rect_){
+	:_rect(rect_) {
 	//矩形がクラスなために、こういうときにめんどくさい。
 	//クラスが悪いんじゃなく、設計が悪いんだけどね？
 	Init(rect_);
@@ -72,8 +72,8 @@ int CB_1::Update() {
 	case MOVE_NORMAL:
 	{
 		if (_count++ > 50) {
-		_count = 0;
-		_dirx = -_dirx;
+			_count = 0;
+			_dirx = -_dirx;
 		}
 	}
 	break;
@@ -88,8 +88,8 @@ int CB_1::Update() {
 	}
 	//移動
 	/*if (_count++ > 50) {
-		_count = 0;
-		_dirx = -_dirx;
+	_count = 0;
+	_dirx = -_dirx;
 	}*/
 
 	_vec.x = _dirx;
@@ -107,7 +107,7 @@ int CB_1::Update() {
 	//死亡＆エフェクト
 	if (_alive && (_rect.Bottom() - _rect.Top()) < 10.0f) {
 		efm.EffectCreate(Vector2(_rect.Left() + _rect.Size().x * 0.5f,
-			_rect.Bottom() - 80.0f),EFFECT_TYPE::EFFECT_TYPE_SMOKE);
+			_rect.Bottom() - 80.0f), EFFECT_TYPE::EFFECT_TYPE_SMOKE);
 		_alive = false;
 		//地震の使いづらさパない
 		Camera::Instance().SetEarthquake(Vector2(15.0f, 0.0f));
@@ -119,7 +119,7 @@ void CB_1::Draw(const Vector2& offset_) {
 	Point2 s = (_rect.LT() + offset_).ToPoint2();
 	Point2 n = (_rect.RB() + offset_).ToPoint2();
 
-	DrawExtendGraphF(s.x,s.y,n.x,n.y,_handle, true);
+	DrawExtendGraphF(s.x, s.y, n.x, n.y, _handle, true);
 
 }
 //壊れちゃうぅ！！
@@ -130,9 +130,9 @@ void CB_1::Crushed(const Player& player) {
 		return;
 	}
 	const Rect2 pRect = rect;
-	
+
 	Rect2 ol = Overlap(pRect, this->Rect());
-	
+
 	//floatの誤差ほんと嫌い
 	Vector2 smashedUnit = ol.Size() / 1000.0f;
 	float smashedCorrection = 1.0f - _durability;
@@ -161,7 +161,7 @@ void CB_1::Crushed(const Player& player) {
 		Vector2 value = (Vector2(r1, r2) % absSize) * damageNrmVec * 5;
 		smashedValue += value;
 
-	
+
 	}
 
 	//本来つぶれるには
@@ -177,7 +177,7 @@ void CB_1::Crushed(const Player& player) {
 void CB_1::MoveReturnUpdata()
 {
 	//プレイヤーが自分より右にいたら
-	if (_rect.Right() < playerPos->Rect().Left()&& _dirx > 0)
+	if (_rect.Right() < playerPos->Rect().Left() && _dirx > 0)
 	{
 		_dirx = -_dirx;
 	}

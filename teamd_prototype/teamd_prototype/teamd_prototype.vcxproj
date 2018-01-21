@@ -19,6 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Blood.h" />
+    <ClInclude Include="BloodManager.h" />
+    <ClInclude Include="House.h" />
     <ClInclude Include="Source\BaseScene.h" />
     <ClInclude Include="Source\Camera.h" />
     <ClInclude Include="Source\CB_1.h" />
@@ -31,6 +34,7 @@
     <ClInclude Include="Source\Effect.h" />
     <ClInclude Include="Source\EffectManager.h" />
     <ClInclude Include="Source\Enemy.h" />
+    <ClInclude Include="Source\EnemyNyn.h" />
     <ClInclude Include="Source\GameMain.h" />
     <ClInclude Include="Source\GameScene.h" />
     <ClInclude Include="Source\ImageMng.h" />
@@ -49,9 +53,11 @@
     <ClInclude Include="Source\TitleScene.h" />
     <ClInclude Include="Source\Var2.h" />
     <ClInclude Include="Source\Vector2.h" />
-    <ClInclude Include="TestEnemy.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Blood.cpp" />
+    <ClCompile Include="BloodManager.cpp" />
+    <ClCompile Include="House.cpp" />
     <ClCompile Include="Source\BaseScene.cpp" />
     <ClCompile Include="Source\Camera.cpp" />
     <ClCompile Include="Source\CB_1.cpp" />
@@ -63,6 +69,7 @@
     <ClCompile Include="Source\Effect.cpp" />
     <ClCompile Include="Source\EffectManager.cpp" />
     <ClCompile Include="Source\Enemy.cpp" />
+    <ClCompile Include="Source\EnemyNyn.cpp" />
     <ClCompile Include="Source\GameMain.cpp" />
     <ClCompile Include="Source\GameScene.cpp" />
     <ClCompile Include="Source\ImageMng.cpp" />
@@ -80,7 +87,6 @@
     <ClCompile Include="Source\SoundManager.cpp" />
     <ClCompile Include="Source\TitleScene.cpp" />
     <ClCompile Include="Source\Vector2.cpp" />
-    <ClCompile Include="TestEnemy.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6B937437-733D-4D4A-B490-2855185F5383}</ProjectGuid>

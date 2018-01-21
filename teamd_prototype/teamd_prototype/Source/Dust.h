@@ -1,4 +1,5 @@
 #pragma once
+#include "Vector2.h"
 //=====================================================================
 //								Dust.h
 //							塵エフェクトクラス
@@ -28,5 +29,5 @@ public:
 	void Initialize( Vector2 pos );	//初期化
 	void Finalize();	//終了処理
 	void Update();		//更新
-	void Draw();		//描画
+	void Draw(const Vector2& offset_);		//描画
 };

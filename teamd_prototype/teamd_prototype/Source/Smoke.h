@@ -1,12 +1,12 @@
 #pragma once
 //=====================================================================
-//								Smoke.h
-//							煙エフェクトクラス
+//								Dust.h
+//							塵エフェクトクラス
 //=====================================================================
 
 
 //　定数---------------------------------------------------------------
-const Vector2 SMOKE_DIV_CNT  = Vector2{   8,   3 };	//分割数
+const Vector2 SMOKE_DIV_CNT  = Vector2{   6,   2 };	//分割数
 const Vector2 SMOKE_DIV_SIZE = Vector2{ 256, 256 };	//分割サイズ
 
 class Smoke : public Effect
@@ -14,7 +14,7 @@ class Smoke : public Effect
 private:
 	//　アニメーション-----------------------------------------------------
 	int _animIdx;			//アニメーションのカウント
-	int _animSmoke;			//煙アニメの速度
+	int _animDust;			//塵アニメの速度
 
 	//　機能---------------------------------------------------------------
 	//void Move();	//敵の歩行系
@@ -28,5 +28,5 @@ public:
 	void Initialize( Vector2 pos );	//初期化
 	void Finalize();	//終了処理
 	void Update();		//更新
-	void Draw();		//描画
+	void Draw(const Vector2& offset_);		//描画
 };

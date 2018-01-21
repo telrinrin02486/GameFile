@@ -19,6 +19,8 @@ using namespace std;
 
 #include "Player.h"
 #include "CB_1.h"
+#include "../House.h"//なぜかこいつだけこうしないと反応しない。ん？
+#include "EnemyNyn.h"
 
 #include "Collision.h"
 #include "SceneManager.h"
@@ -27,9 +29,15 @@ using namespace std;
 //　コンストラクタ
 //---------------------------------------------------------------------
 GameScene::GameScene()
-	:_ground(0,400,2000,1000)
+	:_playerInFrame(170,50,0,0)
 {
+	_groundPosY = 400.0f;
+	int w, h;
+	GetWindowSize(&w, &h);
+	_playerInFrame.ReSize(Vector2(w - 340, (h/3)*2));
 
+	_minLimit = -2000;
+	_maxLimit = static_cast<float>(w) + 2000;
 }
 
 //---------------------------------------------------------------------
@@ -52,16 +60,27 @@ void GameScene::Initialize()
 
 	_player = new Player();
 	_prevPlayerGroundFlg = _player->IsGround();
-
-	for (int i = 0; i < 3; ++i) {
-		float rSize = static_cast<float>((rand() % 150) + 15);
-		_cb1List.push_back(new CB_1(Rect2(Vector2(static_cast<float>(rand() % 1000), 300.0f), Vector2(rSize, rSize)), _player));
+	for (int i = 0; i < 50; ++i) {
+		int w, h;
+		GetWindowSize(&w, &h);
+		Vector2 pos = { static_cast<float>(rand() % ((_maxLimit-w)*2) + _minLimit),static_cast<float>(rand() % h) };
+		_nyns.push_back(new EnemyNyn(pos, *_player));
 	}
+	//for (int i = 0; i < 3; ++i) {
+	//	float rSize = static_cast<float>((rand() % 150) + 15);
+	//	_cb1List.push_back(new CB_1(Rect2(Vector2(static_cast<float>(rand() % 1000), 300.0f), Vector2(rSize, rSize))));
+	//}
 
 	
 	//背景画像をロード
 	backImg = LoadGraph("../image/haikei.jpg");
 	
+	for (int i = 0; i < 10; ++i) {
+		int w, h;
+		GetWindowSize(&w, &h);
+		Vector2 pos = { static_cast<float>(rand() % ((_maxLimit - w) * 2) + _minLimit),static_cast<float>(rand() % h) };
+		_houses.push_back(new House(pos));
+	}
 	//開始時間の取得
 	timeCun = 0;
 	timeStart = GetNowCount();
@@ -79,6 +98,14 @@ void GameScene::Finalize()
 		delete cb;
 	}
 	_cb1List.clear();
+	for (auto house : _houses) {
+		delete house;
+	}
+	_houses.clear();
+	for (auto e : _nyns) {
+		delete e;
+	}
+	_nyns.clear();
 }
 
 //---------------------------------------------------------------------
@@ -90,6 +117,8 @@ void GameScene::Update()
 	bool deadFlg = false;
 	KeyInput& key = KeyInput::GetInstance();
 	Camera& camera = Camera::Instance();
+	int windowWidth, windowHeight;
+	GetWindowSize(&windowWidth, &windowHeight);
 
 	//resultへ
 	if (key.GetKeyUp(KEY_INPUT_2))
@@ -106,36 +135,74 @@ void GameScene::Update()
 		}
 		//　更新---------------------------------------------------------------
 		_player->Update();
-
-		for (auto cb : _cb1List) {
-			cb->Update();
+		for (auto nyn : _nyns) {
+			nyn->Update();
 		}
-		for (auto it = _cb1List.begin(); it != _cb1List.end();) {
-			if ((*it)->IsDead()) {
-				float rSize = static_cast<float>((rand() % 150) + 15);
-				(*it)->Init(Rect2(Vector2(rand() % 1000, 300), Vector2(rSize, rSize)));
+		for (auto house : _houses) {
+			house->Update();
+		}
+		//for (auto cb : _cb1List) {
+		//	cb->Update();
+		//}
+		//nynの死亡確認
+		for (auto it = _nyns.begin(); it != _nyns.end();) {
+			if ((*it)->GetState() == Enemy::State::isDed) {
+				delete *it;
+				it = _nyns.erase(it);
 				++_crusheCount;
 				SceneManager::GetInstance().SetScore(_crusheCount);//scoreのセット
 				continue;
 			}
 			++it;
 		}
-		//if (!(deadFlg = _cb->IsDead())) {
-		//	_cb->Update();
-		//}
+		//はうすの死亡確認
+		for (auto it = _houses.begin(); it != _houses.end();) {
+			if ((*it)->IsDead()) {
+				delete *it;
+				it = _houses.erase(it);
+				++_crusheCount;
+				SceneManager::GetInstance().SetScore(_crusheCount);//scoreのセット
+				continue;
+			}
+			++it;
+		}
+		//カメラの移動
+		//カメラ動かし
+		{
+			Rect2 playerRect = _player->Rect();
+			Vector2 framePos = _playerInFrame.LT() + (camera.Pos() + camera.Offset());
+			Vector2 frameSize = _playerInFrame.Size();
+			//カメラのフレーム内から出てたら、そいつに合わせるように移動させる
+			//→プレイヤーの矩形に合わせればいい。
+			framePos.x = max(min(framePos.x, playerRect.Left()),playerRect.Right() - frameSize.x);
+			framePos.y = max(min(framePos.y, playerRect.Top()), playerRect.Bottom() - frameSize.y);
+
+			Vector2 moveValue = framePos - (_playerInFrame.LT() + (camera.Pos() + camera.Offset()));
+			camera.Move(moveValue);
+		}
 		//同時にやるのがいけないんやな
 		//そのフレームの出来事なんだし、
 		//まず先に変形のみやってしまう
 		//上から押されたときのみにしましょー
-		for (auto cb : _cb1List) {
-			if (IsHit(cb->Rect(), _player->Rect())) {
-				Rect2 ol = Overlap(cb->Rect(), _player->Rect());
-				//Yの方向に戻るのなら、Y方向から来たってことで、つぶしちゃう
-				if (ol.Size().x > ol.Size().y) {
-					cb->Crushed(*_player);
-				}
-			}
-		}
+		//for (auto cb : _cb1List) {
+		//	if (IsHit(cb->Rect(), _player->Rect())) {
+		//		Rect2 ol = Overlap(cb->Rect(), _player->Rect());
+		//		//Yの方向に戻るのなら、Y方向から来たってことで、つぶしちゃう
+		//		if (ol.Size().x > ol.Size().y) {
+		//			cb->Crushed(*_player);
+		//		}
+		//	}
+		//}
+		//houseのつぶし
+		//for (auto house : _houses) {
+		//	if (IsHit(house->Rect(), _player->Rect())) {
+		//		Rect2 ol = Overlap(house->Rect(), _player->Rect());
+		//		//Yの方向に戻るのなら、Y方向から来たってことで、つぶしちゃう
+		//		if (ol.Size().x > ol.Size().y) {
+		//			house->Crushed(*_player);
+		//		}
+		//	}
+		//}
 		//押し出し関数
 		auto extrusion = [](Rect2& r1_, Rect2& r2_) {
 			//あれ？これ押し出すのどうしよう
@@ -162,35 +229,95 @@ void GameScene::Update()
 			//とりあえず1つ目を動かす形で。
 			r2_.Move(moveValue);
 		};
-		Rect2 plr = _player->Rect();
-		Rect2 grdr = _ground;
-		bool pgflg = false;
 
 		//次に押し出し
-		for (auto cb : _cb1List) {
-			Rect2 cbr = cb->Rect();
-			//player
-			if (IsHit(_player->Rect(), cb->Rect())) {
-				extrusion(cbr, plr);
-				_player->SetRect(plr);
-				pgflg = true;
-			}
-			//ground
-			if (IsHit(cb->Rect(), _ground)) {
-				extrusion(grdr, cbr);
-				cb->SetRect(cbr);
-				cb->SetGroundFlg(true);
-			}
-			else {
-				cb->SetGroundFlg(false);
+		//for (auto cb : _cb1List) {
+		//	Rect2 cbr = cb->Rect();
+		//	//player
+		//	if (IsHit(_player->Rect(), cb->Rect())) {
+		//		extrusion(cbr, plr);
+		//		_player->SetRect(plr);
+		//		pgflg = true;
+		//	}
+		//	//ground
+		//	if (cb->Rect().Bottom() > _groundPosY) {
+		//		cbr.Move(Vector2(0.0f, _groundPosY - cb->Rect().Bottom()));
+		//		cb->SetRect(cbr);
+		//		cb->SetGroundFlg(true);
+		//	}
+		//	else {
+		//		cb->SetGroundFlg(false);
+		//	}
+		//}
+		//
+		//押し出し処理をするために行ってる実装のせいで
+		//訳が分からなくなってきた。
+		//押し出し処理は中間にいないとだろうから、
+		//それを保ちながら、見やすい処理にしてほしい。
+		//houseのOnCollided
+		for (auto house : _houses) {
+			if (IsHit(house->Rect(), _player->Rect())) {
+				house->OnCollided(*_player);
 			}
 		}
-		//
-		if (IsHit(_player->Rect(), _ground)) {
-			extrusion(grdr, plr);
+		//こっから↓は押し出しのみ！とかならわかりやすいかな
+		Rect2 plr = _player->Rect();
+		bool pgflg = false;
+		//プレイヤーと地面
+		if (_player->Rect().Bottom() >_groundPosY) {
+			plr.Move(Vector2(0.0f, _groundPosY - _player->Rect().Bottom()));
 			_player->SetRect(plr);
 			pgflg = true;
 		}
+		//おうち
+		for (auto house : _houses) {
+			Rect2 hr = house->Rect();
+			bool houseGroundFlg = false;
+			//とplayer
+			if (IsHit(_player->Rect(), house->Rect())) {
+				if (!house->SideHitFlag()) {
+					//横からは当たってほしくないので、汎用は使わない
+					Rect2 ol = Overlap(hr, plr);
+					Vector2 cbCenter = hr.Center();
+					Vector2 plCenter = plr.Center();
+					Vector2 moveValue = Vector2::ZERO;
+					Vector2 vec = plCenter - cbCenter;
+					//縦への押し出し
+					moveValue.y = ol.Size().y;
+					if (vec.y < 0.0f) {
+						moveValue.y *= -1.0f;
+					}
+					//player
+					plr.Move(moveValue);
+					_player->SetRect(plr);
+					pgflg = true;
+				}
+			}
+			//と地面
+			if (house->Rect().Bottom() > _groundPosY) {
+				hr.Move(Vector2(0.0f, _groundPosY - house->Rect().Bottom()));
+				house->SetRect(hr);
+				houseGroundFlg = true;
+			}
+			house->SetGroundFlag(houseGroundFlg);
+		}
+		//nyn
+		for (auto nyn : _nyns) {
+			bool nynGroundFlg = false;
+			Rect2 nynRect = nyn->Rect();
+			//飛びすぎちゃうなぁ。
+			if (IsHit(_player->Rect(), nyn->Rect())) {
+				nyn->OnCollided(*_player);
+			}
+			//ground
+			if (nyn->Rect().Bottom() > _groundPosY) {
+				nynRect.Move(Vector2(0.0f, _groundPosY - nyn->Rect().Bottom()));
+				nyn->SetRect(nynRect);
+				nynGroundFlg = true;
+			}
+			nyn->SetGroundFlag(nynGroundFlg);
+		}
+		
 		_player->SetGroundFlg(pgflg);
 		//プレイヤーが地面に降り立った瞬間揺れを設定
 		if (!_prevPlayerGroundFlg && _player->IsGround()) {
@@ -228,31 +355,54 @@ void GameScene::TimeCunter()
 //---------------------------------------------------------------------
 void GameScene::Draw()
 {
-	//背景を描画するぜ
-	DrawGraph(0, 0, backImg, false);
 
+	//パラメタ取得やらなんやら
 	EffectManager& efcMng = EffectManager::Instance();
 	Camera& camera = Camera::Instance();
 	Vector2 offset = camera.Pos() + camera.Offset();
-	DxLib::DrawGraph( 0, 0, _texID, false );	//背景
-	Rect2 ground = _ground;
-	ground.Move(offset);
-	DrawBox(ground.Left(), ground.Top(), ground.Right(), ground.Bottom(), 0xff0fff0f, true);
+	int windowW, windowH;
+	GetWindowSize(&windowW, &windowH);
 
-	DrawString(10, 10, "GameScene", 0xffffffff);
-	DrawFormatString(10, 25, 0xffffffff, "破壊数：%d", _crusheCount);
-	_player->Draw(offset);
-	for (auto cb : _cb1List) {
-		cb->Draw(offset);
-		const Rect2 cbr = cb->Rect();
-		DrawBox(cbr.Left(), cbr.Top(), cbr.Right(), cbr.Bottom(), 0xf0f0f0ff, false);
+	DxLib::DrawGraph( 0, 0, _texID, false );	//背景
+	//背景を描画するぜ
+	DrawExtendGraph(0, 0,windowW,windowH,backImg, false);
+	//ground描画
+
+	Rect2 ground = {0.0f,_groundPosY,static_cast<float>(windowW),static_cast<float>(windowH) };
+	Vector2 groundOffset = { 0.0f,offset.y };
+	ground.Move(-groundOffset);
+	DxLib::DrawBox(ground.Left(), ground.Top(), ground.Right(), ground.Bottom(), 0xff0fff0f, true);
+	//スコア等描画
+	DxLib::DrawString(10, 10, "GameScene", 0xffffffff);
+	DxLib::DrawFormatString(10, 25, 0xffffffff, "破壊数：%d", _crusheCount);
+
+	//house
+	for (auto house : _houses) {
+		house->Draw(camera);
 	}
-	//if (!(_cb == nullptr)) {
-	//	_cb->Draw(offset);
+	//player
+	_player->Draw(offset);
+	//nyn
+	for (auto nyn : _nyns) {
+		nyn->Draw(camera);
+	}
+	
+	//cb
+	//for (auto cb : _cb1List) {
+	//	cb->Draw(offset);
+	//	Rect2 cbr = cb->Rect();
+	//	cbr.Move(-offset);
+	//	DxLib::DrawBox(cbr.Left(), cbr.Top(), cbr.Right(), cbr.Bottom(), 0xf0f0f0ff, false);
 	//}
-	efcMng.Draw();						//エフェクト
+
+
+	//カメラフレーム範囲
+	DxLib::DrawBox(_playerInFrame.Left(), _playerInFrame.Top(), _playerInFrame.Right(), _playerInFrame.Bottom(),
+		0xffffffff, false);
+
+	efcMng.Draw(offset);						//エフェクト
 
 										//時間描画
-	DrawFormatString(10, 40, 0x00000000, "時間：%d:%d%d", timeCun, ((GetNowCount() - timeStart) % 1000) / 100, ((GetNowCount() - timeStart) % 100) / 10);
+	DxLib::DrawFormatString(10, 40, 0x00000000, "時間：%d:%d%d", timeCun, ((GetNowCount() - timeStart) % 1000) / 100, ((GetNowCount() - timeStart) % 100) / 10);
 	
 }

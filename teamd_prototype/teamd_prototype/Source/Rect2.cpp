@@ -31,7 +31,9 @@ void Rect2::RightCrushed(const float x_) {
 	_pos.x -= x_;
 	_size.x += x_;
 }
-
+void Rect2::ReSize(const Vector2& size_) {
+	_size = size_;
+}
 void Rect2::Draw(const Vector2& offset_,unsigned int color_, bool fillFlag_) const{
 	Point2 s = (_pos + offset_).ToPoint2();
 	Point2 n = (_pos + _size + offset_).ToPoint2();

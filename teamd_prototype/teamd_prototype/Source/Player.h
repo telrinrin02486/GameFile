@@ -32,6 +32,10 @@ public:
 	void Update();
 	void Draw(const Vector2& offset);
 
+	//getter
+	inline Vector2 Pos() const {
+		return _rect.LT();
+	}
 	inline const Rect2& Rect() const {
 		return _rect;
 	}
@@ -44,6 +48,8 @@ public:
 	inline bool IsGround() const{
 		return _isGround;
 	}
+
+
 	//setter
 	inline void SetPos(const Vector2& pos_) {
 		_rect.TelePort(pos_);

@@ -41,7 +41,7 @@ void ResultScene::Initialize()
 	_isChange = false;
 
 	//”wŒi‰æ‘œ‚ğƒ[ƒh
-	
+
 
 }
 

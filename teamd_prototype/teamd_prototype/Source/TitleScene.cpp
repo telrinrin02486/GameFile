@@ -36,10 +36,10 @@ TitleScene::~TitleScene()
 //---------------------------------------------------------------------
 void TitleScene::Initialize()
 {
-	
+
 	//シーン切り替えフラグ
 	_isChange = false;
-	
+
 
 }
 
@@ -50,7 +50,7 @@ void TitleScene::Finalize()
 {
 	//各種開放
 
-	
+
 }
 
 //---------------------------------------------------------------------
@@ -58,14 +58,14 @@ void TitleScene::Finalize()
 //---------------------------------------------------------------------
 void TitleScene::Update()
 {
-	
+
 	KeyInput& key = KeyInput::GetInstance();
 	//titleへ
 	if (key.GetKeyUp(KEY_INPUT_2))
 	{
 		SceneManager::GetInstance().ChangeScene(SType_GAME);
 	}
-	
+
 }
 
 //---------------------------------------------------------------------

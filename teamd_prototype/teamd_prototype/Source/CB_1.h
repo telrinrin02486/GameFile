@@ -21,12 +21,12 @@ class CB_1 :
 	public CrushedBox
 {
 public:
-	
+
 	CB_1(const Rect2& rect_, Player *player_);
 	~CB_1()
 	{}
 
-	
+
 	//何パターンか忘れた。
 	//メモリ再確保したくないから、initでデータだけ入れて使いまわす。
 	void Init(const Rect2& rect_);
@@ -73,4 +73,3 @@ private:
 	Player *playerPos;
 
 };
-

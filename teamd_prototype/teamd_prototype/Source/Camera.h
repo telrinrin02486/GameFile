@@ -2,6 +2,7 @@
 
 #include "Vector2.h"
 
+#include "Rect2.h"
 
 
 class Camera
@@ -34,10 +35,11 @@ public:
 		return _offset;
 	}
 	//地震をセット
-	//連続には対応していない。
-	void SetEarthquake(const Vector2& shakeValue_,
-		float reductionRate_ = 0.25f,
-		float speed_ = 0.5f);
+	//連続には対応していない
+	//揺れの足し合わせに対応
+	void SetEarthquake(const Vector2& shakeValue_,//揺れの大きさ
+		float reductionRate_ = 0.25f,//揺れの減少率
+		float speed_ = 0.5f);//揺れる速度
 	//地震をセット（手動で止めて）
 	void SetPermanentEarthquake(const Vector2& shakeValue_,
 		float speed_ = 0.5f);

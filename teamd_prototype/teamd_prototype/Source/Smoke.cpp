@@ -1,6 +1,6 @@
 //=====================================================================
 //							Smoke.cpp
-//						 煙エフェクトクラス
+//						 塵エフェクトクラス
 //=====================================================================
 
 // Smoke.h
@@ -44,7 +44,7 @@ void Smoke::Initialize( Vector2 pos )
 
 	//アニメーションの設定
 	_animIdx = 0;
-	_animSmoke = 2;
+	_animDust = 2;
 }
 
 //---------------------------------------------------------------------
@@ -61,9 +61,9 @@ void Smoke::Finalize()
 void Smoke::Update()
 {
 	//アニメーション
-	++_animIdx %= (int)(SMOKE_DIV_SIZE.x * SMOKE_DIV_SIZE.y) * _animSmoke;
+	++_animIdx %= (int)(SMOKE_DIV_SIZE.x * SMOKE_DIV_SIZE.y) * _animDust;
 
-	if ( _animIdx >=( SMOKE_DIV_SIZE.x * SMOKE_DIV_SIZE.y * _animSmoke ) -1 )
+	if ( _animIdx >=( SMOKE_DIV_SIZE.x * SMOKE_DIV_SIZE.y * _animDust ) -1 )
 	{
 		SetDelete( true );
 	}
@@ -72,9 +72,8 @@ void Smoke::Update()
 //---------------------------------------------------------------------
 //　描画
 //---------------------------------------------------------------------
-void Smoke::Draw()
+void Smoke::Draw(const Vector2& offset_)
 {
-	//バグ発見
-	DxLib::DrawRotaGraph3(	_pos.x, _pos.y, _size.x * 0.5f, _size.y * 0.5f,
-							1, 1, 0, _img[ _animIdx / _animSmoke ], true, false );
+	DxLib::DrawRotaGraph3(	_pos.x - offset_.x, _pos.y - offset_.y, _size.x * 0.5f, _size.y * 0.5f,
+							1, 1, 0, _img[ _animIdx / _animDust ], true, false );
 }

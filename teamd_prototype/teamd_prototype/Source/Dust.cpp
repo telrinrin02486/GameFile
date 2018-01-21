@@ -72,8 +72,9 @@ void Dust::Update()
 //---------------------------------------------------------------------
 //Å@ï`âÊ
 //---------------------------------------------------------------------
-void Dust::Draw()
+void Dust::Draw(const Vector2& offset_)
 {
-	DxLib::DrawRotaGraph3(	_pos.x, _pos.y, _size.x * 0.5f, _size.y * 0.5f,
+	
+	DxLib::DrawRotaGraph3(	_pos.x - offset_.x, _pos.y - offset_.y, _size.x * 0.5f, _size.y * 0.5f,
 							1, 1, 0, _img[ _animIdx / _animDust ], true, false );
 }

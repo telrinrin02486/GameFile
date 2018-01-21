@@ -56,12 +56,12 @@ void Camera::SetEarthquake(	const Vector2& shakeValue_,
 	//init 
 	_reductionRate = reductionRate_;
 	_shakeSpeed = speed_;
-	_shakeValue = shakeValue_;
+	_shakeValue += shakeValue_;
 	_nowShakeValue = Vector2();
 	_length = Vector2();
-	_offset = shakeValue_;
+	_offset = _shakeValue;
 
-	//—h‚ê
+	//—h‚ê’l‚Ì’²®
 	_shakeValue = -(_shakeValue - (_shakeValue * _reductionRate));
 	_nowShakeValue = _shakeValue * _shakeSpeed;
 	_length = Vector2(fabs(_shakeValue.x) + fabs(_offset.x),fabs(_shakeValue.y) + fabs(_offset.y));//’·‚³
@@ -74,9 +74,9 @@ void Camera::SetEarthquake(	const Vector2& shakeValue_,
 
 }
 void Camera::SetPermanentEarthquake(const Vector2& shakeValue_,float speed_ ) {
-	_shakeValue = shakeValue_;
+	_shakeValue += shakeValue_;
 	_shakeSpeed = speed_;
-	_offset = shakeValue_;
+	_offset = _shakeValue;
 
 	//—h‚ê‚ğİ’è
 	_shakeValue = -_shakeValue;
