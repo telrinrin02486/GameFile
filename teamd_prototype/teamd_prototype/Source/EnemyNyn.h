@@ -2,6 +2,8 @@
 #include "Enemy.h"
 #include "Rect2.h"
 
+#include <vector>
+
 class CharaCollider;
 
 class Player;
