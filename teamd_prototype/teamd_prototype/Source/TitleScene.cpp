@@ -74,7 +74,7 @@ void TitleScene::Update()
 void TitleScene::Draw()
 {
 	//”wŒi‚ð•`‰æ‚·‚é‚º
-	ImageMng::GetInstance()->UiDraw(ID_titleBack, ID_resultBack);
+	ImageMng::GetInstance()->UiDraw(ID_titleBack, ID_startButtom);
 }
 
 

@@ -35,14 +35,14 @@ ImageMng::ImageMng()
 
 
 	//titleUIÅAîwåiÇÃÉçÅ[Éh
-	setUIID("../image/sceneBack/title/titleBack.png", ID_titleBack, { 0, 0 }, { 1080,620 });
-	setUIID("../image/UI/title/titleImage.png", ID_title, { 400, 480 / 5 }, { 400+300,480 / 5+100});
-	setUIID("../image/UI/title/startButtom.png", ID_startButtom, { 475, 480 / 2 }, { 475+150,480 / 2+50});
+	setUIID("../image/sceneBack/title/titleBack.png", ID_titleBack, { 0, 0 }, { WINDOW_WIDTH,WINDOW_HEIGHT });
+	setUIID("../image/UI/title/titleImage.png", ID_title, { UI_POS_X, UI_POS_Y / 5 }, { UI_POS_X +300,UI_POS_Y / 5+100});
+	setUIID("../image/UI/title/startButtom.png", ID_startButtom, { UI_POS_Y-5, UI_POS_Y / 2 }, { UI_POS_Y +145,UI_POS_Y / 2+50});
 
 	//resultUIÅAîwåiÇÃÉçÅ[Éh
-	setUIID("../image/result.png", ID_resultBack, { 0, 0 }, { 1080,620 });
-	setUIID("../image/UI/result/resultButtom1.png", ID_resultButtom1, { 1080 / 2, 480 / 3 } ,{ 1080 / 2+150,480 / 3+50 });
-	setUIID("../image/UI/result/resultButtom2.png", ID_resultButtom2, { 1080 / 2, 480 / 2 } ,{ 1080 / 2+150,480 / 2+50 });
+	setUIID("../image/result.png", ID_resultBack, { 0, 0 }, { WINDOW_WIDTH,WINDOW_HEIGHT });
+	setUIID("../image/UI/result/resultButtom1.png", ID_resultButtom1, { WINDOW_WIDTH / 2, UI_POS_Y / 3 } ,{ WINDOW_WIDTH / 2+150,UI_POS_Y / 3+50 });
+	setUIID("../image/UI/result/resultButtom2.png", ID_resultButtom2, { WINDOW_WIDTH / 2, UI_POS_Y / 2 } ,{ WINDOW_WIDTH / 2+150,UI_POS_Y / 2+50 });
 
 }
 
@@ -172,7 +172,7 @@ const int *ImageMng::GetImgDivID(string fileName, Vector2 divCnt, Vector2 divSiz
 void ImageMng::UiDraw(ID_UI startID, ID_UI endID)
 {
 	int id = startID;
-	while (id < endID)
+	while (id <= endID)
 	{
 		DrawExtendGraph(GetUIID(id)->posL.x, GetUIID(id)->posL.y, 
 						GetUIID(id)->posR.x, GetUIID(id)->posR.y, 

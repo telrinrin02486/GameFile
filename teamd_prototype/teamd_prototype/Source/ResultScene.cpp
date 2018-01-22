@@ -81,7 +81,7 @@ void ResultScene::Update()
 void ResultScene::Draw()
 {
 	//”wŒi‚ğ•`‰æ‚·‚é‚º
-	ImageMng::GetInstance()->UiDraw(ID_resultBack, ID_MAX);
+	ImageMng::GetInstance()->UiDraw(ID_resultBack, ID_resultButtom2);
 	DrawFormatString(250, 250, 0xffffff00, "”j‰óƒXƒRƒAF%d", SceneManager::GetInstance().GetScore());
 
 }

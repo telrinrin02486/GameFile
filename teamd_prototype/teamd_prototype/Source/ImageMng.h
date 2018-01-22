@@ -8,6 +8,15 @@
 //　定数---------------------------------------------------------------
 #define IMG_LIST_SIZE 100
 
+//スクリーンサイズ
+#define WINDOW_WIDTH 1080
+#define WINDOW_HEIGHT 620
+
+//UI_POS
+#define UI_POS_X 400
+#define UI_POS_Y 480
+
+
 enum ID_UI
 {
 	ID_titleBack,
