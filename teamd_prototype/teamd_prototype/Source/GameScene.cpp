@@ -24,6 +24,7 @@ using namespace std;
 
 #include "Collision.h"
 #include "SceneManager.h"
+#include "../BloodManager.h"
 
 //---------------------------------------------------------------------
 //　コンストラクタ
@@ -54,6 +55,8 @@ GameScene::~GameScene()
 void GameScene::Initialize()
 {
 	EffectManager& efMng = EffectManager::Instance();
+	BloodManager& bloodMng = BloodManager::Instance();
+
 	//シーン切り替えフラグ
 	_isChange = false;
 	_crusheCount = 0;
@@ -373,7 +376,7 @@ void GameScene::Draw()
 	ground.Move(-groundOffset);
 	DxLib::DrawBox(ground.Left(), ground.Top(), ground.Right(), ground.Bottom(), 0xff0fff0f, true);
 	//スコア等描画
-	DxLib::DrawString(10, 10, "GameScene", 0xffffffff);
+	//DxLib::DrawString(10, 10, "GameScene", 0xffffffff);
 	DxLib::DrawFormatString(10, 25, 0xffffffff, "破壊数：%d", _crusheCount);
 
 	//house
@@ -397,8 +400,8 @@ void GameScene::Draw()
 
 
 	//カメラフレーム範囲
-	DxLib::DrawBox(_playerInFrame.Left(), _playerInFrame.Top(), _playerInFrame.Right(), _playerInFrame.Bottom(),
-		0xffffffff, false);
+	//DxLib::DrawBox(_playerInFrame.Left(), _playerInFrame.Top(), _playerInFrame.Right(), _playerInFrame.Bottom(),
+	//	0xffffffff, false);
 
 	efcMng.Draw(offset);						//エフェクト
 

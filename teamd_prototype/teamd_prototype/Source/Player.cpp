@@ -46,18 +46,20 @@ void Player::Update() {
 	if (key.GetKey(KEY_INPUT_RIGHT)) {
 		dir.x = moveSpeed;
 	}
+	if (key.GetKey(KEY_INPUT_D)) {
+		dir.x *= 3.0f;
+	}
 	if (key.GetKey(KEY_INPUT_UP)) {
 		dir.y = -jumpPower;
 	}
 	//çUåÇÅiì•Ç›Ç¬Ç‘Çµ
 	if (key.GetKey(KEY_INPUT_DOWN)) {
-		if (_isGround) {
-			dir.y = -jumpPower*5;
-		}
-		else {
-			dir.y += stampPower;
-		}
+		//if (_isGround) {
+		//	dir.y = -jumpPower*5;
+		//}
+		dir.y += stampPower;
 	}
+
 	_rect.Move(dir);
 	if (_isGround) {
 		dir.y = 0.0f;
@@ -78,7 +80,7 @@ void Player::Draw(const Vector2& offset_) {
 	DrawRotaGraph3(s.x + ((n.x - s.x) / 2), s.y + ((n.y - s.y) / 2),
 					(IMG_SIZE_X / 2), (IMG_SIZE_Y / 2), EXT_RATE_X, EXT_RATE_Y, (PI * 0),
 					_handle[state][aniCnt], true, isDirRight);
-	DrawBox(s.x, s.y, n.x, n.y, 0xffffffff, false);
+	//DrawBox(s.x, s.y, n.x, n.y, 0xffffffff, false);
 	aniFram++;
 }
 

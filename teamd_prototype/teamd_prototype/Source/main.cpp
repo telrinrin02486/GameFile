@@ -13,9 +13,8 @@
 int main(void){
 	constexpr unsigned int WINDOW_WIDTH = 1080;
 	constexpr unsigned int WINDOW_HEIGHT = 620;
-	constexpr char* const WINDOW_TITLE = "TeamDestory_ƒ¿";
+	constexpr char* const WINDOW_TITLE = "TeamDestroy_ƒÀ";
 	int err = 0;
-
 	err = ChangeWindowMode(TRUE);
 	err = DxLib_Init();
 	err = SetMainWindowText(WINDOW_TITLE);

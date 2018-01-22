@@ -155,8 +155,10 @@
     <ClInclude Include="Blood.h">
       <Filter>Source\Blood</Filter>
     </ClInclude>
-    <ClInclude Include="BloodManager.h" />
     <ClInclude Include="CharaCollider.h" />
+    <ClInclude Include="BloodManager.h">
+      <Filter>Source\Blood</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\CB_1.cpp">
@@ -252,7 +254,9 @@
     <ClCompile Include="Blood.cpp">
       <Filter>Source\Blood</Filter>
     </ClCompile>
-    <ClCompile Include="BloodManager.cpp" />
     <ClCompile Include="CharaCollider.cpp" />
+    <ClCompile Include="BloodManager.cpp">
+      <Filter>Source\Blood</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

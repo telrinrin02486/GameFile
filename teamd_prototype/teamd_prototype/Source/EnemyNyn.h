@@ -22,6 +22,57 @@ public:
 		virtual int Update() = 0;
 
 	};
+	//当たり判定用のフラグを理解しやすく利用するためのクラス
+	//（理解できるとは言ってない）
+	class CollFlag {
+	public:
+		enum Type : unsigned char {
+			//横もしくは下から当たってましたフラグ用
+			sideAndBottomHit = 1 << 0,
+			//OnCollided呼ばれましたか関連
+			called = 1 << 1,
+			prevCalledFlag = 1 << 2,
+		};
+	public:
+		CollFlag() :_flag() {}
+		//OnCollided呼ばれた
+		inline void SetCalledFlag() {
+			_flag ^= CollFlag::called;
+		}
+		//呼ばれたかを前情報として保存
+		inline void SetPrevCalledFlag() {
+			//もっといい式ありそうだけどよくわかんない（無知）
+			//まず消す
+			_flag &= ~CollFlag::prevCalledFlag;
+			//calledの部分と同じ値にする
+			_flag |= (_flag & CollFlag::called) ? CollFlag::prevCalledFlag : 0x00;
+		}
+		//確認
+		//以前呼ばれたか否かは
+		//calledとprevCalledFlagの値が異なる場合がtrue
+		inline bool CalledConf() const {
+			//0121
+			//unsigned charなのにtrueかfalseかで比べれるわけないだろぉん・・・
+			//数値だよ
+			return (_flag & CollFlag::called) != ((_flag & CollFlag::prevCalledFlag) >> 1);
+		}
+		//横から当たってた
+		inline void SetSideAndBottomHitFlag() {
+			_flag |= CollFlag::sideAndBottomHit;
+
+		}
+		//sideHitフラグを折る
+		inline void ClearSideAndBottomHitFlag() {
+			_flag &= ~CollFlag::sideAndBottomHit;
+		}
+		//確認
+		inline bool SideAndBottomHit() const {
+			return _flag & CollFlag::sideAndBottomHit;
+		}
+
+	private:
+		unsigned char _flag;
+	};
 	//手持ちのパラメタ
 	struct Parameter {
 		Parameter(bool& groundFlag_,const House*& onHouse_,Enemy::State& enemyState_)
@@ -36,6 +87,7 @@ public:
 		Vector2	vec;//力ベクトル値？
 		int		life;//体力
 		int		ghostTime;//無敵タイム
+		CollFlag collFlag;//フラグ群
 		//判定用
 		std::vector<CharaCollider*> _collider;
 

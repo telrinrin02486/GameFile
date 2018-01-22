@@ -19,11 +19,9 @@
 //↓ポインタを固定したら怒られるンゴ
 const std::string ImagePaths[] = {
 	"../image/building2.png",
-	"../image/building2.png",
 };
 const Vector2 ImageSize[] = {
 	Vector2( 100,100 ),
-	Vector2(100,100),
 };
 //確かにRectはわかりづらいなぁ。
 //考えてみれば画像はサイズがわかればいいしなぁ。
@@ -91,19 +89,19 @@ void House::Draw(const Camera& camera_) {
 
 	DrawExtendGraphF(s.x, s.y, n.x, n.y, _handle, true);
 
-	unsigned int color = 0x00000000;
-	if (_collFlag.SideHit()) {
-		color |= 0x00ff00ff;
-		DrawString(s.x, s.y - 15, "Side", color);
-	}
-	if (_collFlag.VerticalHit()) {
-		color |= 0xff0000ff;
-		DrawString(s.x, s.y - 15, "Vertical", color);
-	}
-	if (_collFlag.CalledConf()) {
-		DrawString(s.x, s.y - 30, "Called", color);
-	}
-	DrawBox(s.x, s.y, n.x, n.y, color, false);
+	//unsigned int color = 0x00000000;
+	//if (_collFlag.SideHit()) {
+	//	color |= 0x00ff00ff;
+	//	DrawString(s.x, s.y - 15, "Side", color);
+	//}
+	//if (_collFlag.VerticalHit()) {
+	//	color |= 0xff0000ff;
+	//	DrawString(s.x, s.y - 15, "Vertical", color);
+	//}
+	//if (_collFlag.CalledConf()) {
+	//	DrawString(s.x, s.y - 30, "Called", color);
+	//}
+	//DrawBox(s.x, s.y, n.x, n.y, color, false);
 
 }
 //壊れちゃうぅ！！

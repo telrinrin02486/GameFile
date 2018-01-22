@@ -5,6 +5,8 @@
 #include "../House.h"
 #include "Collision.h"
 
+#include <cmath>
+
 //うろうろ
 class Idle :
 	public EnemyNyn::State
@@ -23,11 +25,11 @@ private:
 
 };
 //逃げる
-class Escape :
+class Escaping :
 	public EnemyNyn::State {
 public:
-	Escape(EnemyNyn::Parameter& param_);
-	~Escape();
+	Escaping(EnemyNyn::Parameter& param_);
+	~Escaping();
 	int Update() override;
 private:
 
@@ -48,8 +50,8 @@ private:
 };
 
 constexpr float NYN_HEIGHT = 60;
-EnemyNyn::EnemyNyn(const Vector2& pos_,const Player& player_)
-	:_param(__isGround,__onHouse,__state),_player(player_){
+EnemyNyn::EnemyNyn(const Vector2& pos_, const Player& player_)
+	:_param(__isGround, __onHouse, __state), _player(player_) {
 	_param.nowState = new Idle(_param);
 	_param.handle = LoadGraph("../image/ketudakkeNyan.png");
 	_param.pos = pos_;
@@ -78,6 +80,14 @@ int EnemyNyn::Update() {
 		__state = Enemy::State::onHouse;
 	}
 	_param.nowState->Update();
+	//判定から抜けてる
+	if (!_param.collFlag.CalledConf()) {
+		//横もしくは縦
+		if (_param.collFlag.SideAndBottomHit()) {
+			_param.collFlag.ClearSideAndBottomHitFlag();
+		}
+	}
+	_param.collFlag.SetPrevCalledFlag();
 
 	return err;
 }
@@ -85,27 +95,32 @@ void EnemyNyn::Draw(const Camera& camera_) {
 	if (_param.enemyState == Enemy::State::onHouse) {
 		return;//描画しません。
 	}
-	const Rect2 rect = Rect2(_param.pos,_param.size);
+	const Rect2 rect = Rect2(_param.pos, _param.size);
 	const Vector2 offset = camera_.Offset() + camera_.Pos();
 	Point2 s = (rect.LT() - offset).ToPoint2();
 	Point2 n = (rect.RB() - offset).ToPoint2();
 
 	DrawExtendGraphF(s.x, s.y, n.x, n.y, _param.handle, true);
 
-	unsigned int color = 0xffffffff;
-	if (__state == Enemy::State::isGhost) {
-		color = 0xff00ff00;
-	}
-	DrawBox(s.x, s.y, n.x, n.y, color, false);
+	//unsigned int color = 0xffffffff;
+	//if (__state == Enemy::State::isGhost) {
+	//	color = 0xff00ff00;
+	//}
+	//DrawBox(s.x, s.y, n.x, n.y, color, false);
 	//DrawRectRotaGraph3(s.x,s.y,)
 
 }
 
 void EnemyNyn::OnCollided(const Player& player_) {
+	_param.collFlag.SetCalledFlag();
+	//横もしくは下からあたってたなら終わり！
+	if (_param.collFlag.SideAndBottomHit()) {
+		return;
+	}
 	Rect2 ol = Overlap(player_.Rect(), Rect());
 	//方向取得
 	Vector2 vec = player_.Vec();
-	//上からなら&&接地ならつぶす
+	//上から&&接地ならつぶす
 	if (vec.y > 0.0f && ol.W() > ol.H()) {
 		if (__isGround) {
 			float yMoveValue = ol.H();
@@ -115,17 +130,24 @@ void EnemyNyn::OnCollided(const Player& player_) {
 	}
 	//横や下からあたってるなら
 	//もしくは、接地してない状態の上からなら
-	if (player_.Vec().x) {
-		if (__state != Enemy::State::isGhost) {
-			Vector2 sPos = player_.Rect().Center();
-			sPos.y += player_.Rect().H()*0.5f;
-			Vector2 nPos = Rect().Center();
+	/*if (player_.Vec().x) {*/
+	else {
+		_param.collFlag.SetSideAndBottomHitFlag();
+		//if (__state != Enemy::State::isGhost) {
+		Vector2 sPos = player_.Rect().Center();
+		sPos.y += player_.Rect().H()*0.5f;
+		Vector2 nPos = Rect().Center();
+		nPos.y -= Rect().H()*0.5f;
 
-			Vector2 flyVec = (nPos - sPos).Normalize() * 7.0f;
-			_param.vec += flyVec;
-			_param.ghostTime = 10;
-		}
+		Vector2 flyVec = (nPos - sPos).Normalize() * 10.0f;
+		_param.vec = flyVec;
+		_param.pos += _param.vec;
+		//_param.ghostTime = 10;
+		//}
+		Camera& camera = Camera::Instance();
+		camera.SetEarthquake(Vector2(3.0f, 0.0f));
 	}
+	/*}*/
 }
 //これちょっと難しいなぁ。
 void EnemyNyn::OnCollided(const House& house_) {
@@ -149,12 +171,21 @@ Idle::Idle(EnemyNyn::Parameter& param_)
 		_dir = -1.0f;//初期値は左
 		_countMax = (rand() % 150) + 40;
 		_xMoveValue = 0.0f;
-	}
+}
+
 int Idle::Update() {
 	int err = 0;
+	//前のベクトルの影響をもっておこ
+	float prevXVec = _param.vec.x;
+	prevXVec = -prevXVec * 0.2f;
+	if (fabs(prevXVec) < 0.5f) { prevXVec = 0.0f; }
+
 	if (_param.size.y < NYN_HEIGHT*0.5f) {
 		_param.ChangeState(new Dying(_param));
 	}
+	//if (_param.enemyState == Enemy::State::isGhost) {
+	//	_param.ChangeState(new Escaping(_param));
+	//}
 	constexpr float walkSpeed = 1.0f;
 	constexpr float gravity = 9.8f*(1.0f / 30.0f);
 	if (_param.isGround) {
@@ -173,7 +204,7 @@ int Idle::Update() {
 	}
 	//移動
 	if (_param.isGround) {
-		_param.vec.x = _dir * _xMoveValue;
+		_param.vec.x = _dir * _xMoveValue + prevXVec;
 	}
 	_param.pos += _param.vec;
 	//重力加速度追加
@@ -184,23 +215,22 @@ int Idle::Update() {
 }
 
 //Escape
-Escape::Escape(EnemyNyn::Parameter& param_)
+Escaping::Escaping(EnemyNyn::Parameter& param_)
 	:_param(param_) {
 
 }
-Escape::~Escape() {
+Escaping::~Escaping() {
 
 }
 
-int Escape::Update() {
+int Escaping::Update() {
 	int err = 0;
-	constexpr float escapeSpeed = 3.0f;
+	constexpr float escapeSpeed = 7.0f;
 	constexpr float gravity = 9.8f*(1.0f / 30.0f);
 	if (_param.isGround) {
 		_param.vec.y = 0.0f;
 	}
-
-
+	_param.vec.x = escapeSpeed;
 	_param.pos += _param.vec;
 	//重力加速度追加
 	_param.vec.y += gravity;
