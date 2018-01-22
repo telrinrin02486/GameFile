@@ -378,28 +378,7 @@ void GameScene::Draw()
 	//背景を描画するぜ
 	DrawExtendGraph(0, 0,windowW,windowH,backImg, false);
 
-	//変更●-----
-	//score画像
-	DrawGraph(10, 10, scoreImg, true);
-
-	DrawGraph(120, 10, numImg[(_crusheCount / 100) % 10], true);
-	DrawGraph(156, 10, numImg[(_crusheCount / 10) % 10], true);
-	DrawGraph(192, 10, numImg[(_crusheCount / 1) % 10], true);
-	//time画像
-	DrawGraph(10, 70, timeImg, true);
-
-	int num1 = ((GetNowCount() - timeStart) % 100) / 10;
-	int num2 = ((GetNowCount() - timeStart) % 1000) / 100;
-
-	DrawGraph(120, 70, numImg[(timeCun / 10) % 10], true);
-	DrawGraph(156, 70, numImg[(timeCun / 1) % 10], true);
-
-	DrawGraph(192, 70, coronImg, true);
-
-	DrawGraph(228, 70, numImg[(num2 / 1) % 10], true);
-	DrawGraph(264, 70, numImg[(num1 / 1) % 10], true);
-
-	//----------
+	
 
 	//ground描画
 
@@ -409,7 +388,7 @@ void GameScene::Draw()
 	DxLib::DrawBox(ground.Left(), ground.Top(), ground.Right(), ground.Bottom(), 0xff0fff0f, true);
 	//スコア等描画
 	//DxLib::DrawString(10, 10, "GameScene", 0xffffffff);
-	DxLib::DrawFormatString(10, 25, 0xffffffff, "破壊数：%d", _crusheCount);
+	//DxLib::DrawFormatString(10, 25, 0xffffffff, "破壊数：%d", _crusheCount);
 
 	//house
 	for (auto house : _houses) {
@@ -437,7 +416,29 @@ void GameScene::Draw()
 
 	efcMng.Draw(offset);						//エフェクト
 
+												//変更●-----
+												//score画像
+	DrawGraph(10, 10, scoreImg, true);
+
+	DrawGraph(120, 10, numImg[(_crusheCount / 100) % 10], true);
+	DrawGraph(156, 10, numImg[(_crusheCount / 10) % 10], true);
+	DrawGraph(192, 10, numImg[(_crusheCount / 1) % 10], true);
+	//time画像
+	DrawGraph(10, 70, timeImg, true);
+
+	int num1 = ((GetNowCount() - timeStart) % 100) / 10;
+	int num2 = ((GetNowCount() - timeStart) % 1000) / 100;
+
+	DrawGraph(120, 70, numImg[(timeCun / 10) % 10], true);
+	DrawGraph(156, 70, numImg[(timeCun / 1) % 10], true);
+
+	DrawGraph(192, 70, coronImg, true);
+
+	DrawGraph(228, 70, numImg[(num2 / 1) % 10], true);
+	DrawGraph(264, 70, numImg[(num1 / 1) % 10], true);
+
+	//----------
 										//時間描画
-	DxLib::DrawFormatString(10, 40, 0x00000000, "時間：%d:%d%d", timeCun, ((GetNowCount() - timeStart) % 1000) / 100, ((GetNowCount() - timeStart) % 100) / 10);
+	//DxLib::DrawFormatString(10, 40, 0x00000000, "時間：%d:%d%d", timeCun, ((GetNowCount() - timeStart) % 1000) / 100, ((GetNowCount() - timeStart) % 100) / 10);
 	
 }
