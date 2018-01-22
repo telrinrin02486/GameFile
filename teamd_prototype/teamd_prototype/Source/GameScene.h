@@ -40,8 +40,13 @@ private:
 	unsigned int timeCun;
 
 	void TimeCunter();
-	
 
+	//変更●-----
+	int scoreImg;
+	int timeImg;
+	int numImg[10];
+	int coronImg;
+	//----------
 
 public:
 	GameScene();	//コンストラクタ
