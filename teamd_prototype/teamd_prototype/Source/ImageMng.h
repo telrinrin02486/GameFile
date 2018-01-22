@@ -23,7 +23,8 @@ typedef struct
 {
 
 	int image;
-	Vector2 pos;
+	Vector2 posL;//左上
+	Vector2 posR;//右上
 
 }UI;
 
@@ -57,7 +58,7 @@ public:
 	}
 
 	//　機能---------------------------------------------------------------
-	void setUIID(std::string fileName, ID_UI ui_d, Vector2 pos);//UIのsetter
+	void setUIID(std::string fileName, ID_UI ui_id, Vector2 posL, Vector2 posR);//UIのsetter
 	const UI *GetUIID(int ui_id);//UIのgetter
 	const int *GetImgDivID(std::string fileName, Vector2 divCnt, Vector2 divSize);
 	void UiDraw(ID_UI startID, ID_UI endID);	//Uiのまとめ描画
