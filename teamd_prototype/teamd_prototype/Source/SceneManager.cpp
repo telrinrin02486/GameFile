@@ -102,6 +102,16 @@ void SceneManager::ChangeScene( SCENE_TYPE st )
 	}
 }
 
+void SceneManager::setSceneType(SCENE_TYPE st)
+{
+	_st = st;
+}
+
+SCENE_TYPE SceneManager::getSceneType()
+{
+	return _st;
+}
+
 //Œ‚”j‚µ‚½”‚ğƒZƒbƒg
 void SceneManager::SetScore(unsigned int score_) {
 	_score = score_;

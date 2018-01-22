@@ -5,7 +5,7 @@
 class TitleScene : public BaseScene
 {
 private:
-
+	
 
 public:
 	TitleScene();

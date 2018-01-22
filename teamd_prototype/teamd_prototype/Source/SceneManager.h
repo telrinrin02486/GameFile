@@ -4,10 +4,11 @@
 //					   シーン管理クラス
 //===================================================================
 
-//列挙
+//列挙tutorial
 enum SCENE_TYPE
 {
 	SType_TITLE,
+	SType_TUTRIAL,
 	SType_GAME,
 	SType_RESULT
 };
@@ -52,6 +53,9 @@ public:
 	void Draw();		//描画
 
 	void ChangeScene( SCENE_TYPE st );	//シーン切り替え
+
+	void setSceneType(SCENE_TYPE st);		//シーンのセット
+	SCENE_TYPE getSceneType();
 
 	//撃破した数をセット
 	void SetScore(unsigned int score_);

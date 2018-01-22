@@ -12,6 +12,8 @@
 #define WINDOW_WIDTH 1080
 #define WINDOW_HEIGHT 620
 
+#define MASK_CNT 15
+
 //UI_POS
 const Vector2 titlePos = {400,120};//titlePos
 const Vector2 buttomPos1 = { 400,250 };//buttomPos1
@@ -27,6 +29,7 @@ enum ID_UI
 	ID_resultBack,
 	ID_resultButtom1,
 	ID_resultButtom2,
+	ID_mask,
 	ID_MAX
 };
 
@@ -45,7 +48,7 @@ typedef struct
 class ImageMng
 {
 private:
-
+	
 	UI uiList[ID_MAX];				//各シーンのUIリスト
 	int	   *_imageDivList;			//アニメーション画像リスト
 	std::string *_nameDivList;		//画像パスリスト
@@ -72,6 +75,6 @@ public:
 	void setUIID(std::string fileName, ID_UI ui_id, Vector2 posL, Vector2 posR);//UIのsetter
 	const UI *GetUIID(int ui_id);//UIのgetter
 	const int *GetImgDivID(std::string fileName, Vector2 divCnt, Vector2 divSize);
-	void UiDraw(ID_UI startID, ID_UI endID);	//Uiのまとめ描画
+	void UiDraw(ID_UI startID, ID_UI endID ,int _maskCnt);	//Uiのまとめ描画
 };
 

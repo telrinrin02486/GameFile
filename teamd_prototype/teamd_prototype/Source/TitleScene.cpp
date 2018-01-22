@@ -39,8 +39,7 @@ void TitleScene::Initialize()
 
 	//ƒV[ƒ“Ø‚è‘Ö‚¦ƒtƒ‰ƒO
 	_isChange = false;
-
-
+	maskCnt = 0;
 }
 
 //---------------------------------------------------------------------
@@ -60,12 +59,32 @@ void TitleScene::Update()
 {
 
 	KeyInput& key = KeyInput::GetInstance();
-	//title‚Ö
-	if (key.GetKeyUp(KEY_INPUT_2))
+	//key“ü—Í‚Åmask‚Ìpos‚ðset
+	//mask‚Ìó‘Ô‚Åtitl or tutrial‚Ö‚Ì‘JˆÚ
+	//‘JˆÚ‚·‚é—\’è‚ÌƒV[ƒ“‚ð•Ï”‚ÅŠÇ—
+	if (key.GetKeyUp(KEY_INPUT_UP))
 	{
-		SceneManager::GetInstance().ChangeScene(SType_GAME);
+		ImageMng::GetInstance()->setUIID("../image/UI/mask/mask.png", ID_mask, { buttomPos1.x, buttomPos1.y }, { buttomPos1.x + 150,buttomPos1.y + 50 });
+		SceneManager::GetInstance().setSceneType(SType_GAME);
 	}
 
+	//‚Ü‚¾‘¶Ý‚µ‚È‚¢‚Ì‚Å
+	//isScene == SType_TUTORIAL‚Ìó‘Ô‚Å
+	//ENTER‰Ÿ‚³‚È‚¢‚Å‚Ë
+	if (key.GetKeyUp(KEY_INPUT_DOWN))
+	{
+		ImageMng::GetInstance()->setUIID("../image/UI/mask/mask.png", ID_mask, { buttomPos2.x, buttomPos2.y }, { buttomPos2.x + 150,buttomPos2.y + 50 });
+		SceneManager::GetInstance().setSceneType(SType_TUTRIAL);
+	}
+	
+
+	//title‚Ö
+	if (key.GetKeyUp(KEY_INPUT_RETURN))
+	{
+		SceneManager::GetInstance().ChangeScene(SceneManager::GetInstance().getSceneType());
+		ImageMng::GetInstance()->setUIID("../image/UI/mask/mask.png", ID_mask, { buttomPos1.x, buttomPos1.y }, { buttomPos1.x + 150,buttomPos1.y + 50 });
+	}
+	maskCnt++;
 }
 
 //---------------------------------------------------------------------
@@ -74,7 +93,8 @@ void TitleScene::Update()
 void TitleScene::Draw()
 {
 	//”wŒi‚ð•`‰æ‚·‚é‚º
-	ImageMng::GetInstance()->UiDraw(ID_titleBack, ID_tutorialButtom);
+	ImageMng::GetInstance()->UiDraw(ID_titleBack, ID_tutorialButtom, maskCnt);
+
 }
 
 

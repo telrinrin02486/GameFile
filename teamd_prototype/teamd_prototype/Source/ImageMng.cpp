@@ -33,6 +33,8 @@ ImageMng::ImageMng()
 	//先頭はエラーコードとする
 	_imageDivList[0] = -1;
 
+	//maskのロード
+	setUIID("../image/UI/mask/mask.png", ID_mask, { buttomPos1.x, buttomPos1.y }, { buttomPos1.x + 150,buttomPos1.y + 50 });
 
 	//titleUI、背景のロード
 	setUIID("../image/sceneBack/title/titleBack.png", ID_titleBack, { 0, 0 }, { WINDOW_WIDTH,WINDOW_HEIGHT });
@@ -170,7 +172,7 @@ const int *ImageMng::GetImgDivID(string fileName, Vector2 divCnt, Vector2 divSiz
 }
 
 
-void ImageMng::UiDraw(ID_UI startID, ID_UI endID)
+void ImageMng::UiDraw(ID_UI startID, ID_UI endID, int _maskCnt)
 {
 	int id = startID;
 	while (id <= endID)
@@ -179,6 +181,15 @@ void ImageMng::UiDraw(ID_UI startID, ID_UI endID)
 						GetUIID(id)->posR.x, GetUIID(id)->posR.y, 
 						GetUIID(id)->image, true);
 		id++;
+	}
+
+	//最後にmask描画
+	if((_maskCnt / MASK_CNT) % 2 == 0 )
+
+	{
+		DrawExtendGraph(GetUIID(ID_mask)->posL.x, GetUIID(ID_mask)->posL.y,
+			GetUIID(ID_mask)->posR.x, GetUIID(ID_mask)->posR.y,
+			GetUIID(ID_mask)->image, true);
 	}
 
 }

@@ -39,10 +39,7 @@ void ResultScene::Initialize()
 
 	//ƒV[ƒ“Ø‚è‘Ö‚¦ƒtƒ‰ƒO
 	_isChange = false;
-
-	//”wŒi‰æ‘œ‚ğƒ[ƒh
-
-
+	maskCnt = 0;
 }
 
 //---------------------------------------------------------------------
@@ -60,19 +57,27 @@ void ResultScene::Finalize()
 //---------------------------------------------------------------------
 void ResultScene::Update()
 {
+
 	KeyInput& key = KeyInput::GetInstance();
-	//title‚Ö
-	if (key.GetKeyUp(KEY_INPUT_2))
+	if (key.GetKeyUp(KEY_INPUT_UP))
 	{
-		SceneManager::GetInstance().ChangeScene(SType_TITLE);
+		ImageMng::GetInstance()->setUIID("../image/UI/mask/mask.png", ID_mask, { buttomPos1.x, buttomPos1.y }, { buttomPos1.x + 150,buttomPos1.y + 50 });
+		SceneManager::GetInstance().setSceneType(SType_GAME);
 	}
-	//game‚Ö
-	if (key.GetKeyUp(KEY_INPUT_3))
+	if (key.GetKeyUp(KEY_INPUT_DOWN))
 	{
-		SceneManager::GetInstance().ChangeScene(SType_GAME);
+		ImageMng::GetInstance()->setUIID("../image/UI/mask/mask.png", ID_mask, { buttomPos2.x, buttomPos2.y }, { buttomPos2.x + 150,buttomPos2.y + 50 });
+		SceneManager::GetInstance().setSceneType(SType_TITLE);
 	}
 
+	//‘JˆÚˆ—
+	if (key.GetKeyUp(KEY_INPUT_RETURN))
+	{
+		SceneManager::GetInstance().ChangeScene(SceneManager::GetInstance().getSceneType());
+		ImageMng::GetInstance()->setUIID("../image/UI/mask/mask.png", ID_mask, { buttomPos1.x, buttomPos1.y }, { buttomPos1.x + 150,buttomPos1.y + 50 });
+	}
 
+	maskCnt++;
 }
 
 //---------------------------------------------------------------------
@@ -81,7 +86,7 @@ void ResultScene::Update()
 void ResultScene::Draw()
 {
 	//”wŒi‚ğ•`‰æ‚·‚é‚º
-	ImageMng::GetInstance()->UiDraw(ID_resultBack, ID_resultButtom2);
+	ImageMng::GetInstance()->UiDraw(ID_resultBack, ID_resultButtom2,maskCnt);
 	DrawFormatString(250, 250, 0xffffff00, "”j‰óƒXƒRƒAF%d", SceneManager::GetInstance().GetScore());
 
 }

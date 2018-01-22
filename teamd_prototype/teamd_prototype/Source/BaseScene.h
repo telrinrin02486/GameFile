@@ -11,6 +11,7 @@ private:
 protected:
 	int _texID;
 	bool _isChange;
+	int maskCnt;
 
 	
 	int backImg;//”wŒi‰æ‘œ
