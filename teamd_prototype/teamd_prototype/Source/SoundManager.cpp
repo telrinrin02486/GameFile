@@ -22,6 +22,19 @@ void SoundManager::Initialize()
 {
 	char filePath[SOUND_MAX][256] =
 	{
+		"../Sound/musmus/BGM/BT_GIRLS.mp3",
+		"../Sound/musmus/BGM/MouseParty.mp3",
+		"../Sound/musmus/BGM/Omen.mp3",
+		"../Sound/musmus/BGM/SakuraSkip.mp3",
+		"../Sound/musmus/Button/btn02.mp3",
+		"../Sound/musmus/Button/btn16.mp3",
+		"../Sound/musmus/SceneSwitch/st012.mp3",
+		"../Sound/taira-komori/SceneSwitch/Cute.mp3",
+		"../Sound/other/whistle.mp3",
+		"../Sound/taira-komori/SE/Kick.mp3",
+		"../Sound/vita-chi/Scream/Man.wav",
+		"../Sound/vita-chi/Scream/Woman.wav",
+
 		"../Sound/hit1.wav",
 		"../Sound/tenka.wav",
 		"../Sound/bakuhatu.wav"//‚Ü‚¾‚È‚¢‚Å‚·
