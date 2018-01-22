@@ -75,7 +75,7 @@ bool Vector2::operator>=(const Vector2& other_) const {
 	return !(*this <= other_);
 }
 
-Vector2 Vector2::operator-() {
+Vector2 Vector2::operator-() const{
 	return Vector2(-x, -y);
 }
 

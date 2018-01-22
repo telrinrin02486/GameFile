@@ -34,6 +34,10 @@ public:
 	inline const Vector2& Offset() const {
 		return _offset;
 	}
+	//画面サイズ
+	inline const Vector2& WindowSize() const {
+		return _size;
+	}
 	//地震をセット
 	//連続には対応していない
 	//揺れの足し合わせに対応
@@ -65,6 +69,8 @@ private:
 private:
 	Vector2		_pos;//座標
 	Vector2		_offset;//ズレ
+
+	Vector2		_size;//画面サイズ
 
 	Camera::State _state = Camera::Idel;
 

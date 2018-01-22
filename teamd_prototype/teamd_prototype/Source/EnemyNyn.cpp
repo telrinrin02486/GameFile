@@ -4,7 +4,7 @@
 #include "Player.h"
 #include "../House.h"
 #include "Collision.h"
-
+#include "../BloodManager.h"
 #include <cmath>
 
 //うろうろ
@@ -126,6 +126,17 @@ void EnemyNyn::OnCollided(const Player& player_) {
 			float yMoveValue = ol.H();
 			_param.pos.y += yMoveValue;
 			_param.size.y -= yMoveValue;
+			//つぶれたサイズ分血を出しましょ
+			int bloodNum = static_cast<int>(yMoveValue * 0.5f);
+			BloodManager& bloodMng = BloodManager::Instance();
+			for (int i = 0; i < bloodNum; ++i) {
+				Vector2 flyVec = -(player_.Vec() * 0.25f);
+				float xDif = static_cast<float>((rand() % 60) - 30);
+				float yDif = static_cast<float>((rand() % 30) - 15);
+				flyVec.x += xDif;
+				flyVec.y += yDif;
+				bloodMng.Create(Rect().Center(), flyVec);
+			}
 		}
 	}
 	//横や下からあたってるなら

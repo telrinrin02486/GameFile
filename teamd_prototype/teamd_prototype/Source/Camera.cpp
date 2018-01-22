@@ -2,7 +2,7 @@
 
 #include <cmath>
 
-
+#include <DxLib.h>
 //Shaker--------------------------------
 
 
@@ -12,6 +12,9 @@
 
 Camera::Camera(const Vector2& pos_)
 	:_pos(pos_) {
+	int w, h;
+	GetWindowSize(&w, &h);
+	_size = Vector2(w, h);
 }
 
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Vector2.h"
+#include "BloodManager.h"
 
 //血
 //Enemyから吹き出る
@@ -11,20 +12,30 @@
 //管理が更新と描画をするぅ
 //それ以外に別途方法があるならそれも              
 
-struct Blood
+class Blood
 {
+	friend BloodManager;
+public:
 	Blood()
-		:pos(), vec(),isAlive()
+		:_pos(), _vec(),_isAlive(),_isGround()
+	{}
+	Blood(const Vector2& pos_, const Vector2& vec_)
+		:_pos(pos_), _vec(vec_), _isAlive(true),_isGround()
 	{}
 
+	inline void SetGroundFlag(bool flag_) {
+		_isGround = flag_;
+	}
+	inline bool IsGround() const {
+		return _isGround;
+	}
 	//キャストにかかるコストとメモリを圧迫するコスト
 	//どっちを優先しようかな
 
-	Point2		pos;//座標
-	Point2		vec;//方向
-	bool		isAlive;//生死判定
-
-
-
+private:
+	Vector2		_pos;//座標
+	Vector2		_vec;//方向
+	bool		_isAlive;//生死判定
+	bool		_isGround;//接地フラグ
 };
 

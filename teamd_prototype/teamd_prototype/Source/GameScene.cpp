@@ -56,6 +56,7 @@ void GameScene::Initialize()
 {
 	EffectManager& efMng = EffectManager::Instance();
 	BloodManager& bloodMng = BloodManager::Instance();
+	bloodMng.Init();
 
 	//シーン切り替えフラグ
 	_isChange = false;
@@ -84,6 +85,7 @@ void GameScene::Initialize()
 		Vector2 pos = { static_cast<float>(rand() % ((_maxLimit - w) * 2) + _minLimit),static_cast<float>(rand() % h) };
 		_houses.push_back(new House(pos));
 	}
+
 	//開始時間の取得
 	timeCun = 0;
 	timeStart = GetNowCount();
@@ -125,6 +127,7 @@ void GameScene::Finalize()
 void GameScene::Update()
 {
 	EffectManager& efcMng = EffectManager::Instance();
+	BloodManager& bloodMng = BloodManager::Instance();
 	bool deadFlg = false;
 	KeyInput& key = KeyInput::GetInstance();
 	Camera& camera = Camera::Instance();
@@ -152,6 +155,7 @@ void GameScene::Update()
 		for (auto house : _houses) {
 			house->Update();
 		}
+		bloodMng.Update();
 		//for (auto cb : _cb1List) {
 		//	cb->Update();
 		//}
@@ -369,6 +373,7 @@ void GameScene::Draw()
 
 	//パラメタ取得やらなんやら
 	EffectManager& efcMng = EffectManager::Instance();
+	BloodManager& bloodMng = BloodManager::Instance();
 	Camera& camera = Camera::Instance();
 	Vector2 offset = camera.Pos() + camera.Offset();
 	int windowW, windowH;
@@ -400,7 +405,6 @@ void GameScene::Draw()
 	DrawGraph(264, 70, numImg[(num1 / 1) % 10], true);
 
 	//----------
-
 	//ground描画
 
 	Rect2 ground = {0.0f,_groundPosY,static_cast<float>(windowW),static_cast<float>(windowH) };
@@ -409,7 +413,7 @@ void GameScene::Draw()
 	DxLib::DrawBox(ground.Left(), ground.Top(), ground.Right(), ground.Bottom(), 0xff0fff0f, true);
 	//スコア等描画
 	//DxLib::DrawString(10, 10, "GameScene", 0xffffffff);
-	DxLib::DrawFormatString(10, 25, 0xffffffff, "破壊数：%d", _crusheCount);
+	//DxLib::DrawFormatString(10, 25, 0xffffffff, "破壊数：%d", _crusheCount);
 
 	//house
 	for (auto house : _houses) {
@@ -421,7 +425,7 @@ void GameScene::Draw()
 	for (auto nyn : _nyns) {
 		nyn->Draw(camera);
 	}
-	
+	bloodMng.Draw(camera);
 	//cb
 	//for (auto cb : _cb1List) {
 	//	cb->Draw(offset);
@@ -438,6 +442,6 @@ void GameScene::Draw()
 	efcMng.Draw(offset);						//エフェクト
 
 										//時間描画
-	DxLib::DrawFormatString(10, 40, 0x00000000, "時間：%d:%d%d", timeCun, ((GetNowCount() - timeStart) % 1000) / 100, ((GetNowCount() - timeStart) % 100) / 10);
-	
+	//DxLib::DrawFormatString(10, 40, 0x00000000, "時間：%d:%d%d", timeCun, ((GetNowCount() - timeStart) % 1000) / 100, ((GetNowCount() - timeStart) % 100) / 10);
+	//
 }

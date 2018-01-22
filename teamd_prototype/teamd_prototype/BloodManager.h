@@ -3,7 +3,7 @@
 
 #include "Singleton.h"
 
-#include "Point2.h"
+#include "Vector2.h"
 
 class Camera;
 struct Blood;
@@ -21,12 +21,15 @@ public:
 		return _bloods;
 	}
 	//一粒生成
-	void Create(const Point2& point_, const Point2& vec_);
+	void Create(const Vector2& pos_, const Vector2& vec_);
 
 	inline const float& Radius() const {
 		return _radius;
 	}
+
 private:
+	int BloodUpdate(Blood& blood_);
+	void BloodDraw(const Blood& blood_,const Camera& camera_);
 	//要素の追加時に大幅なメモリ移動が起こり得る
 	//最初にある程度まとめて確保しておいて、後から追加する？
 	//でも最初からこんだけのものがメモリ上にあると邪魔だよね。

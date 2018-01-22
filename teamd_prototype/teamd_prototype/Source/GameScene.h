@@ -40,7 +40,7 @@ private:
 	unsigned int timeCun;
 
 	void TimeCunter();
-
+	
 	//•ÏXœ-----
 	int scoreImg;
 	int timeImg;

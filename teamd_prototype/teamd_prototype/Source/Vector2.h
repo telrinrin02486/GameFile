@@ -40,7 +40,7 @@ struct Vector2
 	bool operator<=(const Vector2& other_) const;
 	bool operator>=(const Vector2& other_) const;
 	
-	Vector2 operator-();
+	Vector2 operator-() const;
 	//--
 	Point2 ToPoint2()const;
 

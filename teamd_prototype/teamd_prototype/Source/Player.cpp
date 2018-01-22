@@ -144,6 +144,14 @@ void Player::setMove()
 		if (aniFram % ANIM_SPEED == 0)
 		{
 			aniCnt++;
+			//“J“c@•ÏX
+			if (aniCnt == 3) {
+				_weight = 400;
+			}
+			else {
+				_weight = 10;
+			}
+			//------
 			if (aniCnt > (IMG_DIV_CNT_X -1))
 			{
 				state = ANI_DEF;
