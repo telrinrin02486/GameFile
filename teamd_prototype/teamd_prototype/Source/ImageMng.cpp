@@ -14,9 +14,9 @@ using namespace std;
 //　前方宣言-----------------------------------------------------------
 ImageMng *ImageMng::_Instance = nullptr;		//インスタンス
 
-												//---------------------------------------------------------------------
-												//　コンストラクタ
-												//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+//　コンストラクタ
+//---------------------------------------------------------------------
 ImageMng::ImageMng()
 {
 	//インスタンス
@@ -84,8 +84,8 @@ void ImageMng::Destroy()
 
 void ImageMng::setUIID(std::string fileName, ID_UI ui_id, Vector2 pos)
 {
-	uiList[ui_id].image[ui_id] = LoadGraph(fileName.c_str());
-	uiList[ui_id].pos[ui_id] = pos;
+	uiList[ui_id].image = LoadGraph(fileName.c_str());
+	uiList[ui_id].pos = pos;
 }
 
 const UI *ImageMng::GetUIID(int ui_id)
@@ -173,7 +173,7 @@ void ImageMng::UiDraw(ID_UI startID, ID_UI endID)
 	int id = startID;
 	while (id < endID)
 	{
-		DrawGraph(GetUIID(id)->pos[id].x, GetUIID(id)->pos[id].y, GetUIID(id)->image[id], true);
+		DrawGraph(GetUIID(id)->pos.x, GetUIID(id)->pos.y, GetUIID(id)->image, true);
 		id++;
 	}
 

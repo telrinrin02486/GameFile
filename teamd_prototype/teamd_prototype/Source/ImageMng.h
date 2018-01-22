@@ -22,8 +22,8 @@ enum ID_UI
 typedef struct
 {
 
-	int image[ID_MAX];
-	Vector2 pos[ID_MAX];
+	int image;
+	Vector2 pos;
 
 }UI;
 
