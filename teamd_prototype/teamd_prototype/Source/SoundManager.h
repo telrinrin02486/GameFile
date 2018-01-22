@@ -5,6 +5,19 @@
 //‚Ü‚¾’Ç‰Á‚µ‚Ä‚Ü‚¹‚ñ
 enum SOUND_TYPE
 {
+	BGM_GIRLS,
+	BGM_MOUSE,
+	BGM_OMEN,
+	BGM_SAKURA,
+	BUTTON_1,
+	BUTTON_2,
+	SS_1,
+	SS_2,
+	SE_WHISTLE,
+	SE_STEPS,
+	SCR_MAN,
+	SCR_WOMAN,
+
 	HIT_1,
 	TENKA,
 	EXPLOSION,
