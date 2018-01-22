@@ -13,8 +13,9 @@
 #define WINDOW_HEIGHT 620
 
 //UI_POS
-#define UI_POS_X 400
-#define UI_POS_Y 480
+const Vector2 titlePos = {400,120};//titlePos
+const Vector2 buttomPos1 = { 400,250 };//buttomPos1
+const Vector2 buttomPos2 = { 400,350 };//buttomPos2
 
 
 enum ID_UI
@@ -22,6 +23,7 @@ enum ID_UI
 	ID_titleBack,
 	ID_title,
 	ID_startButtom,
+	ID_tutorialButtom,
 	ID_resultBack,
 	ID_resultButtom1,
 	ID_resultButtom2,

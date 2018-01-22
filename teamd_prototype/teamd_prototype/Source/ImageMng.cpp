@@ -36,13 +36,14 @@ ImageMng::ImageMng()
 
 	//titleUIÅAîwåiÇÃÉçÅ[Éh
 	setUIID("../image/sceneBack/title/titleBack.png", ID_titleBack, { 0, 0 }, { WINDOW_WIDTH,WINDOW_HEIGHT });
-	setUIID("../image/UI/title/titleImage.png", ID_title, { UI_POS_X, UI_POS_Y / 5 }, { UI_POS_X +300,UI_POS_Y / 5+100});
-	setUIID("../image/UI/title/startButtom.png", ID_startButtom, { UI_POS_Y-5, UI_POS_Y / 2 }, { UI_POS_Y +145,UI_POS_Y / 2+50});
+	setUIID("../image/UI/title/titleImage.png", ID_title, { titlePos.x, titlePos.y }, { titlePos.x +300,titlePos.y +100});
+	setUIID("../image/UI/title/startButtom.png", ID_startButtom, { buttomPos1.x, buttomPos1.y }, { buttomPos1.x +150,buttomPos1.y +50});
+	setUIID("../image/UI/title/tutorialButtom.png", ID_tutorialButtom, { buttomPos2.x, buttomPos2.y }, { buttomPos2.x +150, buttomPos2.y + 50});
 
 	//resultUIÅAîwåiÇÃÉçÅ[Éh
 	setUIID("../image/result.png", ID_resultBack, { 0, 0 }, { WINDOW_WIDTH,WINDOW_HEIGHT });
-	setUIID("../image/UI/result/resultButtom1.png", ID_resultButtom1, { WINDOW_WIDTH / 2, UI_POS_Y / 3 } ,{ WINDOW_WIDTH / 2+150,UI_POS_Y / 3+50 });
-	setUIID("../image/UI/result/resultButtom2.png", ID_resultButtom2, { WINDOW_WIDTH / 2, UI_POS_Y / 2 } ,{ WINDOW_WIDTH / 2+150,UI_POS_Y / 2+50 });
+	setUIID("../image/UI/result/resultButtom1.png", ID_resultButtom1, { buttomPos1.x, buttomPos1.y } ,{ buttomPos1.x +150,buttomPos1.y +50});
+	setUIID("../image/UI/result/resultButtom2.png", ID_resultButtom2, { buttomPos2.x, buttomPos2.y } ,{ buttomPos2.x +150,buttomPos2.y +50});
 
 }
 
