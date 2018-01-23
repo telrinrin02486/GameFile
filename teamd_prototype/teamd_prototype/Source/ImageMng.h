@@ -12,6 +12,7 @@
 #define WINDOW_WIDTH 1080
 #define WINDOW_HEIGHT 620
 
+//mask‚Ì•`‰æŽžŠÔ
 #define MASK_CNT 15
 
 //UI_POS

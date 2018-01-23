@@ -22,10 +22,10 @@ void SoundManager::Initialize()
 {
 	char filePath[SOUND_MAX][256] =
 	{
-		"../Sound/musmus/BGM/BT_GIRLS.mp3",
-		"../Sound/musmus/BGM/MouseParty.mp3",
-		"../Sound/musmus/BGM/Omen.mp3",
-		"../Sound/musmus/BGM/SakuraSkip.mp3",
+		"../Sound/musmus/BGM/tutrialBGM.mp3",		//tutrialBGM
+		"../Sound/musmus/BGM/titleBGM.mp3",			//titleBGM
+		"../Sound/musmus/BGM/resultBGM.mp3",		//resultBGM
+		"../Sound/musmus/BGM/gameBGM.mp3",			//gameBGM
 		"../Sound/musmus/Button/btn02.mp3",
 		"../Sound/musmus/Button/btn16.mp3",
 		"../Sound/musmus/SceneSwitch/st012.mp3",
@@ -48,7 +48,7 @@ void SoundManager::Initialize()
 }
 
 //----------------------------------------
-//	
+//	指定サウンドの再生
 //----------------------------------------
 void SoundManager::Play(SOUND_TYPE _type, int _volume)
 {
@@ -57,7 +57,7 @@ void SoundManager::Play(SOUND_TYPE _type, int _volume)
 }
 
 //----------------------------------------
-//	
+//	指定サウンドのLoop再生
 //----------------------------------------
 void SoundManager::PlayLoop(SOUND_TYPE _type, int _volume)
 {
@@ -66,7 +66,34 @@ void SoundManager::PlayLoop(SOUND_TYPE _type, int _volume)
 }
 
 //----------------------------------------
-//	
+//	指定サウンドの再生Cheak
+//----------------------------------------
+bool SoundManager::PlayCheak(SOUND_TYPE _type)
+{
+	if (CheckSoundMem(sound[_type]) == 1)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+	/*if (CheckSoundMem(sound[_type]) == 1)
+	{
+		return true;
+	}
+	else if(CheckSoundMem(sound[_type]) == 0)
+	{
+		return false;
+	}
+	else
+	{
+		printfDx("サウンドエラー発生");
+	}*/
+}
+
+//----------------------------------------
+//	指定サウンドの停止
 //----------------------------------------
 void SoundManager::Stop(SOUND_TYPE _type)
 {

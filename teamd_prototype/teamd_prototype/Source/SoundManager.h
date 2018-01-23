@@ -5,10 +5,10 @@
 //‚Ü‚¾’Ç‰Á‚µ‚Ä‚Ü‚¹‚ñ
 enum SOUND_TYPE
 {
-	BGM_GIRLS,
-	BGM_MOUSE,
-	BGM_OMEN,
-	BGM_SAKURA,
+	BGM_TUTRIAL,	//tutrialBGM
+	BGM_TITLE,		//titleBGM
+	BGM_RESULT,		//resultBGM
+	BGM_GAME,		//gameBGM
 	BUTTON_1,
 	BUTTON_2,
 	SS_1,
@@ -50,6 +50,7 @@ public:
 	void Initialize();
 	void Play(SOUND_TYPE _type, int _volume = 128);			//w’èsound‚ÌÄ¶(1‰ñ)
 	void PlayLoop(SOUND_TYPE _type, int _volume = 128);		//w’èsound‚ÌÄ¶(Loop)
+	bool PlayCheak(SOUND_TYPE _type);						//w’èsound‚ÌÄ¶Cheak
 	void Stop(SOUND_TYPE _type);							//Ä¶’†sound‚Ì’â~
 };
 

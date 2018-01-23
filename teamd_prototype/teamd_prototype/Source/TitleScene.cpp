@@ -13,7 +13,9 @@ using namespace std;
 
 #include "KeyInput.h"		// Žg—p‚È‚µ
 #include "DxLib.h"
+#include "SoundManager.h"
 #include "SceneManager.h"
+
 
 
 //---------------------------------------------------------------------
@@ -40,6 +42,8 @@ void TitleScene::Initialize()
 	//ƒV[ƒ“Ø‚è‘Ö‚¦ƒtƒ‰ƒO
 	_isChange = false;
 	maskCnt = 0;
+	SceneManager::GetInstance().setSceneType(SType_GAME);
+	//SoundManager::GetInstance().Play(BGM_TITLE);
 }
 
 //---------------------------------------------------------------------
@@ -57,7 +61,7 @@ void TitleScene::Finalize()
 //---------------------------------------------------------------------
 void TitleScene::Update()
 {
-
+	//bool i = SoundManager::GetInstance().PlayCheak(BGM_TITLE);
 	KeyInput& key = KeyInput::GetInstance();
 	//key“ü—Í‚Åmask‚Ìpos‚ðset
 	//mask‚Ìó‘Ô‚Åtitl or tutrial‚Ö‚Ì‘JˆÚ
@@ -83,6 +87,7 @@ void TitleScene::Update()
 	{
 		SceneManager::GetInstance().ChangeScene(SceneManager::GetInstance().getSceneType());
 		ImageMng::GetInstance()->setUIID("../image/UI/mask/mask.png", ID_mask, { buttomPos1.x, buttomPos1.y }, { buttomPos1.x + 150,buttomPos1.y + 50 });
+		SoundManager::GetInstance().Stop(BGM_TITLE);
 	}
 	maskCnt++;
 }
@@ -94,6 +99,7 @@ void TitleScene::Draw()
 {
 	//”wŒi‚ð•`‰æ‚·‚é‚º
 	ImageMng::GetInstance()->UiDraw(ID_titleBack, ID_tutorialButtom, maskCnt);
+
 
 }
 

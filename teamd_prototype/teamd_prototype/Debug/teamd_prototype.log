@@ -1,19 +1,3 @@
-﻿  ImageMng.cpp
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\source\imagemng.cpp(158): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\source\imagemng.cpp(182): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\source\imagemng.cpp(192): warning C4244: '引数': 'const float' から 'int' への変換です。データが失われる可能性があります。
-  コードを生成中...
-  コンパイル中...
-  main.cpp
-  TitleScene.cpp
-  SceneManager.cpp
-  ResultScene.cpp
-  GameMain.cpp
-  EffectManager.cpp
-  House.cpp
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\house.h(113): warning C4800: 'int': ブール値を 'true' または 'false' に強制的に設定します (警告の処理)
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\house.cpp(90): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-c:\users\teruaki　sato\desktop\新しいフォルダー\gamefile\teamd_prototype\teamd_prototype\house.cpp(143): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
-  コードを生成中...
+﻿  ResultScene.cpp
   teamd_prototype.vcxproj -> C:\Users\TERUAKI　SATO\Desktop\新しいフォルダー\GameFile\teamd_prototype\Debug\teamd_prototype.exe
   teamd_prototype.vcxproj -> C:\Users\TERUAKI　SATO\Desktop\新しいフォルダー\GameFile\teamd_prototype\Debug\teamd_prototype.pdb (Full PDB)

@@ -40,6 +40,7 @@ void ResultScene::Initialize()
 	//シーン切り替えフラグ
 	_isChange = false;
 	maskCnt = 0;
+	SceneManager::GetInstance().setSceneType(SType_GAME);
 }
 
 //---------------------------------------------------------------------
