@@ -16,11 +16,13 @@ GameMain::~GameMain()
 }
 
 int GameMain::Init() {
-	SceneManager::GetInstance().Initialize();
+	//‡”Ô‚ÉˆË‘¶‚µ‚Ä‚»‚¤‚â‚Ë‚±‚Ì‚ ‚½‚è
 	KeyInput::GetInstance().Initialize();
-	SoundManager::GetInstance().Initialize(); //‚±‚±‚àI‚¨‚±‚¾‚æIxD
 	ImageMng::Create();
 	EffectManager::Instance().Initialize();
+	SoundManager::GetInstance().Initialize();
+	SceneManager::GetInstance().Initialize();
+
 	return 0;
 }
 int GameMain::Update() {
@@ -38,5 +40,6 @@ void GameMain::End() {
 	SceneManager::GetInstance().Finalize();
 	KeyInput::GetInstance().Finalize();
 	EffectManager::Instance().Finalize();
+	SoundManager::GetInstance();
 
 }

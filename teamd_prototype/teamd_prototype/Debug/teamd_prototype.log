@@ -1,10 +1,10 @@
-﻿  EffectManager.cpp
+﻿  main.cpp
+  GameScene.cpp
+c:\users\yunam\desktop\gamefile\teamd_prototype\teamd_prototype\house.h(113): warning C4800: 'int': ブール値を 'true' または 'false' に強制的に設定します (警告の処理)
+c:\users\yunam\desktop\gamefile\teamd_prototype\teamd_prototype\source\gamescene.cpp(40): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+c:\users\yunam\desktop\gamefile\teamd_prototype\teamd_prototype\source\gamescene.cpp(43): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+c:\users\yunam\desktop\gamefile\teamd_prototype\teamd_prototype\source\gamescene.cpp(366): warning C4244: '=': 'double' から 'unsigned int' への変換です。データが失われる可能性があります。
+c:\users\yunam\desktop\gamefile\teamd_prototype\teamd_prototype\source\gamescene.cpp(398): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
   コードを生成中...
-  コンパイル中...
-  main.cpp
-  TitleScene.cpp
-  SoundManager.cpp
-  GameMain.cpp
-  コードを生成中...
-  teamd_prototype.vcxproj -> C:\Users\TERUAKI　SATO\Desktop\新しいフォルダー\GameFile\teamd_prototype\Debug\teamd_prototype.exe
-  teamd_prototype.vcxproj -> C:\Users\TERUAKI　SATO\Desktop\新しいフォルダー\GameFile\teamd_prototype\Debug\teamd_prototype.pdb (Full PDB)
+  teamd_prototype.vcxproj -> C:\Users\yunam\Desktop\GameFile\teamd_prototype\Debug\teamd_prototype.exe
+  teamd_prototype.vcxproj -> C:\Users\yunam\Desktop\GameFile\teamd_prototype\Debug\teamd_prototype.pdb (Full PDB)

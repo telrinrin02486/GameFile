@@ -21,12 +21,27 @@ int main(void){
 	err = SetDrawScreen(DX_SCREEN_BACK);
 	err = SetGraphMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32);
 
-	ImageMng::Create();
-	EffectManager::Instance().Initialize();
-	SoundManager::GetInstance().Initialize();//ここと！
-	SceneManager::GetInstance().Initialize();
 	GameMain& gm = GameMain::Instance();
 	err = gm.Init();
+	//ImageMng::Create();
+	//EffectManager::Instance().Initialize();
+	//SoundManager::GetInstance().Initialize();
+	//SceneManager::GetInstance().Initialize();
+
+	//ちょっと進んだ
+	//SoundManager→SceneManager→SoundManagerの順で初期化してやらないと
+	//音楽消える
+
+	//ちょっとわかった
+	//問題点は、SoundManagerのPlayは呼ぶたびに音楽の最初に戻すのに
+	//TitleSceneのUpdateで呼び続けたこと。
+	//音が止まらなくなってたのは、
+	//読み込んだ音のハンドルを渡した後に初期化したから
+	//ハンドルが変わって操作不能になってたから。
+	
+	//対策として、
+	//モカ茶がやっていたみたいに、ハンドルのポインタを渡す。
+	//変更が起こった場合でも対応可能。
 
 	while (!ProcessMessage()) {
 		err = gm.Update();

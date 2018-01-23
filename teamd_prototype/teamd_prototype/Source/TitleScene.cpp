@@ -61,7 +61,7 @@ void TitleScene::Finalize()
 //---------------------------------------------------------------------
 void TitleScene::Update()
 {
-	SoundManager::GetInstance().Play(BGM_TITLE);
+	//SoundManager::GetInstance().Play(BGM_TITLE);
 	bool i = SoundManager::GetInstance().PlayCheak(BGM_TITLE);
 	KeyInput& key = KeyInput::GetInstance();
 	//key“ü—Í‚Åmask‚Ìpos‚ðset

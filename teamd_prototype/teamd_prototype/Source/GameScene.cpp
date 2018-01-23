@@ -26,6 +26,8 @@ using namespace std;
 #include "SceneManager.h"
 #include "../BloodManager.h"
 
+#include "SoundManager.h"
+
 //---------------------------------------------------------------------
 //　コンストラクタ
 //---------------------------------------------------------------------
@@ -39,6 +41,8 @@ GameScene::GameScene()
 
 	_minLimit = -2000;
 	_maxLimit = static_cast<float>(w) + 2000;
+
+	SoundManager::GetInstance().Play(BGM_GAME);
 }
 
 //---------------------------------------------------------------------
@@ -162,6 +166,9 @@ void GameScene::Update()
 		//nynの死亡確認
 		for (auto it = _nyns.begin(); it != _nyns.end();) {
 			if ((*it)->GetState() == Enemy::State::isDed) {
+				//SE呼び出し
+				//キャラクタが持ってた方が可用性は高い、が知らん
+				SoundManager::GetInstance().Play(TENKA);
 				delete *it;
 				it = _nyns.erase(it);
 				++_crusheCount;
@@ -173,6 +180,7 @@ void GameScene::Update()
 		//はうすの死亡確認
 		for (auto it = _houses.begin(); it != _houses.end();) {
 			if ((*it)->IsDead()) {
+				SoundManager::GetInstance().Play(HIT_1);
 				delete *it;
 				it = _houses.erase(it);
 				++_crusheCount;

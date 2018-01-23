@@ -40,7 +40,6 @@ void SoundManager::Initialize()
 		"../Sound/bakuhatu.wav"//‚Ü‚¾‚È‚¢‚Å‚·
 	};
 
-
 	for (int i = 0; i < SOUND_MAX; i++)
 	{
 		sound[i] = LoadSoundMem(filePath[i]);
