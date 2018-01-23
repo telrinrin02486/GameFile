@@ -23,7 +23,7 @@ int main(void){
 
 	ImageMng::Create();
 	EffectManager::Instance().Initialize();
-	SoundManager::GetInstance().Initialize();
+	SoundManager::GetInstance().Initialize();//Ç±Ç±Ç∆ÅI
 	SceneManager::GetInstance().Initialize();
 	GameMain& gm = GameMain::Instance();
 	err = gm.Init();

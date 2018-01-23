@@ -18,7 +18,7 @@ GameMain::~GameMain()
 int GameMain::Init() {
 	SceneManager::GetInstance().Initialize();
 	KeyInput::GetInstance().Initialize();
-	SoundManager::GetInstance().Initialize();
+	SoundManager::GetInstance().Initialize(); //‚±‚±‚àI‚¨‚±‚¾‚æIxD
 	ImageMng::Create();
 	EffectManager::Instance().Initialize();
 	return 0;

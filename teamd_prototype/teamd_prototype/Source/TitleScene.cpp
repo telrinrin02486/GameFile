@@ -43,7 +43,7 @@ void TitleScene::Initialize()
 	_isChange = false;
 	maskCnt = 0;
 	SceneManager::GetInstance().setSceneType(SType_GAME);
-	//SoundManager::GetInstance().Play(BGM_TITLE);
+	SoundManager::GetInstance().Play(BGM_TITLE);
 }
 
 //---------------------------------------------------------------------
@@ -61,7 +61,8 @@ void TitleScene::Finalize()
 //---------------------------------------------------------------------
 void TitleScene::Update()
 {
-	//bool i = SoundManager::GetInstance().PlayCheak(BGM_TITLE);
+	SoundManager::GetInstance().Play(BGM_TITLE);
+	bool i = SoundManager::GetInstance().PlayCheak(BGM_TITLE);
 	KeyInput& key = KeyInput::GetInstance();
 	//key“ü—Í‚Åmask‚Ìpos‚ğset
 	//mask‚Ìó‘Ô‚Åtitl or tutrial‚Ö‚Ì‘JˆÚ
@@ -90,6 +91,7 @@ void TitleScene::Update()
 		SoundManager::GetInstance().Stop(BGM_TITLE);
 	}
 	maskCnt++;
+	//SoundManager::GetInstance().Play(BGM_TITLE);
 }
 
 //---------------------------------------------------------------------
