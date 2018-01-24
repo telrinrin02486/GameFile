@@ -62,23 +62,31 @@ void ResultScene::Update()
 {
 
 	KeyInput& key = KeyInput::GetInstance();
+	//game
 	if (key.GetKeyUp(KEY_INPUT_UP))
 	{
 		ImageMng::GetInstance()->setUIID("../image/UI/mask/mask.png", ID_mask, { buttomPos1.x, buttomPos1.y }, { buttomPos1.x + 150,buttomPos1.y + 50 });
 		SceneManager::GetInstance().setSceneType(SType_GAME);
+		SoundManager::GetInstance().Play(BUTTON_1);
 	}
-	if (key.GetKeyUp(KEY_INPUT_DOWN))
+	//tutrial
+	else if (key.GetKeyUp(KEY_INPUT_DOWN))
 	{
 		ImageMng::GetInstance()->setUIID("../image/UI/mask/mask.png", ID_mask, { buttomPos2.x, buttomPos2.y }, { buttomPos2.x + 150,buttomPos2.y + 50 });
 		SceneManager::GetInstance().setSceneType(SType_TITLE);
+		SoundManager::GetInstance().Play(BUTTON_1);
 	}
 
-	//‘JˆÚˆ—
-	if (key.GetKeyUp(KEY_INPUT_RETURN))
+	else if (key.GetKeyUp(KEY_INPUT_RETURN))
 	{
-		SceneManager::GetInstance().ChangeScene(SceneManager::GetInstance().getSceneType());
 		ImageMng::GetInstance()->setUIID("../image/UI/mask/mask.png", ID_mask, { buttomPos1.x, buttomPos1.y }, { buttomPos1.x + 150,buttomPos1.y + 50 });
 		SoundManager::GetInstance().Stop(BGM_RESULT);
+		SoundManager::GetInstance().Play(BUTTON_2);
+		SceneManager::GetInstance().ChangeScene(SceneManager::GetInstance().getSceneType());
+	}
+	else
+	{
+		//key“ü—Í‚È‚µ
 	}
 
 	maskCnt++;

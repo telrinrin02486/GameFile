@@ -26,8 +26,8 @@ void SoundManager::Initialize()
 		"../Sound/musmus/BGM/titleBGM.mp3",			//titleBGM
 		"../Sound/musmus/BGM/resultBGM.mp3",		//resultBGM
 		"../Sound/musmus/BGM/gameBGM.mp3",			//gameBGM
-		"../Sound/musmus/Button/btn02.mp3",
-		"../Sound/musmus/Button/btn16.mp3",
+		"../Sound/musmus/Button/btn1.mp3",			//title,resultに使用するbutton
+		"../Sound/musmus/Button/btn2.mp3",
 		"../Sound/musmus/SceneSwitch/st012.mp3",
 		"../Sound/taira-komori/SceneSwitch/Cute.mp3",
 		"../Sound/other/whistle.mp3",
@@ -71,24 +71,18 @@ bool SoundManager::PlayCheak(SOUND_TYPE _type)
 {
 	if (CheckSoundMem(sound[_type]) == 1)
 	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-	/*if (CheckSoundMem(sound[_type]) == 1)
-	{
+		//再生中
 		return true;
 	}
 	else if(CheckSoundMem(sound[_type]) == 0)
 	{
+		//停止中
 		return false;
 	}
 	else
 	{
 		printfDx("サウンドエラー発生");
-	}*/
+	}
 }
 
 //----------------------------------------

@@ -25,7 +25,6 @@ TitleScene::TitleScene()
 {
 }
 
-
 //---------------------------------------------------------------------
 //　デストラクタ
 //---------------------------------------------------------------------
@@ -51,9 +50,6 @@ void TitleScene::Initialize()
 //---------------------------------------------------------------------
 void TitleScene::Finalize()
 {
-	//各種開放
-
-
 }
 
 //---------------------------------------------------------------------
@@ -61,35 +57,38 @@ void TitleScene::Finalize()
 //---------------------------------------------------------------------
 void TitleScene::Update()
 {
-	//SoundManager::GetInstance().Play(BGM_TITLE);
-	bool i = SoundManager::GetInstance().PlayCheak(BGM_TITLE);
+	
 	KeyInput& key = KeyInput::GetInstance();
-	//key入力でmaskのposをset
-	//maskの状態でtitl or tutrialへの遷移
-	//遷移する予定のシーンを変数で管理
+	//まだ存在しないので
+	//isScene == SType_TUTORIALの状態で
+	//ENTER押さないでね
+	//game
 	if (key.GetKeyUp(KEY_INPUT_UP))
 	{
 		ImageMng::GetInstance()->setUIID("../image/UI/mask/mask.png", ID_mask, { buttomPos1.x, buttomPos1.y }, { buttomPos1.x + 150,buttomPos1.y + 50 });
 		SceneManager::GetInstance().setSceneType(SType_GAME);
+		SoundManager::GetInstance().Play(BUTTON_1);
 	}
-
-	//まだ存在しないので
-	//isScene == SType_TUTORIALの状態で
-	//ENTER押さないでね
-	if (key.GetKeyUp(KEY_INPUT_DOWN))
+	//tutrial
+	else if (key.GetKeyUp(KEY_INPUT_DOWN))
 	{
 		ImageMng::GetInstance()->setUIID("../image/UI/mask/mask.png", ID_mask, { buttomPos2.x, buttomPos2.y }, { buttomPos2.x + 150,buttomPos2.y + 50 });
 		SceneManager::GetInstance().setSceneType(SType_TUTRIAL);
+		SoundManager::GetInstance().Play(BUTTON_1);
 	}
 	
-
-	//titleへ
-	if (key.GetKeyUp(KEY_INPUT_RETURN))
+	else if (key.GetKeyUp(KEY_INPUT_RETURN))
 	{
-		SceneManager::GetInstance().ChangeScene(SceneManager::GetInstance().getSceneType());
 		ImageMng::GetInstance()->setUIID("../image/UI/mask/mask.png", ID_mask, { buttomPos1.x, buttomPos1.y }, { buttomPos1.x + 150,buttomPos1.y + 50 });
 		SoundManager::GetInstance().Stop(BGM_TITLE);
+		SoundManager::GetInstance().Play(BUTTON_2);
+		SceneManager::GetInstance().ChangeScene(SceneManager::GetInstance().getSceneType());
 	}
+	else
+	{
+		//key入力なし
+	}
+
 	maskCnt++;
 	
 }

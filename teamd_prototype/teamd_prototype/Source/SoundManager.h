@@ -9,7 +9,7 @@ enum SOUND_TYPE
 	BGM_TITLE,		//titleBGM
 	BGM_RESULT,		//resultBGM
 	BGM_GAME,		//gameBGM
-	BUTTON_1,
+	BUTTON_1,		//title,result‚ÉŽg—p‚·‚ébutton
 	BUTTON_2,
 	SS_1,
 	SS_2,

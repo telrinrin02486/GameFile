@@ -1,4 +1,5 @@
-﻿  ResultScene.cpp
-cl : コマンド ライン warning D9028: 簡易リビルド時のエラーです、通常のビルドに戻します
+﻿  TitleScene.cpp
+  ResultScene.cpp
+  コードを生成中...
   teamd_prototype.vcxproj -> C:\Users\1501321\Desktop\新しいフォルダー (2)\GameFile\teamd_prototype\Debug\teamd_prototype.exe
   teamd_prototype.vcxproj -> C:\Users\1501321\Desktop\新しいフォルダー (2)\GameFile\teamd_prototype\Debug\teamd_prototype.pdb (Full PDB)
