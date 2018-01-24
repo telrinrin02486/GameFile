@@ -4,7 +4,7 @@
 //					   シーン管理クラス
 //===================================================================
 
-//列挙tutorial
+//列挙
 enum SCENE_TYPE
 {
 	SType_TITLE,
@@ -19,8 +19,9 @@ class BaseScene;
 class SceneManager
 {
 private:
-	BaseScene *_scene;		//現在のシーン
-	SCENE_TYPE _st;			//現在のシーンタイプ
+	BaseScene *_scene;			//現在のシーン
+	SCENE_TYPE _st;				//現在のシーンタイプ
+	SCENE_TYPE nextSceneType;	//遷移予定のシーンタイプ
 
 	//　シングルトン（１つしか作らないもの）------------------------------
 	//①新規作成禁止
@@ -54,8 +55,8 @@ public:
 
 	void ChangeScene( SCENE_TYPE st );	//シーン切り替え
 
-	void setSceneType(SCENE_TYPE st);		//シーンのセット
-	SCENE_TYPE getSceneType();
+	void setNextSceneType(SCENE_TYPE st);		//遷移予定のシーンタイプのセット
+	SCENE_TYPE getNextSceneType();
 
 	//撃破した数をセット
 	void SetScore(unsigned int score_);

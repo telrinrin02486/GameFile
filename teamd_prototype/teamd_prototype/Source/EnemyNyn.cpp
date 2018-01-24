@@ -51,7 +51,8 @@ private:
 
 constexpr float NYN_HEIGHT = 60;
 EnemyNyn::EnemyNyn(const Vector2& pos_, const Player& player_)
-	:_param(__isGround, __onHouse, __state), _player(player_) {
+	:_param(__isGround, __onHouse, __state), _player(player_) 
+{
 	_param.nowState = new Idle(_param);
 	_param.handle = LoadGraph("../image/ketudakkeNyan.png");
 	_param.pos = pos_;

@@ -108,14 +108,14 @@ void SceneManager::ChangeScene( SCENE_TYPE st )
 	}
 }
 
-void SceneManager::setSceneType(SCENE_TYPE st)
+void SceneManager::setNextSceneType(SCENE_TYPE st)
 {
-	_st = st;
+	nextSceneType = st;
 }
 
-SCENE_TYPE SceneManager::getSceneType()
+SCENE_TYPE SceneManager::getNextSceneType()
 {
-	return _st;
+	return nextSceneType;
 }
 
 //Œ‚”j‚µ‚½”‚ğƒZƒbƒg

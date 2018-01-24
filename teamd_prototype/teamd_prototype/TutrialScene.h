@@ -20,17 +20,16 @@ class TutrialScene : public BaseScene
 {
 private:
 
-	Player		*_player;
-	std::list<CB_1*> _cb1List;
-	std::list<EnemyNyn*> _nyns;
-	std::list<House*> _houses;
+	Player	*_player;
+	EnemyNyn *enemy;
+	//std::list<EnemyNyn*> _nyns;
+	
 
 	Vector2 _playerStartPos;
 	Rect2	_playerInFrame;//プレイヤーを追いかける枠（カメラ用
 
 	float _groundPosY;
 	bool _prevPlayerGroundFlg;
-	int	_crusheCount;
 
 	int _minLimit, _maxLimit;
 
