@@ -59,9 +59,6 @@ void TitleScene::Update()
 {
 	
 	KeyInput& key = KeyInput::GetInstance();
-	//‚Ü‚¾‘¶İ‚µ‚È‚¢‚Ì‚Å
-	//isScene == SType_TUTORIAL‚Ìó‘Ô‚Å
-	//ENTER‰Ÿ‚³‚È‚¢‚Å‚Ë
 	//game
 	if (key.GetKeyUp(KEY_INPUT_UP))
 	{
