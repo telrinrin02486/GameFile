@@ -1,5 +1,4 @@
-﻿  TitleScene.cpp
-  ResultScene.cpp
-  コードを生成中...
-  teamd_prototype.vcxproj -> C:\Users\1501321\Desktop\新しいフォルダー (2)\GameFile\teamd_prototype\Debug\teamd_prototype.exe
-  teamd_prototype.vcxproj -> C:\Users\1501321\Desktop\新しいフォルダー (2)\GameFile\teamd_prototype\Debug\teamd_prototype.pdb (Full PDB)
+﻿  TutrialScene.cpp
+c:\users\teruaki　sato\desktop\gamefile\teamd_prototype\teamd_prototype\house.h(113): warning C4800: 'int': ブール値を 'true' または 'false' に強制的に設定します (警告の処理)
+  teamd_prototype.vcxproj -> C:\Users\TERUAKI　SATO\Desktop\GameFile\teamd_prototype\Debug\teamd_prototype.exe
+  teamd_prototype.vcxproj -> C:\Users\TERUAKI　SATO\Desktop\GameFile\teamd_prototype\Debug\teamd_prototype.pdb (Full PDB)

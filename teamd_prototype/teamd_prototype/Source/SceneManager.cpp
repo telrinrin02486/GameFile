@@ -10,6 +10,7 @@ using namespace std;
 #include "Effect.h"				// Vector2
 #include "EffectManager.h"		// EffectAVector2Astd
 #include "TitleScene.h"	
+#include "../TutrialScene.h"	
 #include "GameScene.h"			// BaseSceneAEffectManager
 #include "ResultScene.h"	
 #include "SceneManager.h"		// BaseScene
@@ -85,6 +86,11 @@ void SceneManager::ChangeScene( SCENE_TYPE st )
 	case SType_TITLE:
 		_scene = new TitleScene();
 		_st = SType_TITLE;
+		_scene->Initialize();
+		break;
+	case SType_TUTRIAL:
+		_scene = new TutrialScene();
+		_st = SType_TUTRIAL;
 		_scene->Initialize();
 		break;
 	case SType_GAME:

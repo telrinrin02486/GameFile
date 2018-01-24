@@ -54,6 +54,7 @@
     <ClInclude Include="Source\TitleScene.h" />
     <ClInclude Include="Source\Var2.h" />
     <ClInclude Include="Source\Vector2.h" />
+    <ClInclude Include="TutrialScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Blood.cpp" />
@@ -89,6 +90,7 @@
     <ClCompile Include="Source\SoundManager.cpp" />
     <ClCompile Include="Source\TitleScene.cpp" />
     <ClCompile Include="Source\Vector2.cpp" />
+    <ClCompile Include="TutrialScene.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6B937437-733D-4D4A-B490-2855185F5383}</ProjectGuid>

@@ -159,6 +159,9 @@
     <ClInclude Include="BloodManager.h">
       <Filter>Source\Blood</Filter>
     </ClInclude>
+    <ClInclude Include="TutrialScene.h">
+      <Filter>Source\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\CB_1.cpp">
@@ -257,6 +260,9 @@
     <ClCompile Include="CharaCollider.cpp" />
     <ClCompile Include="BloodManager.cpp">
       <Filter>Source\Blood</Filter>
+    </ClCompile>
+    <ClCompile Include="TutrialScene.cpp">
+      <Filter>Source\Scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
