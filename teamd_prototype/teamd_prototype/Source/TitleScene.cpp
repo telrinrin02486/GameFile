@@ -43,7 +43,7 @@ void TitleScene::Initialize()
 	_isChange = false;
 	maskCnt = 0;
 	SceneManager::GetInstance().setSceneType(SType_GAME);
-	SoundManager::GetInstance().Play(BGM_TITLE);
+	SoundManager::GetInstance().PlayLoop(BGM_TITLE);
 }
 
 //---------------------------------------------------------------------
@@ -91,7 +91,7 @@ void TitleScene::Update()
 		SoundManager::GetInstance().Stop(BGM_TITLE);
 	}
 	maskCnt++;
-	//SoundManager::GetInstance().Play(BGM_TITLE);
+	
 }
 
 //---------------------------------------------------------------------
@@ -101,8 +101,6 @@ void TitleScene::Draw()
 {
 	//”wŒi‚ð•`‰æ‚·‚é‚º
 	ImageMng::GetInstance()->UiDraw(ID_titleBack, ID_tutorialButtom, maskCnt);
-
-
 }
 
 

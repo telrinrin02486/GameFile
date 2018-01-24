@@ -12,6 +12,7 @@ using namespace std;
 // ResultScene.cpp
 #include "KeyInput.h"		
 #include "DxLib.h"
+#include "SoundManager.h"
 #include "SceneManager.h"
 
 
@@ -41,6 +42,7 @@ void ResultScene::Initialize()
 	_isChange = false;
 	maskCnt = 0;
 	SceneManager::GetInstance().setSceneType(SType_GAME);
+	SoundManager::GetInstance().PlayLoop(BGM_RESULT);
 }
 
 //---------------------------------------------------------------------
@@ -76,6 +78,7 @@ void ResultScene::Update()
 	{
 		SceneManager::GetInstance().ChangeScene(SceneManager::GetInstance().getSceneType());
 		ImageMng::GetInstance()->setUIID("../image/UI/mask/mask.png", ID_mask, { buttomPos1.x, buttomPos1.y }, { buttomPos1.x + 150,buttomPos1.y + 50 });
+		SoundManager::GetInstance().Stop(BGM_RESULT);
 	}
 
 	maskCnt++;

@@ -42,7 +42,7 @@ GameScene::GameScene()
 	_minLimit = -2000;
 	_maxLimit = static_cast<float>(w) + 2000;
 
-	SoundManager::GetInstance().Play(BGM_GAME);
+	SoundManager::GetInstance().PlayLoop(BGM_GAME);
 }
 
 //---------------------------------------------------------------------
@@ -142,6 +142,7 @@ void GameScene::Update()
 	if (key.GetKeyUp(KEY_INPUT_2))
 	{
 		SceneManager::GetInstance().ChangeScene(SType_RESULT);
+		SoundManager::GetInstance().Stop(BGM_GAME);
 	}
 	else 
 	{
