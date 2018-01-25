@@ -88,17 +88,11 @@ void Player::Draw(const Vector2& offset_) {
 void Player::setState(KeyInput& key)
 {
 	//jump、tample、damage中に移動アニメーションに入ること防止
-	if (state != ANI_TAMPLE && state != ANI_JUMP && state != ANI_DAMAGE)
+	if (state != ANI_WEIGH && _isGround && state != ANI_DAMAGE)
 	{
 		if (key.GetKeyDown(KEY_INPUT_UP))
 		{
 			state = ANI_JUMP;
-			aniFram = 1;
-			aniCnt = 0;
-		}
-		else if (key.GetKeyDown(KEY_INPUT_DOWN))
-		{
-			state = ANI_TAMPLE;
 			aniFram = 1;
 			aniCnt = 0;
 		}
@@ -124,7 +118,17 @@ void Player::setState(KeyInput& key)
 	}
 	else
 	{
-		//現在stateがjump、tmple、damage
+		//のしかかりアニメーションをしない時がある
+		//見た感じisGround自体が地面と判定を取っているのではなく
+		//jumpアニメーションが終わればisGroundをtrueにしていると思われる
+		//なお自分の実装ではないため質問しなければわからない
+		//現在stateがjump、weigh、damage 、か!_isGround
+		 if (key.GetKeyDown(KEY_INPUT_DOWN) && state == ANI_JUMP)
+		{
+			state = ANI_WEIGH;
+			aniFram = 1;
+			aniCnt = 0;
+		}
 	}
 	
 }
@@ -140,23 +144,11 @@ void Player::setMove()
 	case ANI_WALK:
 		(aniFram / ANIM_SPEED) % 2 == 1 ? aniCnt = 0: aniCnt = 1;
 		break;
-	case ANI_TAMPLE:
-		if (aniFram % ANIM_SPEED == 0)
+	case ANI_WEIGH:
+		if (aniFram % ANIM_SPEED*2 == 0)
 		{
-			aniCnt++;
-			//笛田　変更
-			if (aniCnt == 3) {
-				_weight = 400;
-			}
-			else {
-				_weight = 10;
-			}
-			//------
-			if (aniCnt > (IMG_DIV_CNT_X -1))
-			{
-				state = ANI_DEF;
-				aniCnt = 0;//この代入を入れないと1フレ消える(冬休みぼけの頭では現在原因不明）
-			}
+			_weight = 400;
+			state = ANI_DEF;
 		}
 		break;
 	case ANI_JUMP:
