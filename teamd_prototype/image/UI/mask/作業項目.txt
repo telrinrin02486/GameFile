@@ -1,0 +1,6 @@
+
+title/game/resultなどに使うフォント(0~9,破壊数,Start,finish)
+
+
+
+
