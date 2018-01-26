@@ -5,8 +5,6 @@
 
 #include "Const.h"
 
-
-
 Player::Player()
 	:_startPos(PLAYER_RECT.LT()),
 	_rect(PLAYER_RECT), _vec(Vector2())
@@ -82,6 +80,13 @@ void Player::Draw(const Vector2& offset_) {
 					_handle[state][aniCnt], true, isDirRight);
 	//DrawBox(s.x, s.y, n.x, n.y, 0xffffffff, false);
 	aniFram++;
+
+	if (_isGround) {
+		DrawString(s.x, s.y - 15, "true", 0xffff00ff);
+	}
+	else {
+		DrawString(s.x, s.y - 15, "false", 0xffff00ff);
+	}
 }
 
 
@@ -123,7 +128,7 @@ void Player::setState(KeyInput& key)
 		//jumpアニメーションが終わればisGroundをtrueにしていると思われる
 		//なお自分の実装ではないため質問しなければわからない
 		//現在stateがjump、weigh、damage 、か!_isGround
-		 if (key.GetKeyDown(KEY_INPUT_DOWN) && state == ANI_JUMP)
+		 if (key.GetKeyDown(KEY_INPUT_DOWN)/* && state == ANI_JUMP*/)
 		{
 			state = ANI_WEIGH;
 			aniFram = 1;
