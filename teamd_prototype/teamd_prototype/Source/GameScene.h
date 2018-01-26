@@ -10,7 +10,7 @@
 //=====================================================================
 
 //MAX 60•b
-#define TIME_MAX 60
+#define TIME_MAX 30
 
 class CB_1;
 class Player;
@@ -45,7 +45,17 @@ private:
 	int scoreImg;
 	int timeImg;
 	int numImg[10];
+	int countNumImg[3];
+	int startImg;
+	int endImg;
 	int coronImg;
+
+	void SceneCounter();
+
+	int sceneCun;
+	bool SceneStartFlg;
+	bool SceneEndFlg;
+
 	//----------
 
 public:

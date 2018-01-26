@@ -28,6 +28,8 @@ using namespace std;
 
 #include "SoundManager.h"
 
+
+
 //---------------------------------------------------------------------
 //　コンストラクタ
 //---------------------------------------------------------------------
@@ -100,6 +102,13 @@ void GameScene::Initialize()
 	timeImg = LoadGraph("../image/Time.png");
 	LoadDivGraph("../image/Num.png", 10, 10, 1, 22, 36, numImg);
 	coronImg = LoadGraph("../image/colon.png");
+	LoadDivGraph("../image/count/cuntNum.png", 3, 3, 1, 65, 100, countNumImg);
+	startImg = LoadGraph("../image/count/start.png");
+	endImg = LoadGraph("../image/count/finish.png");
+
+	sceneCun = 0;
+	SceneStartFlg = false;
+	SceneEndFlg = false;
 	//----------
 }
 
@@ -130,6 +139,12 @@ void GameScene::Finalize()
 //---------------------------------------------------------------------
 void GameScene::Update()
 {
+	if (!SceneStartFlg)
+	{
+		SceneCounter();
+	}
+	
+
 	EffectManager& efcMng = EffectManager::Instance();
 	BloodManager& bloodMng = BloodManager::Instance();
 	bool deadFlg = false;
@@ -364,7 +379,19 @@ void GameScene::Update()
 void GameScene::TimeCunter()
 {
 	//経過時間
-	timeCun = (GetNowCount() - timeStart) * 0.001;
+
+	if (timeCun < TIME_MAX)
+	{
+		timeCun = (GetNowCount() - timeStart) * 0.001;
+
+
+	}
+
+	//終わる３秒前
+	if (timeCun >= (TIME_MAX - 3))
+	{
+		sceneCun = TIME_MAX - ((GetNowCount() - timeStart) * 0.001);
+	}
 
 	//時間になったら
 	if (timeCun >= TIME_MAX)
@@ -372,6 +399,26 @@ void GameScene::TimeCunter()
 
 	}
 
+
+}
+//---------------------------------------------------------------------
+//　始まる前のカウントダウン
+//---------------------------------------------------------------------
+void GameScene::SceneCounter()
+{
+	//3秒までに
+	if (((GetNowCount() - timeStart) * 0.001) < 3)
+	{
+		sceneCun = 3 - ((GetNowCount() - timeStart) * 0.001);
+	}
+
+	if (((GetNowCount() - timeStart) * 0.001) >= 4)
+	{
+		SceneStartFlg = true;
+
+		//時間初期化
+		timeStart = GetNowCount();
+	}
 
 }
 //---------------------------------------------------------------------
@@ -426,26 +473,80 @@ void GameScene::Draw()
 
 	efcMng.Draw(offset);						//エフェクト
 
-												//変更●-----
-												//score画像
-	DrawGraph(10, 10, scoreImg, true);
+												
 
-	DrawGraph(120, 10, numImg[(_crusheCount / 100) % 10], true);
-	DrawGraph(156, 10, numImg[(_crusheCount / 10) % 10], true);
-	DrawGraph(192, 10, numImg[(_crusheCount / 1) % 10], true);
-	//time画像
-	DrawGraph(10, 70, timeImg, true);
 
-	int num1 = ((GetNowCount() - timeStart) % 100) / 10;
-	int num2 = ((GetNowCount() - timeStart) % 1000) / 100;
+	if (!SceneStartFlg)
+	{
+		if (((GetNowCount() - timeStart) * 0.001) < 3)
+		{
+			DrawGraph(500, 200, countNumImg[sceneCun], true);
+		}
+		
 
-	DrawGraph(120, 70, numImg[(timeCun / 10) % 10], true);
-	DrawGraph(156, 70, numImg[(timeCun / 1) % 10], true);
+		if (((GetNowCount() - timeStart) * 0.001) >= 3)
+		{
+			DrawGraph(400, 200, startImg, true);
+		}
+	}
+	else
+	{
+		//変更●-----
+		//score画像
+		DrawGraph(10, 10, scoreImg, true);
 
-	DrawGraph(192, 70, coronImg, true);
+		DrawGraph(120, 10, numImg[(_crusheCount / 100) % 10], true);
+		DrawGraph(156, 10, numImg[(_crusheCount / 10) % 10], true);
+		DrawGraph(192, 10, numImg[(_crusheCount / 1) % 10], true);
+		//time画像
+		DrawGraph(10, 70, timeImg, true);
 
-	DrawGraph(228, 70, numImg[(num2 / 1) % 10], true);
-	DrawGraph(264, 70, numImg[(num1 / 1) % 10], true);
+
+		int num1;
+		int num2;
+
+		if (timeCun < TIME_MAX)
+		{
+			num1 = ((GetNowCount() - timeStart) % 100) / 10;
+			num2 = ((GetNowCount() - timeStart) % 1000) / 100;
+		}
+		else
+		{
+			num1 = 0;
+			num2 = 0;
+		}
+		
+
+		DrawGraph(120, 70, numImg[(timeCun / 10) % 10], true);
+		DrawGraph(156, 70, numImg[(timeCun / 1) % 10], true);
+
+		DrawGraph(192, 70, coronImg, true);
+
+		DrawGraph(228, 70, numImg[(num2 / 1) % 10], true);
+		DrawGraph(264, 70, numImg[(num1 / 1) % 10], true);
+	}
+
+	//終わる３秒前
+	//58
+	if (timeCun >= (TIME_MAX - 3))
+	{
+		//58
+		if (((GetNowCount() - timeStart) * 0.001) <= TIME_MAX)
+		{
+			DrawGraph(500, 200, countNumImg[sceneCun], true);
+		}
+
+		//61
+		if (((GetNowCount() - timeStart) * 0.001) >= TIME_MAX)
+		{
+			DrawGraph(400, 200, endImg, true);
+		}
+
+		if (((GetNowCount() - timeStart) * 0.001) >= (TIME_MAX + 1))
+		{
+			SceneEndFlg = true;
+		}
+	}
 
 	//----------
 										//時間描画
