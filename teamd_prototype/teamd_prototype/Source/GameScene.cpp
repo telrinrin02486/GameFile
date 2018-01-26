@@ -6,13 +6,13 @@ using namespace std;
 
 // GameScene.h
 #include "BaseScene.h"
-#include "Vector2.h"			// 使用なし
-#include "Effect.h"				// Vector2
-#include "EffectManager.h"		// Effect、Vector2、std
-#include "GameScene.h"			// BaseScene、EffectManager
+#include "Vector2.h"		
+#include "Effect.h"			
+#include "EffectManager.h"	
+#include "GameScene.h"		
 
 // GameScene.cpp
-#include "KeyInput.h"		// 使用なし
+#include "KeyInput.h"
 #include "DxLib.h"
 
 #include "Camera.h"
@@ -32,12 +32,12 @@ using namespace std;
 //　コンストラクタ
 //---------------------------------------------------------------------
 GameScene::GameScene()
-	:_playerInFrame(170,50,0,0)
+	:_playerInFrame(170,200,0,0)
 {
 	_groundPosY = 400.0f;
 	int w, h;
 	GetWindowSize(&w, &h);
-	_playerInFrame.ReSize(Vector2(w - 340, (h/3)*2));
+	_playerInFrame.ReSize(Vector2(w - 340, h - 300));
 
 	_minLimit = -2000;
 	_maxLimit = static_cast<float>(w) + 2000;
@@ -392,11 +392,10 @@ void GameScene::Draw()
 	//背景を描画するぜ
 	DrawExtendGraph(0, 0,windowW,windowH,backImg, false);
 	//ground描画
-
 	Rect2 ground = {0.0f,_groundPosY,static_cast<float>(windowW),static_cast<float>(windowH) };
 	Vector2 groundOffset = { 0.0f,offset.y };
 	ground.Move(-groundOffset);
-	DxLib::DrawBox(ground.Left(), ground.Top(), ground.Right(), ground.Bottom(), 0xff0fff0f, true);
+	DxLib::DrawBox(ground.Left(), ground.Top(), ground.Right(), ground.Bottom(), GetColor(18,198,88), true);
 	//スコア等描画
 	//DxLib::DrawString(10, 10, "GameScene", 0xffffffff);
 	//DxLib::DrawFormatString(10, 25, 0xffffffff, "破壊数：%d", _crusheCount);
@@ -422,8 +421,8 @@ void GameScene::Draw()
 
 
 	//カメラフレーム範囲
-	//DxLib::DrawBox(_playerInFrame.Left(), _playerInFrame.Top(), _playerInFrame.Right(), _playerInFrame.Bottom(),
-	//	0xffffffff, false);
+	DxLib::DrawBox(_playerInFrame.Left(), _playerInFrame.Top(), _playerInFrame.Right(), _playerInFrame.Bottom(),
+		0xffffffff, false);
 
 	efcMng.Draw(offset);						//エフェクト
 

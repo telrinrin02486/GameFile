@@ -34,7 +34,7 @@ void Player::Update() {
 
 	Vector2 dir = _vec;
 	constexpr float moveSpeed = 5.0f;
-	constexpr float jumpPower = 15.0f;
+	constexpr float jumpPower = 20.0f;
 	constexpr float stampPower = 15.0f;
 	constexpr float a = 9.8f*(1.0f / 10.0f);
 	//à⁄ìÆ
@@ -47,20 +47,21 @@ void Player::Update() {
 	if (key.GetKey(KEY_INPUT_D)) {
 		dir.x *= 3.0f;
 	}
-	if (key.GetKey(KEY_INPUT_UP)) {
-		dir.y = -jumpPower;
-	}
 	//çUåÇÅiì•Ç›Ç¬Ç‘Çµ
 	if (key.GetKey(KEY_INPUT_DOWN)) {
-		//if (_isGround) {
-		//	dir.y = -jumpPower*5;
-		//}
 		dir.y += stampPower;
 	}
+
 
 	_rect.Move(dir);
 	if (_isGround) {
 		dir.y = 0.0f;
+	}
+	//ÉWÉÉÉìÉv
+	if (_isGround) {
+		if (key.GetKey(KEY_INPUT_UP)) {
+			dir.y = -jumpPower;
+		}
 	}
 	dir.y += a;
 	_vec = dir;
@@ -81,12 +82,6 @@ void Player::Draw(const Vector2& offset_) {
 	//DrawBox(s.x, s.y, n.x, n.y, 0xffffffff, false);
 	aniFram++;
 
-	if (_isGround) {
-		DrawString(s.x, s.y - 15, "true", 0xffff00ff);
-	}
-	else {
-		DrawString(s.x, s.y - 15, "false", 0xffff00ff);
-	}
 }
 
 
