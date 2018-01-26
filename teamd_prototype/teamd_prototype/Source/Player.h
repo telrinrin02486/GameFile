@@ -23,6 +23,8 @@ enum ANIM
 };
 
 class KeyInput;
+class Enemy;
+class House;
 class Player
 {
 public:
@@ -60,6 +62,10 @@ public:
 	inline void SetGroundFlg(bool flg_) {
 		_isGround = flg_;
 	}
+
+	//collided
+	void OnCollided(const Enemy& enemy_);
+	void OnCollided(const House& house_);
 
 private:
 	Vector2		_startPos;

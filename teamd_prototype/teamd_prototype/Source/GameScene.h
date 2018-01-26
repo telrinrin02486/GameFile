@@ -15,6 +15,7 @@
 class CB_1;
 class Player;
 class House;
+class Enemy;
 class EnemyNyn;
 class GameScene : public BaseScene
 {
@@ -22,7 +23,7 @@ private:
 
 	Player		*_player;
 	std::list<CB_1*> _cb1List;
-	std::list<EnemyNyn*> _nyns;
+	std::list<Enemy*> _enemis;
 	std::list<House*> _houses;
 
 	Vector2 _playerStartPos;

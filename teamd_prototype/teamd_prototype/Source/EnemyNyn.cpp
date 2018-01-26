@@ -8,7 +8,7 @@
 #include <cmath>
 
 //うろうろ
-class Idle :
+class EnemyNyn::Idle :
 	public EnemyNyn::State
 {
 public:
@@ -25,7 +25,7 @@ private:
 
 };
 //逃げる
-class Escaping :
+class EnemyNyn::Escaping :
 	public EnemyNyn::State {
 public:
 	Escaping(EnemyNyn::Parameter& param_);
@@ -37,7 +37,7 @@ private:
 
 };
 //瀕死
-class Dying :
+class EnemyNyn::Dying :
 	public EnemyNyn::State {
 public:
 	Dying(EnemyNyn::Parameter& param_);
@@ -51,7 +51,7 @@ private:
 
 constexpr float NYN_HEIGHT = 60;
 EnemyNyn::EnemyNyn(const Vector2& pos_, const Player& player_)
-	:_param(__isGround, __onHouse, __state), _player(player_) 
+	:_param(__isGround, __onHouse, __state,__name), _player(player_) 
 {
 	_param.nowState = new Idle(_param);
 	_param.handle = LoadGraph("../image/ketudakkeNyan.png");
@@ -59,7 +59,7 @@ EnemyNyn::EnemyNyn(const Vector2& pos_, const Player& player_)
 	_param.size = Vector2(50, NYN_HEIGHT);
 	_param.life = 30;
 	_param.ghostTime = 0;
-
+	_param.enemyName = EnemyName::NYN;
 }
 
 
@@ -177,7 +177,7 @@ EnemyNyn::State::~State() {
 }
 
 //Idle
-Idle::Idle(EnemyNyn::Parameter& param_)
+EnemyNyn::Idle::Idle(EnemyNyn::Parameter& param_)
 		:_param(param_){
 		_count = 0;
 		_dir = -1.0f;//初期値は左
@@ -185,7 +185,7 @@ Idle::Idle(EnemyNyn::Parameter& param_)
 		_xMoveValue = 0.0f;
 }
 
-int Idle::Update() {
+int EnemyNyn::Idle::Update() {
 	int err = 0;
 	//前のベクトルの影響をもっておこ
 	float prevXVec = _param.vec.x;
@@ -227,15 +227,15 @@ int Idle::Update() {
 }
 
 //Escape
-Escaping::Escaping(EnemyNyn::Parameter& param_)
+EnemyNyn::Escaping::Escaping(EnemyNyn::Parameter& param_)
 	:_param(param_) {
 
 }
-Escaping::~Escaping() {
+EnemyNyn::Escaping::~Escaping() {
 
 }
 
-int Escaping::Update() {
+int EnemyNyn::Escaping::Update() {
 	int err = 0;
 	constexpr float escapeSpeed = 7.0f;
 	constexpr float gravity = 9.8f*(1.0f / 30.0f);
@@ -252,14 +252,14 @@ int Escaping::Update() {
 }
 
 //Ded
-Dying::Dying(EnemyNyn::Parameter& param_)
+EnemyNyn::Dying::Dying(EnemyNyn::Parameter& param_)
 	:_param(param_) {
 
 }
-Dying::~Dying() {
+EnemyNyn::Dying::~Dying() {
 
 }
-int Dying::Update() {
+int EnemyNyn::Dying::Update() {
 	int err = 0;
 	constexpr float gravity = 9.8f*(1.0f / 30.0f);
 	if (_param.isGround) {

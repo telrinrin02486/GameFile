@@ -4,8 +4,8 @@
 #include "Vector2.h"
 
 #include "Const.h"
-
-
+#include "Enemy.h"
+#include "../House.h"
 
 Player::Player()
 	:_startPos(PLAYER_RECT.LT()),
@@ -36,33 +36,37 @@ void Player::Update() {
 
 	Vector2 dir = _vec;
 	constexpr float moveSpeed = 5.0f;
-	constexpr float jumpPower = 15.0f;
+	constexpr float jumpPower = 20.0f;
 	constexpr float stampPower = 15.0f;
 	constexpr float a = 9.8f*(1.0f / 10.0f);
-	//移動
-	if (key.GetKey(KEY_INPUT_LEFT)) {
-		dir.x = -moveSpeed;
-	}
-	if (key.GetKey(KEY_INPUT_RIGHT)) {
-		dir.x = moveSpeed;
-	}
-	if (key.GetKey(KEY_INPUT_D)) {
-		dir.x *= 3.0f;
-	}
-	if (key.GetKey(KEY_INPUT_UP)) {
-		dir.y = -jumpPower;
-	}
-	//攻撃（踏みつぶし
-	if (key.GetKey(KEY_INPUT_DOWN)) {
-		//if (_isGround) {
-		//	dir.y = -jumpPower*5;
-		//}
-		dir.y += stampPower;
+	if (state != ANI_DAMAGE) {
+		//移動
+		if (key.GetKey(KEY_INPUT_LEFT)) {
+			dir.x = -moveSpeed;
+		}
+		if (key.GetKey(KEY_INPUT_RIGHT)) {
+			dir.x = moveSpeed;
+		}
+		if (key.GetKey(KEY_INPUT_D)) {
+			dir.x *= 3.0f;
+		}
+		//攻撃（踏みつぶし
+		if (key.GetKey(KEY_INPUT_DOWN)) {
+			dir.y += stampPower;
+		}
 	}
 
 	_rect.Move(dir);
 	if (_isGround) {
 		dir.y = 0.0f;
+	}
+	//ジャンプ
+	if (state != ANI_DAMAGE) {
+		if (_isGround) {
+			if (key.GetKey(KEY_INPUT_UP)) {
+				dir.y = -jumpPower;
+			}
+		}
 	}
 	dir.y += a;
 	_vec = dir;
@@ -82,6 +86,8 @@ void Player::Draw(const Vector2& offset_) {
 					_handle[state][aniCnt], true, isDirRight);
 	//DrawBox(s.x, s.y, n.x, n.y, 0xffffffff, false);
 	aniFram++;
+	DrawFormatString(s.x, s.y - 15, 0xffffffff, "weight:%d", _weight);
+
 }
 
 
@@ -123,7 +129,7 @@ void Player::setState(KeyInput& key)
 		//jumpアニメーションが終わればisGroundをtrueにしていると思われる
 		//なお自分の実装ではないため質問しなければわからない
 		//現在stateがjump、weigh、damage 、か!_isGround
-		 if (key.GetKeyDown(KEY_INPUT_DOWN) && state == ANI_JUMP)
+		 if (key.GetKeyDown(KEY_INPUT_DOWN)/* && state == ANI_JUMP*/)
 		{
 			state = ANI_WEIGH;
 			aniFram = 1;
@@ -147,7 +153,6 @@ void Player::setMove()
 	case ANI_WEIGH:
 		if (aniFram % ANIM_SPEED*2 == 0)
 		{
-			_weight = 400;
 			state = ANI_DEF;
 		}
 		break;
@@ -178,4 +183,37 @@ void Player::setMove()
 	default:
 		break;
 	}
+}
+
+void Player::OnCollided(const Enemy& enemy_) {
+
+	switch (enemy_.Name()) {
+	case EnemyName::NOT_NAME:
+		//識別できない方ですね
+		break;
+	case EnemyName::NYN:
+		
+		break;
+	case EnemyName::GABYO:
+	{
+		if (state != ANI_DAMAGE) {
+			state = ANI_DAMAGE;
+			aniFram = 0;
+		}
+		//吹き飛び
+		Vector2 n = _rect.Center();
+		Vector2 s = enemy_.Pos();
+		Vector2 flyVec = (n - s).Normalize() * 10.0f;
+		_vec = flyVec;
+		break;
+	}
+	default:
+		//識別できない方です。
+		break;
+	}
+
+}
+
+void Player::OnCollided(const House& house_) {
+
 }

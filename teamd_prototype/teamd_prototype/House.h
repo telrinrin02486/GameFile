@@ -49,7 +49,6 @@ public:
 	inline bool SideHitFlag() const {
 		return _collFlag.SideHit();
 	}
-
 private:
 	class CollFlag {
 	public:

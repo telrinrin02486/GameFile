@@ -6,7 +6,7 @@
 #include "Vector2.h"
 
 class Camera;
-struct Blood;
+class Blood;
 class BloodManager:
 	public Singleton<BloodManager>
 {

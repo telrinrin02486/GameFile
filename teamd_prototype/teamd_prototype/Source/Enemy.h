@@ -5,6 +5,13 @@
 //Enemy‚Í‚Â‚Ô‚ê‚È‚­‚Ä‚à‚¢‚¢‚ñ‚¶‚á‚È‚©‚ë‚¤‚©
 //ˆêu‚ÅÁ–Å‚µ‚Ü‚¹‚¢I
 
+enum EnemyName {
+	NOT_NAME,
+
+	NYN,
+	GABYO,
+
+};
 
 //“GŠî‘b
 class Camera;
@@ -31,6 +38,9 @@ public:
 	Enemy::State GetState() const {
 		return __state;
 	}
+	unsigned char Name() const {
+		return __name;
+	}
 	virtual Vector2 Pos() const = 0;
 
 	inline void SetGroundFlag(bool groundFlag_) {
@@ -43,6 +53,9 @@ public:
 
 	//“–‚½‚è”»’è‚Ég‚¤
 	virtual Rect2 Rect() const = 0;
+
+
+
 	//“–‚½‚Á‚½‚Ìˆ—
 	virtual void OnCollided(const Player& player_) {};
 	virtual void OnCollided(const House& house_) {};
@@ -51,6 +64,6 @@ protected:
 	Enemy::State __state = State::unknown;
 	bool __isGround = false;
 	const House *__onHouse = nullptr;
-
+	unsigned char __name = 0;
 };
 

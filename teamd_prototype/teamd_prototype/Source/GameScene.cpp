@@ -6,13 +6,13 @@ using namespace std;
 
 // GameScene.h
 #include "BaseScene.h"
-#include "Vector2.h"			// 使用なし
-#include "Effect.h"				// Vector2
-#include "EffectManager.h"		// Effect、Vector2、std
-#include "GameScene.h"			// BaseScene、EffectManager
+#include "Vector2.h"		
+#include "Effect.h"			
+#include "EffectManager.h"	
+#include "GameScene.h"		
 
 // GameScene.cpp
-#include "KeyInput.h"		// 使用なし
+#include "KeyInput.h"
 #include "DxLib.h"
 
 #include "Camera.h"
@@ -21,6 +21,7 @@ using namespace std;
 #include "CB_1.h"
 #include "../House.h"//なぜかこいつだけこうしないと反応しない。ん？
 #include "EnemyNyn.h"
+#include "../GabyoMan.h"
 
 #include "Collision.h"
 #include "SceneManager.h"
@@ -32,12 +33,12 @@ using namespace std;
 //　コンストラクタ
 //---------------------------------------------------------------------
 GameScene::GameScene()
-	:_playerInFrame(170,50,0,0)
+	:_playerInFrame(170,200,0,0)
 {
 	_groundPosY = 400.0f;
 	int w, h;
 	GetWindowSize(&w, &h);
-	_playerInFrame.ReSize(Vector2(w - 340, (h/3)*2));
+	_playerInFrame.ReSize(Vector2(w - 340, h - 300));
 
 	_minLimit = -2000;
 	_maxLimit = static_cast<float>(w) + 2000;
@@ -68,11 +69,21 @@ void GameScene::Initialize()
 
 	_player = new Player();
 	_prevPlayerGroundFlg = _player->IsGround();
-	for (int i = 0; i < 50; ++i) {
+	//e
+	for (int i = 0; i < 30; ++i) {
 		int w, h;
 		GetWindowSize(&w, &h);
-		Vector2 pos = { static_cast<float>(rand() % ((_maxLimit-w)*2) + _minLimit),static_cast<float>(rand() % h) };
-		_nyns.push_back(new EnemyNyn(pos, *_player));
+		Vector2 pos = { static_cast<float>(rand() % ((_maxLimit-w)*2) + _minLimit),_groundPosY };
+		_enemis.push_back(new EnemyNyn(pos, *_player));
+
+	}
+	//gabyo
+	for (int i = 0; i < 30; ++i) {
+		int w, h;
+		GetWindowSize(&w, &h);
+		Vector2 pos = { static_cast<float>(rand() % ((_maxLimit - w) * 2) + _minLimit),_groundPosY };
+		_enemis.push_back(new GabyoMan(pos, *_player));
+
 	}
 	//for (int i = 0; i < 3; ++i) {
 	//	float rSize = static_cast<float>((rand() % 150) + 15);
@@ -86,7 +97,7 @@ void GameScene::Initialize()
 	for (int i = 0; i < 10; ++i) {
 		int w, h;
 		GetWindowSize(&w, &h);
-		Vector2 pos = { static_cast<float>(rand() % ((_maxLimit - w) * 2) + _minLimit),static_cast<float>(rand() % h) };
+		Vector2 pos = { static_cast<float>(rand() % ((_maxLimit - w) * 2) + _minLimit),_groundPosY };
 		_houses.push_back(new House(pos));
 	}
 
@@ -119,10 +130,10 @@ void GameScene::Finalize()
 		delete house;
 	}
 	_houses.clear();
-	for (auto e : _nyns) {
+	for (auto e : _enemis) {
 		delete e;
 	}
-	_nyns.clear();
+	_enemis.clear();
 }
 
 //---------------------------------------------------------------------
@@ -154,8 +165,8 @@ void GameScene::Update()
 		}
 		//　更新---------------------------------------------------------------
 		_player->Update();
-		for (auto nyn : _nyns) {
-			nyn->Update();
+		for (auto e : _enemis) {
+			e->Update();
 		}
 		for (auto house : _houses) {
 			house->Update();
@@ -164,14 +175,14 @@ void GameScene::Update()
 		//for (auto cb : _cb1List) {
 		//	cb->Update();
 		//}
-		//nynの死亡確認
-		for (auto it = _nyns.begin(); it != _nyns.end();) {
+		//eの死亡確認
+		for (auto it = _enemis.begin(); it != _enemis.end();) {
 			if ((*it)->GetState() == Enemy::State::isDed) {
 				//SE呼び出し
 				//キャラクタが持ってた方が可用性は高い、が知らん
 				SoundManager::GetInstance().Play(TENKA);
 				delete *it;
-				it = _nyns.erase(it);
+				it = _enemis.erase(it);
 				++_crusheCount;
 				SceneManager::GetInstance().SetScore(_crusheCount);//scoreのセット
 				continue;
@@ -325,21 +336,22 @@ void GameScene::Update()
 			}
 			house->SetGroundFlag(houseGroundFlg);
 		}
-		//nyn
-		for (auto nyn : _nyns) {
-			bool nynGroundFlg = false;
-			Rect2 nynRect = nyn->Rect();
+		//敵
+		for (auto e : _enemis) {
+			bool eGroundFlg = false;
+			Rect2 eRect = e->Rect();
 			//飛びすぎちゃうなぁ。
-			if (IsHit(_player->Rect(), nyn->Rect())) {
-				nyn->OnCollided(*_player);
+			if (IsHit(_player->Rect(), e->Rect())) {
+				e->OnCollided(*_player);
+				_player->OnCollided(*e);
 			}
 			//ground
-			if (nyn->Rect().Bottom() > _groundPosY) {
-				nynRect.Move(Vector2(0.0f, _groundPosY - nyn->Rect().Bottom()));
-				nyn->SetRect(nynRect);
-				nynGroundFlg = true;
+			if (e->Rect().Bottom() > _groundPosY) {
+				eRect.Move(Vector2(0.0f, _groundPosY - e->Rect().Bottom()));
+				e->SetRect(eRect);
+				eGroundFlg = true;
 			}
-			nyn->SetGroundFlag(nynGroundFlg);
+			e->SetGroundFlag(eGroundFlg);
 		}
 		
 		_player->SetGroundFlg(pgflg);
@@ -390,13 +402,27 @@ void GameScene::Draw()
 
 	DxLib::DrawGraph( 0, 0, _texID, false );	//背景
 	//背景を描画するぜ
-	DrawExtendGraph(0, 0,windowW,windowH,backImg, false);
-	//ground描画
+	//cameraの移動分/Nで動こうかな（縦はしらん
+	//注意点は、画像のサイズは同じにしなきゃってことデス
+	//横のみスクロール追加
+	Point2 bgSize = { windowW,windowH };
+	Point2 bgOffset = -(offset / 4.0f).ToPoint2();
+	bgOffset.y = 0.0f;
+	Range2 bg = { bgOffset,bgSize };
+	DrawExtendGraph(bg.Left(), bg.Top(),bg.Right(),bg.Bottom(),backImg, false);
+	if (bg.Left() < 0) {
+		bg.Move(bgSize.x,0);
+	}
+	else {
+		bg.Move(-bgSize.x,0);
+	}
+	DrawExtendGraph(bg.Left(), bg.Top(), bg.Right(), bg.Bottom(), backImg, false);
 
+	//ground描画
 	Rect2 ground = {0.0f,_groundPosY,static_cast<float>(windowW),static_cast<float>(windowH) };
 	Vector2 groundOffset = { 0.0f,offset.y };
 	ground.Move(-groundOffset);
-	DxLib::DrawBox(ground.Left(), ground.Top(), ground.Right(), ground.Bottom(), 0xff0fff0f, true);
+	DxLib::DrawBox(ground.Left(), ground.Top(), ground.Right(), ground.Bottom(), GetColor(18,198,88), true);
 	//スコア等描画
 	//DxLib::DrawString(10, 10, "GameScene", 0xffffffff);
 	//DxLib::DrawFormatString(10, 25, 0xffffffff, "破壊数：%d", _crusheCount);
@@ -407,9 +433,9 @@ void GameScene::Draw()
 	}
 	//player
 	_player->Draw(offset);
-	//nyn
-	for (auto nyn : _nyns) {
-		nyn->Draw(camera);
+	//e
+	for (auto e : _enemis) {
+		e->Draw(camera);
 	}
 	bloodMng.Draw(camera);
 	//cb
@@ -422,8 +448,8 @@ void GameScene::Draw()
 
 
 	//カメラフレーム範囲
-	//DxLib::DrawBox(_playerInFrame.Left(), _playerInFrame.Top(), _playerInFrame.Right(), _playerInFrame.Bottom(),
-	//	0xffffffff, false);
+	DxLib::DrawBox(_playerInFrame.Left(), _playerInFrame.Top(), _playerInFrame.Right(), _playerInFrame.Bottom(),
+		0xffffffff, false);
 
 	efcMng.Draw(offset);						//エフェクト
 

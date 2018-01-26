@@ -75,12 +75,13 @@ public:
 	};
 	//手持ちのパラメタ
 	struct Parameter {
-		Parameter(bool& groundFlag_,const House*& onHouse_,Enemy::State& enemyState_)
-			:isGround(groundFlag_),onHouse(onHouse_),enemyState(enemyState_),
-			handle(), pos(),size(), vec(), life(),
-			prevState(), nowState() {
-
-		}
+		Parameter(bool& groundFlag_, const House*& onHouse_, Enemy::State& enemyState_,
+			unsigned char& name_)
+			:isGround(groundFlag_), onHouse(onHouse_), enemyState(enemyState_),
+			enemyName(name_),
+			handle(), pos(), size(), vec(), life(),
+			prevState(), nowState()
+		{}
 		int		handle;//画像ハンドル
 		Vector2	pos;//座標
 		Vector2 size;//おおきさ
@@ -88,14 +89,15 @@ public:
 		int		life;//体力
 		int		ghostTime;//無敵タイム
 		CollFlag collFlag;//フラグ群
-		//判定用
+						  //判定用
 		std::vector<CharaCollider*> _collider;
 
 		//基礎クラスがもってるパラメタ
 		bool&	isGround;//接地フラグ
 		const House*& onHouse;//入ってる家
 		Enemy::State& enemyState;//状態
-		//state
+		unsigned char& enemyName;//お名前
+								 //state
 		EnemyNyn::State*	prevState;
 		EnemyNyn::State*	nowState;
 
@@ -105,6 +107,10 @@ public:
 			nowState = nextState_;
 		}
 	};
+private:
+	class Idle;
+	class Escaping;
+	class Dying;
 public:
 	EnemyNyn(const Vector2& pos_,const Player& player_);
 	~EnemyNyn();
@@ -124,7 +130,6 @@ public:
 
 	void OnCollided(const Player& player_) override;
 	void OnCollided(const House& house_) override;
-
 
 private:
 	Parameter _param;
