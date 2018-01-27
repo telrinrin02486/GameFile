@@ -118,16 +118,23 @@ void TutrialScene::Update()
 		}
 		//　更新---------------------------------------------------------------
 		_player->Update();
-		enemy->Update();
+		if (enemy != nullptr)
+		{
+			enemy->Update();
+		}
 		bloodMng.Update();
 		
 		
-		if (enemy->GetState() == Enemy::State::isDed) 
+		if (enemy != nullptr)
 		{
-			//SE呼び出し
-			//キャラクタが持ってた方が可用性は高い、が知らん
-			SoundManager::GetInstance().Play(TENKA);
-			delete enemy;
+			if (enemy->GetState() == Enemy::State::isDed)
+			{
+				//SE呼び出し
+				//キャラクタが持ってた方が可用性は高い、が知らん
+				SoundManager::GetInstance().Play(TENKA);
+				delete enemy;
+				enemy = nullptr;
+			}
 		}
 		
 		
@@ -146,38 +153,7 @@ void TutrialScene::Update()
 			camera.Move(moveValue);
 		}
 		
-		/*?*/
-		////押し出し関数
-		//auto extrusion = [](Rect2& r1_, Rect2& r2_) 
-		//{
-		//	//あれ？これ押し出すのどうしよう
-		//	//これじゃ相手から一方的に押されてるんだけど。
-		//	Rect2 ol = Overlap(r1_, r2_);
-		//	Vector2 cbCenter = r1_.Center();
-		//	Vector2 plCenter = r2_.Center();
-		//	Vector2 moveValue = Vector2::ZERO;
-		//	Vector2 vec = plCenter - cbCenter;
-		//	//どの方向に押し出すか決めるマン。
-		//	//結果としては外積使うのと大して変わらんのちゃう？
-		//	if (ol.Size().x < ol.Size().y) 
-		//	{
-		//		moveValue.x = ol.Size().x;
-		//		if (vec.x < 0.0f) 
-		//		{
-		//			moveValue.x *= -1.0f;
-		//		}
-		//	}
-		//	else 
-		//	{
-		//		moveValue.y = ol.Size().y;
-		//		if (vec.y < 0.0f) 
-		//		{
-		//			moveValue.y *= -1.0f;
-		//		}
-		//	}
-		//	//とりあえず1つ目を動かす形で。
-		//	r2_.Move(moveValue);
-		//};
+		
 
 		
 		//こっから↓は押し出しのみ！とかならわかりやすいかな
@@ -193,23 +169,26 @@ void TutrialScene::Update()
 		}
 		
 		//enemy
-		bool nynGroundFlg = false;
-		Rect2 nynRect = enemy->Rect();
-		//飛びすぎちゃうなぁ。
-		if (IsHit(_player->Rect(), enemy->Rect())) 
+		if (enemy != nullptr)
 		{
-			enemy->OnCollided(*_player);
+			bool nynGroundFlg = false;
+			Rect2 nynRect = enemy->Rect();
+			//飛びすぎちゃうなぁ。
+			if (IsHit(_player->Rect(), enemy->Rect()))
+			{
+				enemy->OnCollided(*_player);
+			}
+			//ground
+			if (enemy->Rect().Bottom() > _groundPosY)
+			{
+				nynRect.Move(Vector2(0.0f, _groundPosY - enemy->Rect().Bottom()));
+				enemy->SetRect(nynRect);
+				nynGroundFlg = true;
+			}
+			enemy->SetGroundFlag(nynGroundFlg);
 		}
-		//ground
-		if (enemy->Rect().Bottom() > _groundPosY) 
-		{
-			nynRect.Move(Vector2(0.0f, _groundPosY - enemy->Rect().Bottom()));
-			enemy->SetRect(nynRect);
-			nynGroundFlg = true;
-		}
-		enemy->SetGroundFlag(nynGroundFlg);
+		
 		_player->SetGroundFlg(pgflg);
-
 		//プレイヤーが地面に降り立った瞬間揺れを設定
 		if (!_prevPlayerGroundFlg && _player->IsGround()) 
 		{
@@ -253,8 +232,11 @@ void TutrialScene::Draw()
 	_player->Draw(offset);
 
 	//enemy
-	enemy->Draw(camera);
-	
+	//////////
+	if (enemy != nullptr)
+	{
+		enemy->Draw(camera);
+	}
 	//血
 	bloodMng.Draw(camera);
 	
