@@ -1,6 +1,6 @@
 //=====================================================================
 //							Smoke.cpp
-//						 塵エフェクトクラス
+//						 煙エフェクトクラス
 //=====================================================================
 
 // Smoke.h
@@ -61,9 +61,9 @@ void Smoke::Finalize()
 void Smoke::Update()
 {
 	//アニメーション
-	++_animIdx %= (int)(SMOKE_DIV_SIZE.x * SMOKE_DIV_SIZE.y) * _animDust;
+	++_animIdx %= (int)(SMOKE_DIV_CNT.x * SMOKE_DIV_CNT.y) * _animDust;
 
-	if ( _animIdx >=( SMOKE_DIV_SIZE.x * SMOKE_DIV_SIZE.y * _animDust ) -1 )
+	if ( _animIdx >=(SMOKE_DIV_CNT.x * SMOKE_DIV_CNT.y * _animDust ) -1 )
 	{
 		SetDelete( true );
 	}
