@@ -10,7 +10,7 @@
 //=====================================================================
 
 //MAX 60•b
-#define TIME_MAX 60
+#define TIME_MAX 30
 
 class CB_1;
 class Player;
