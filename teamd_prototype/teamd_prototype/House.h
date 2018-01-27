@@ -124,6 +124,9 @@ private:
 	float		_durability;//ŒÅ‚³
 	int		_hitPoint;
 	int		_maxHitPoint;
+	unsigned int _imageSuffix;
+	float _angle;
+	bool _isTurn;
 
 	CollFlag	_collFlag;
 };

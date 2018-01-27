@@ -6,6 +6,7 @@
 
 #include "EffectManager.h"
 
+#include "Range2.h"
 #include <iostream>
 #include <string>
 #include "Camera.h"
@@ -19,9 +20,15 @@
 //↓ポインタを固定したら怒られるンゴ
 const std::string ImagePaths[] = {
 	"../image/building2.png",
+
 };
 const Vector2 ImageSize[] = {
-	Vector2( 100,100 ),
+	Vector2( 130,160 ),
+};
+const Vector2 ImageDrawSize[] = {
+	Vector2(130,160),
+
+
 };
 //確かにRectはわかりづらいなぁ。
 //考えてみれば画像はサイズがわかればいいしなぁ。
@@ -32,13 +39,15 @@ House::House(const Vector2& pos_)
 	_maxHitPoint = static_cast<unsigned int>((MY_RANDOM % 300) + 100);
 	_hitPoint = HP_RESET(_maxHitPoint);
 	_durability = 0.5f;
-	int r = rand() % sizeof(ImagePaths) / sizeof(std::string);
-	_handle = LoadGraph(ImagePaths[r].c_str());//画像ハンドル取得
-	_rect.ReSize(ImageSize[r]);
+	_imageSuffix = rand() % sizeof(ImagePaths) / sizeof(std::string);
+	_handle = *imageMng->GetImgDivID(ImagePaths[_imageSuffix].c_str(),Vector2(1.0f,1.0f),ImageSize[_imageSuffix]);//画像ハンドル取得
+	_rect.ReSize(ImageSize[_imageSuffix]);
 	_alive = true;
 	_vec = Vector2();
 	_count = 0;
 	_isGround = false;
+	_isTurn = false;
+	_angle = 0.0f;
 }
 
 
@@ -84,11 +93,14 @@ int House::Update() {
 }
 void House::Draw(const Camera& camera_) {
 	Vector2 offset = camera_.Offset() + camera_.Pos();
-	Point2 s = (_rect.LT() - offset).ToPoint2();
-	Point2 n = (_rect.RB() - offset).ToPoint2();
+	Point2 drawPoint = (_rect.Center() - offset).ToPoint2(); ;//描画する位置（中点
+	Point2 imageCenter = (ImageDrawSize[_imageSuffix]*0.5f).ToPoint2();//画像自体の中点
+	Vector2 scalingRatio = _rect.Size() / ImageSize[_imageSuffix];
 
-	DrawExtendGraphF(s.x, s.y, n.x, n.y, _handle, true);
-
+	DrawRotaGraph3(drawPoint.x, drawPoint.y,
+		imageCenter.x, imageCenter.y,
+		scalingRatio.x, scalingRatio.y,
+		_angle, _handle, true, _isTurn);
 	//unsigned int color = 0x00000000;
 	//if (_collFlag.SideHit()) {
 	//	color |= 0x00ff00ff;
