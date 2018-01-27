@@ -25,6 +25,7 @@
     <ClInclude Include="GabyoMan.h" />
     <ClInclude Include="House.h" />
     <ClInclude Include="Source\BaseScene.h" />
+    <ClInclude Include="Source\BloodE.h" />
     <ClInclude Include="Source\Camera.h" />
     <ClInclude Include="Source\CB_1.h" />
     <ClInclude Include="Source\CB_2.h" />
@@ -64,6 +65,7 @@
     <ClCompile Include="GabyoMan.cpp" />
     <ClCompile Include="House.cpp" />
     <ClCompile Include="Source\BaseScene.cpp" />
+    <ClCompile Include="Source\BloodE.cpp" />
     <ClCompile Include="Source\Camera.cpp" />
     <ClCompile Include="Source\CB_1.cpp" />
     <ClCompile Include="Source\CB_2.cpp" />
@@ -181,6 +183,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>Source;../DxLib_VC;</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

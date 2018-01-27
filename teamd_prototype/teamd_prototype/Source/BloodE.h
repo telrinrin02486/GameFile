@@ -25,5 +25,5 @@ public:
 	void Initialize( Vector2 pos );	//‰Šú‰»
 	void Finalize();	//I—¹ˆ—
 	void Update();		//XV
-	void Draw();		//•`‰æ
+	void Draw(const Vector2& offset_);		//•`‰æ
 };

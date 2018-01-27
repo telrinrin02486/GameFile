@@ -163,6 +163,9 @@
       <Filter>Source\Scene</Filter>
     </ClInclude>
     <ClInclude Include="GabyoMan.h" />
+    <ClInclude Include="Source\BloodE.h">
+      <Filter>Source\Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\CB_1.cpp">
@@ -266,5 +269,8 @@
       <Filter>Source\Scene</Filter>
     </ClCompile>
     <ClCompile Include="GabyoMan.cpp" />
+    <ClCompile Include="Source\BloodE.cpp">
+      <Filter>Source\Effect</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

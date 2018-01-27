@@ -7,6 +7,7 @@ using namespace std;
 // EffectManager.h
 #include "Vector2.h"			// Žg—p‚È‚µ
 #include "Effect.h"				// Vector2
+#include "BloodE.h"				// Effect
 #include "Dust.h"				// Effect
 #include "Smoke.h"				// Effect
 #include "EffectManager.h"		// Effect, Dust, Vector2, std
@@ -20,8 +21,9 @@ using namespace std;
 //@’è”---------------------------------------------------------------
 const EffectData EffectImgData[ EFFECT_TYPE_MAX ] =
 {
-	{ "../image/dust.png" , DUST_DIV_CNT , DUST_DIV_SIZE  },
-	{ "../image/smoke.png", SMOKE_DIV_CNT, SMOKE_DIV_SIZE }
+	{ "../image/Edust.png" , DUST_DIV_CNT , DUST_DIV_SIZE  },
+	{ "../image/Esmoke.png", SMOKE_DIV_CNT, SMOKE_DIV_SIZE },
+	{ "../image/Eblood.png", BLOOD_DIV_CNT, BLOOD_DIV_SIZE }
 };
 
 //---------------------------------------------------------------------
@@ -150,6 +152,15 @@ void EffectManager::EffectCreate( Vector2 pos, EFFECT_TYPE effectType )
 		newSmoke->SetImg( _img[ EFFECT_TYPE_SMOKE ] );
 		_effects.push_back( newSmoke );
 		soundMng.Play(SOUND_TYPE::EXPLOSION);
+	}
+		break;
+
+	case EFFECT_TYPE_BLOOD:
+	{
+		BloodE *newBloodE = new BloodE();
+		newBloodE->Initialize( pos );
+		newBloodE->SetImg( _img[ EFFECT_TYPE_BLOOD ] );
+		_effects.push_back( newBloodE );
 	}
 		break;
 
