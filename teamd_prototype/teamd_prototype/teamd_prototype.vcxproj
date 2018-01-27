@@ -22,6 +22,7 @@
     <ClInclude Include="Blood.h" />
     <ClInclude Include="BloodManager.h" />
     <ClInclude Include="CharaCollider.h" />
+    <ClInclude Include="GabyoMan.h" />
     <ClInclude Include="House.h" />
     <ClInclude Include="Source\BaseScene.h" />
     <ClInclude Include="Source\Camera.h" />
@@ -60,6 +61,7 @@
     <ClCompile Include="Blood.cpp" />
     <ClCompile Include="BloodManager.cpp" />
     <ClCompile Include="CharaCollider.cpp" />
+    <ClCompile Include="GabyoMan.cpp" />
     <ClCompile Include="House.cpp" />
     <ClCompile Include="Source\BaseScene.cpp" />
     <ClCompile Include="Source\Camera.cpp" />
@@ -116,7 +118,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -178,10 +180,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>Source;../DxLib_VC;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>../DxLib_VC;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

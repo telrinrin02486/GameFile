@@ -68,7 +68,7 @@ int House::Update() {
 	//動きを対応させた後で重力付けとかないといけない？
 	_rect.Move(_vec);
 	_vec.y += gravity;
-	//前フレームで当たり判定処理を行った。
+	//前フレームで当たり判定処理を行ってない
 	if (!_collFlag.CalledConf()) {
 		//横から当たってる？
 		if (_collFlag.SideHit()) {
@@ -95,7 +95,7 @@ void House::Draw(const Camera& camera_) {
 	Vector2 offset = camera_.Offset() + camera_.Pos();
 	Point2 drawPoint = (_rect.Center() - offset).ToPoint2(); ;//描画する位置（中点
 	Point2 imageCenter = (ImageDrawSize[_imageSuffix]*0.5f).ToPoint2();//画像自体の中点
-	Vector2 scalingRatio = _rect.Size() / ImageSize[_imageSuffix];
+	Vector2 scalingRatio = _rect.Size() / ImageSize[_imageSuffix];//描画比率（つぶれ適応
 
 	DrawRotaGraph3(drawPoint.x, drawPoint.y,
 		imageCenter.x, imageCenter.y,
