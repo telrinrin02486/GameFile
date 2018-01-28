@@ -7,6 +7,7 @@ using namespace std;
 // EffectManager.h
 #include "Vector2.h"			// Žg—p‚È‚µ
 #include "Effect.h"				// Vector2
+#include "Fall.h"				// Effect
 #include "BloodE.h"				// Effect
 #include "Dust.h"				// Effect
 #include "Smoke.h"				// Effect
@@ -23,7 +24,8 @@ const EffectData EffectImgData[ EFFECT_TYPE_MAX ] =
 {
 	{ "../image/Edust.png" , DUST_DIV_CNT , DUST_DIV_SIZE  },
 	{ "../image/Esmoke.png", SMOKE_DIV_CNT, SMOKE_DIV_SIZE },
-	{ "../image/Eblood.png", BLOOD_DIV_CNT, BLOOD_DIV_SIZE }
+	{ "../image/Eblood.png", BLOOD_DIV_CNT, BLOOD_DIV_SIZE },
+	{ "../image/Efall.png" , FALL_DIV_CNT , FALL_DIV_SIZE  }
 };
 
 //---------------------------------------------------------------------
@@ -161,6 +163,15 @@ void EffectManager::EffectCreate( Vector2 pos, EFFECT_TYPE effectType )
 		newBloodE->Initialize( pos );
 		newBloodE->SetImg( _img[ EFFECT_TYPE_BLOOD ] );
 		_effects.push_back( newBloodE );
+	}
+		break;
+
+	case EFFECT_TYPE_FALL:
+	{
+		Fall *newFall = new Fall();
+		newFall->Initialize( pos );
+		newFall->SetImg( _img[ EFFECT_TYPE_FALL ] );
+		_effects.push_back( newFall );
 	}
 		break;
 

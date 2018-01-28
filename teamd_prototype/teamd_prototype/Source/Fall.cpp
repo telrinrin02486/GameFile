@@ -34,7 +34,7 @@ void Fall::Initialize()
 {
 
 }
-void Fall::Initialize( VECTOR2 pos )
+void Fall::Initialize( Vector2 pos )
 {
 	//キャラクター情報
 	SetPos( pos );
@@ -72,8 +72,8 @@ void Fall::Update()
 //---------------------------------------------------------------------
 //　描画
 //---------------------------------------------------------------------
-void Fall::Draw()
+void Fall::Draw(const Vector2& offset_)
 {
-	DxLib::DrawRotaGraph3(	_pos.x, _pos.y, _size.x * 0.5f, _size.y * 0.5f,
+	DxLib::DrawRotaGraph3(	_pos.x - offset_.x, _pos.y - offset_.y, _size.x * 0.5f, _size.y * 0.5f,
 							1, 1, 0, _img[ _animIdx / _animFall ], true, false );
 }
