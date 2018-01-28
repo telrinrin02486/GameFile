@@ -203,7 +203,11 @@ void GameScene::Update()
 				SoundManager::GetInstance().Play(TENKA);
 				delete *it;
 				it = _enemis.erase(it);
-				++_crusheCount;
+				if (SceneStartFlg)
+				{
+					++_crusheCount;
+				}
+				
 				SceneManager::GetInstance().SetScore(_crusheCount);//scoreのセット
 				continue;
 			}
@@ -215,7 +219,10 @@ void GameScene::Update()
 				SoundManager::GetInstance().Play(HIT_1);
 				delete *it;
 				it = _houses.erase(it);
-				++_crusheCount;
+				if (SceneStartFlg)
+				{
+					++_crusheCount;
+				}
 				SceneManager::GetInstance().SetScore(_crusheCount);//scoreのセット
 				continue;
 			}
@@ -494,8 +501,8 @@ void GameScene::Draw()
 
 
 	//カメラフレーム範囲
-	DxLib::DrawBox(_playerInFrame.Left(), _playerInFrame.Top(), _playerInFrame.Right(), _playerInFrame.Bottom(),
-		0xffffffff, false);
+	//DxLib::DrawBox(_playerInFrame.Left(), _playerInFrame.Top(), _playerInFrame.Right(), _playerInFrame.Bottom(),
+		//0xffffffff, false);
 
 	efcMng.Draw(offset);						//エフェクト
 
