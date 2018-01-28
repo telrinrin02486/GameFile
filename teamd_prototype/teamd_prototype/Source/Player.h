@@ -28,7 +28,7 @@ class House;
 class Player
 {
 public:
-	Player();
+	Player(const Vector2 pos_);
 	~Player();
 
 	void Update(bool canOperate_);

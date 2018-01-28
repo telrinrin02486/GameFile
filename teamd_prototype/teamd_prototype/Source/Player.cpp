@@ -7,10 +7,11 @@
 #include "Enemy.h"
 #include "../House.h"
 
-Player::Player()
-	:_startPos(PLAYER_RECT.LT()),
+Player::Player(const Vector2 pos_)
+	:_startPos(pos_),
 	_rect(PLAYER_RECT), _vec(Vector2())
 {
+	_rect.TelePort(pos_);
 	if (LoadDivGraph("../image/player.png", (IMG_DIV_CNT_X * IMG_DIV_CNT_Y), IMG_DIV_CNT_X, IMG_DIV_CNT_Y, IMG_SIZE_X, IMG_SIZE_Y, *_handle) == -1)
 	{
 		printfDx("playerImageì«Ç›çûÇ›é∏îs");
@@ -36,8 +37,8 @@ void Player::Update(bool canOperate_) {
 
 	Vector2 dir = _vec;
 	constexpr float moveSpeed = 5.0f;
-	constexpr float jumpPower = 20.0f;
-	constexpr float stampPower = 15.0f;
+	constexpr float jumpPower = 15.0f;
+	constexpr float stampPower = 10.0f;
 	constexpr float a = 9.8f*(1.0f / 20.0f);
 	if (state != ANI_DAMAGE) {
 		if (canOperate_) {

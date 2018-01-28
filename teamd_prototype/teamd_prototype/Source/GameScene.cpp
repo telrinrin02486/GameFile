@@ -66,12 +66,14 @@ void GameScene::Initialize()
 	EffectManager& efMng = EffectManager::Instance();
 	BloodManager& bloodMng = BloodManager::Instance();
 	bloodMng.Init();
-
+	int windowWidth, windowHight;
+	GetWindowSize(&windowWidth, &windowHight);
+	float barrenRangeWidth = windowWidth / 3;//不毛地帯の横幅
 	//シーン切り替えフラグ
 	_isChange = false;
 	_crusheCount = 0;
 
-	_player = new Player();
+	_player = new Player(Vector2(0.0f,50.0f));
 	_prevPlayerGroundFlg = _player->IsGround();
 	//e
 	for (int i = 0; i < 30; ++i) {
@@ -237,7 +239,7 @@ void GameScene::Update()
 			//カメラのフレーム内から出てたら、そいつに合わせるように移動させる
 			//→プレイヤーの矩形に合わせればいい。
 			framePos.x = max(min(framePos.x, playerRect.Left()),playerRect.Right() - frameSize.x);
-			framePos.y = max(min(framePos.y, playerRect.Top()), playerRect.Bottom() - frameSize.y);
+			//framePos.y = max(min(framePos.y, playerRect.Top()), playerRect.Bottom() - frameSize.y);
 
 			Vector2 moveValue = framePos - (_playerInFrame.LT() + (camera.Pos() + camera.Offset()));
 			camera.Move(moveValue);

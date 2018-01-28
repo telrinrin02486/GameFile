@@ -64,7 +64,7 @@ void TutrialScene::Initialize()
 	//”wŒi‰æ‘œ‚ðƒ[ƒh
 	backImg = LoadGraph("../image/haikei.jpg");
 
-	_player = new Player();
+	_player = new Player(Vector2(0.0f, 50.0f));
 	_player->SetPos({ WINDOW_WIDTH  / 2, WINDOW_HEIGHT  / 2});//tutrial‚È‚Ì‚ÅstartPos‚ÌÄÝ’è
 	_prevPlayerGroundFlg = _player->IsGround();
 	

@@ -38,6 +38,7 @@
     <ClInclude Include="Source\EffectManager.h" />
     <ClInclude Include="Source\Enemy.h" />
     <ClInclude Include="Source\EnemyNyn.h" />
+    <ClInclude Include="Source\Fall.h" />
     <ClInclude Include="Source\GameMain.h" />
     <ClInclude Include="Source\GameScene.h" />
     <ClInclude Include="Source\ImageMng.h" />
@@ -77,6 +78,7 @@
     <ClCompile Include="Source\EffectManager.cpp" />
     <ClCompile Include="Source\Enemy.cpp" />
     <ClCompile Include="Source\EnemyNyn.cpp" />
+    <ClCompile Include="Source\Fall.cpp" />
     <ClCompile Include="Source\GameMain.cpp" />
     <ClCompile Include="Source\GameScene.cpp" />
     <ClCompile Include="Source\ImageMng.cpp" />
