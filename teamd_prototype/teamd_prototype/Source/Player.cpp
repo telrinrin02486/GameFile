@@ -75,7 +75,9 @@ void Player::Update(bool canOperate_) {
 	dir.y += a;
 	_vec = dir;
 
-	setState(key);	//“ü—Íkey‚É‰‚¶‚½state‚ğset
+	if (canOperate_) {
+		setState(key);	//“ü—Íkey‚É‰‚¶‚½state‚ğset
+	}
 	setMove();		//state‚É‰‚¶‚½aniCnt‚ÌXV
 
 }
