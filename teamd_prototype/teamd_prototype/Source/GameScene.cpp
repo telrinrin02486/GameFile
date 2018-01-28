@@ -28,7 +28,7 @@ using namespace std;
 #include "../BloodManager.h"
 
 #include "SoundManager.h"
-#include "../EnemyFactory.h"
+//#include "../EnemyFactory.h"
 
 constexpr unsigned int ENEMY_MAX = 50;
 //---------------------------------------------------------------------
@@ -219,8 +219,8 @@ void GameScene::Update()
 			//¶¬‹ÖŽ~‹æˆæ‚È‚çA‚È‚©‚Á‚½‚±‚Æ‚É‚µ‚¿‚á‚¨I
 			//‰º‘Ê‚Í‚©‚¹‚Ä‚¨‚­
 			if (!(posX > camera.Pos().x - 500.0f) || !(posX < camera.Pos().x + camera.WindowSize().x + 300.0f)) {
-				EnemyFactory& ef = EnemyFactory::Instance();
-				_enemis.push_back(ef.Create(EnemyName::NYN,Vector2(posX,_groundPosY),*_player));
+				//EnemyFactory& ef = EnemyFactory::Instance();
+				//_enemis.push_back(ef.Create(EnemyName::NYN,Vector2(posX,_groundPosY),*_player));
 			}
 		}
 		//house‚Ì¶¬

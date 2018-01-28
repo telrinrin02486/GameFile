@@ -103,9 +103,9 @@ void Player::Draw(const Vector2& offset_) {
 	DrawRotaGraph3(s.x + ((n.x - s.x) / 2), s.y + ((n.y - s.y) / 2),
 					(IMG_SIZE_X / 2), (IMG_SIZE_Y / 2), scalingRatio.x, scalingRatio.y, (PI * 0),
 					_handle[state][aniCnt], true, isDirRight);
-	//DrawBox(s.x, s.y, n.x, n.y, 0xffffffff, false);
+	
 	aniFram++;
-	//DrawFormatString(s.x, s.y - 15, 0xffffffff, "weight:%d", _weight);
+	
 
 }
 
@@ -113,7 +113,7 @@ void Player::Draw(const Vector2& offset_) {
 void Player::setState(KeyInput& key)
 {
 	//jump、tample、damage中に移動アニメーションに入ること防止
-	if (state != ANI_WEIGH && _isGround && state != ANI_DAMAGE)
+	if (state != ANI_JUMP && state != ANI_WEIGH && _isGround && state != ANI_DAMAGE)
 	{
 		if (key.GetKeyDown(KEY_INPUT_UP))
 		{
@@ -143,12 +143,8 @@ void Player::setState(KeyInput& key)
 	}
 	else
 	{
-		//のしかかりアニメーションをしない時がある
-		//見た感じisGround自体が地面と判定を取っているのではなく
-		//jumpアニメーションが終わればisGroundをtrueにしていると思われる
-		//なお自分の実装ではないため質問しなければわからない
 		//現在stateがjump、weigh、damage 、か!_isGround
-		 if (key.GetKeyDown(KEY_INPUT_DOWN)/* && state == ANI_JUMP*/)
+		 if (key.GetKeyDown(KEY_INPUT_DOWN))
 		{
 			state = ANI_WEIGH;
 			aniFram = 1;
