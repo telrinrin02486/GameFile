@@ -421,6 +421,7 @@ void GameScene::SceneCounter()
 		timeStart = GetNowCount();
 	}
 
+
 }
 //---------------------------------------------------------------------
 //@•`‰æ
@@ -543,6 +544,7 @@ void GameScene::Draw()
 	//58
 	if (timeCun >= (TIME_MAX - 3))
 	{
+		sceneCun = max(TIME_MAX - timeCun - 1,0);
 		//58
 		if (((GetNowCount() - timeStart) * 0.001) <= TIME_MAX)
 		{
