@@ -31,7 +31,7 @@ public:
 	Player();
 	~Player();
 
-	void Update();
+	void Update(bool canOperate_);
 	void Draw(const Vector2& offset);
 
 	//getter

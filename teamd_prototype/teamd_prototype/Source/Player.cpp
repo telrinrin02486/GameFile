@@ -29,7 +29,7 @@ Player::~Player()
 {
 }
 
-void Player::Update() {
+void Player::Update(bool canOperate_) {
     KeyInput& key = KeyInput::GetInstance();
 	
 	_vec.x = 0.0f;
@@ -38,21 +38,23 @@ void Player::Update() {
 	constexpr float moveSpeed = 5.0f;
 	constexpr float jumpPower = 20.0f;
 	constexpr float stampPower = 15.0f;
-	constexpr float a = 9.8f*(1.0f / 10.0f);
+	constexpr float a = 9.8f*(1.0f / 20.0f);
 	if (state != ANI_DAMAGE) {
-		//移動
-		if (key.GetKey(KEY_INPUT_LEFT)) {
-			dir.x = -moveSpeed;
-		}
-		if (key.GetKey(KEY_INPUT_RIGHT)) {
-			dir.x = moveSpeed;
-		}
-		if (key.GetKey(KEY_INPUT_D)) {
-			dir.x *= 3.0f;
-		}
-		//攻撃（踏みつぶし
-		if (key.GetKey(KEY_INPUT_DOWN)) {
-			dir.y += stampPower;
+		if (canOperate_) {
+			//移動
+			if (key.GetKey(KEY_INPUT_LEFT)) {
+				dir.x = -moveSpeed;
+			}
+			if (key.GetKey(KEY_INPUT_RIGHT)) {
+				dir.x = moveSpeed;
+			}
+			if (key.GetKey(KEY_INPUT_D)) {
+				dir.x *= 3.0f;
+			}
+			//攻撃（踏みつぶし
+			if (key.GetKey(KEY_INPUT_DOWN)) {
+				dir.y += stampPower;
+			}
 		}
 	}
 
@@ -63,8 +65,10 @@ void Player::Update() {
 	//ジャンプ
 	if (state != ANI_DAMAGE) {
 		if (_isGround) {
-			if (key.GetKey(KEY_INPUT_UP)) {
-				dir.y = -jumpPower;
+			if (canOperate_) {
+				if (key.GetKey(KEY_INPUT_UP)) {
+					dir.y = -jumpPower;
+				}
 			}
 		}
 	}

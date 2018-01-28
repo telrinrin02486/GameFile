@@ -78,7 +78,7 @@ void GameScene::Initialize()
 
 	}
 	//gabyo
-	for (int i = 0; i < 30; ++i) {
+	for (int i = 0; i < 10; ++i) {
 		int w, h;
 		GetWindowSize(&w, &h);
 		Vector2 pos = { static_cast<float>(rand() % ((_maxLimit - w) * 2) + _minLimit),_groundPosY };
@@ -93,7 +93,7 @@ void GameScene::Initialize()
 	
 	//背景画像をロード
 	backImg = LoadGraph("../image/haikei.jpg");
-	
+	//house
 	for (int i = 0; i < 10; ++i) {
 		int w, h;
 		GetWindowSize(&w, &h);
@@ -178,7 +178,7 @@ void GameScene::Update()
 			Initialize();//リセット
 		}
 		//　更新---------------------------------------------------------------
-		_player->Update();
+		_player->Update(SceneStartFlg && !SceneEndFlg);
 		for (auto e : _enemis) {
 			e->Update();
 		}
@@ -340,6 +340,7 @@ void GameScene::Update()
 					plr.Move(moveValue);
 					_player->SetRect(plr);
 					pgflg = true;
+					houseGroundFlg = true;
 				}
 			}
 			//と地面
@@ -483,8 +484,8 @@ void GameScene::Draw()
 
 
 	//カメラフレーム範囲
-	DxLib::DrawBox(_playerInFrame.Left(), _playerInFrame.Top(), _playerInFrame.Right(), _playerInFrame.Bottom(),
-		0xffffffff, false);
+	//DxLib::DrawBox(_playerInFrame.Left(), _playerInFrame.Top(), _playerInFrame.Right(), _playerInFrame.Bottom(),
+	//	0xffffffff, false);
 
 	efcMng.Draw(offset);						//エフェクト
 

@@ -117,7 +117,7 @@ void TutrialScene::Update()
 			Initialize();//リセット
 		}
 		//　更新---------------------------------------------------------------
-		_player->Update();
+		_player->Update(true);
 		if (enemy != nullptr)
 		{
 			enemy->Update();
