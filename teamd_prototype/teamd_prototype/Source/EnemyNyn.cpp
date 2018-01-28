@@ -6,6 +6,8 @@
 #include "Collision.h"
 #include "../BloodManager.h"
 #include <cmath>
+#include "ImageMng.h"
+#include <string>
 
 //うろうろ
 class EnemyNyn::Idle :
@@ -49,17 +51,49 @@ private:
 	EnemyNyn::Parameter& _param;
 };
 
+//-----------------------------------
+const std::string IMAGE_PATH[] = {
+	"../image/humen/boy1.png",
+	"../image/humen/boy2.png",
+	"../image/humen/boy3.png",
+	"../image/humen/boy4.png",
+	"../image/humen/girl1.png",
+	"../image/humen/girl2.png",
+	"../image/humen/girl3.png",
+	"../image/humen/girl4.png",
+	"../image/humen/girl5.png",
+	"../image/humen/girl6.png",
+};
+const Vector2 IMAGE_SIZE[] = { 
+	{68,142},
+	{55,126},
+	{58,136},
+	{64,136},
+	{61,128},
+	{60,140},
+	{58,139},
+	{71,144},
+	{59,137},
+	{59,127},
+};
+
 constexpr float NYN_HEIGHT = 60;
 EnemyNyn::EnemyNyn(const Vector2& pos_, const Player& player_)
 	:_param(__isGround, __onHouse, __state,__name), _player(player_) 
 {
+	ImageMng* imageMng = ImageMng::GetInstance();
+
 	_param.nowState = new Idle(_param);
-	_param.handle = LoadGraph("../image/ketudakkeNyan.png");
+	_param.imageSuffix = rand() % (sizeof(IMAGE_PATH) / sizeof(std::string));
+	_param.handle = *imageMng->GetImgDivID(IMAGE_PATH[_param.imageSuffix],Vector2(1,1),IMAGE_SIZE[_param.imageSuffix]);
 	_param.pos = pos_;
-	_param.size = Vector2(50, NYN_HEIGHT);
+	_param.size = Vector2(40, NYN_HEIGHT);
 	_param.life = 30;
 	_param.ghostTime = 0;
 	_param.enemyName = EnemyName::NYN;
+	_param.angle = 0.0f;
+	_param.isTurn = false;//絵からして、falseは右、trueは左
+
 }
 
 
@@ -97,18 +131,16 @@ void EnemyNyn::Draw(const Camera& camera_) {
 		return;//描画しません。
 	}
 	const Rect2 rect = Rect2(_param.pos, _param.size);
-	const Vector2 offset = camera_.Offset() + camera_.Pos();
-	Point2 s = (rect.LT() - offset).ToPoint2();
-	Point2 n = (rect.RB() - offset).ToPoint2();
 
-	DrawExtendGraphF(s.x, s.y, n.x, n.y, _param.handle, true);
+	Vector2 offset = camera_.Offset() + camera_.Pos();
+	Point2 drawPoint = (rect.Center() - offset).ToPoint2(); ;//描画する位置（中点
+	Point2 imageCenter = (IMAGE_SIZE[_param.imageSuffix] * 0.5f).ToPoint2();//画像自体の中点
+	Vector2 scalingRatio = (rect.Size() / IMAGE_SIZE[_param.imageSuffix]);//_rect.Size() / ImageSize[_imageSuffix];//描画比率（つぶれ適応
 
-	//unsigned int color = 0xffffffff;
-	//if (__state == Enemy::State::isGhost) {
-	//	color = 0xff00ff00;
-	//}
-	//DrawBox(s.x, s.y, n.x, n.y, color, false);
-	//DrawRectRotaGraph3(s.x,s.y,)
+	DrawRotaGraph3(drawPoint.x, drawPoint.y,
+		imageCenter.x, imageCenter.y,
+		scalingRatio.x, scalingRatio.y,
+		_param.angle, _param.handle, true, _param.isTurn);
 
 }
 
@@ -122,7 +154,7 @@ void EnemyNyn::OnCollided(const Player& player_) {
 	//方向取得
 	Vector2 vec = player_.Vec();
 	//上から&&接地ならつぶす
-	if (vec.y > 0.0f && ol.W() > ol.H()) {
+	if ((vec.y > 0.0f && ol.W() > ol.H()) || vec.y > abs(vec.x) + 5.0f ) {
 		if (__isGround) {
 			float yMoveValue = ol.H();
 			_param.pos.y += yMoveValue;
@@ -131,9 +163,10 @@ void EnemyNyn::OnCollided(const Player& player_) {
 			int bloodNum = static_cast<int>(yMoveValue * 0.5f);
 			BloodManager& bloodMng = BloodManager::Instance();
 			for (int i = 0; i < bloodNum; ++i) {
+				//血が噴き出る方向を決めます
 				Vector2 flyVec = -(player_.Vec() * 0.25f);
-				float xDif = static_cast<float>((rand() % 60) - 30);
-				float yDif = static_cast<float>((rand() % 30) - 15);
+				float xDif = static_cast<float>((rand() % 60) - 30);//-30~30
+				float yDif = static_cast<float>((rand() % 30) - 15);//-15~15
 				flyVec.x += xDif;
 				flyVec.y += yDif;
 				bloodMng.Create(Rect().Center(), flyVec);
@@ -153,6 +186,7 @@ void EnemyNyn::OnCollided(const Player& player_) {
 
 		Vector2 flyVec = (nPos - sPos).Normalize() * 10.0f;
 		_param.vec = flyVec;
+		//ここで座標を直接いじる。
 		_param.pos += _param.vec;
 		//_param.ghostTime = 10;
 		//}
@@ -164,6 +198,7 @@ void EnemyNyn::OnCollided(const Player& player_) {
 //これちょっと難しいなぁ。
 void EnemyNyn::OnCollided(const House& house_) {
 
+	//_param.nowState->OnCollided(house_);
 
 
 }
@@ -221,6 +256,9 @@ int EnemyNyn::Idle::Update() {
 	_param.pos += _param.vec;
 	//重力加速度追加
 	_param.vec.y += gravity;
+	//方向設定
+	if (_dir < 0.0f) { _param.isTurn = true; }
+	if (_dir > 0.0f) { _param.isTurn = false; }
 
 	++_count;
 	return err;

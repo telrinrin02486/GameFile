@@ -88,6 +88,9 @@ public:
 		Vector2	vec;//力ベクトル値？
 		int		life;//体力
 		int		ghostTime;//無敵タイム
+		int		imageSuffix;//画像識別番号
+		float	angle;//回転値
+		bool	isTurn;//side
 		CollFlag collFlag;//フラグ群
 						  //判定用
 		std::vector<CharaCollider*> _collider;

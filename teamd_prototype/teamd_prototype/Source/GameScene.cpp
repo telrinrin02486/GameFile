@@ -29,16 +29,17 @@ using namespace std;
 
 #include "SoundManager.h"
 
+constexpr unsigned int ENEMY_MAX = 50;
 //---------------------------------------------------------------------
 //　コンストラクタ
 //---------------------------------------------------------------------
 GameScene::GameScene()
-	:_playerInFrame(170,200,0,0)
+	:_playerInFrame(170,-150,0,0)
 {
 	_groundPosY = 400.0f;
 	int w, h;
 	GetWindowSize(&w, &h);
-	_playerInFrame.ReSize(Vector2(w - 340, h - 300));
+	_playerInFrame.ReSize(Vector2(w - 340, h + 100));
 
 	_minLimit = -2000;
 	_maxLimit = static_cast<float>(w) + 2000;
@@ -189,6 +190,8 @@ void GameScene::Update()
 		//for (auto cb : _cb1List) {
 		//	cb->Update();
 		//}
+		//eの生成
+		//カメラに入っていない位置にらんだむで出現させるンゴ。
 		//eの死亡確認
 		for (auto it = _enemis.begin(); it != _enemis.end();) {
 			if ((*it)->GetState() == Enemy::State::isDed) {
@@ -394,9 +397,10 @@ void GameScene::TimeCunter()
 	timeCun = (GetNowCount() - timeStart) * 0.001;
 
 	//時間になったら
-	if (timeCun >= TIME_MAX)
+	if (timeCun > TIME_MAX)
 	{
-
+		SceneManager::GetInstance().ChangeScene(SType_RESULT);
+		SoundManager::GetInstance().Stop(BGM_GAME);
 	}
 
 
@@ -485,8 +489,8 @@ void GameScene::Draw()
 
 
 	//カメラフレーム範囲
-	//DxLib::DrawBox(_playerInFrame.Left(), _playerInFrame.Top(), _playerInFrame.Right(), _playerInFrame.Bottom(),
-	//	0xffffffff, false);
+	DxLib::DrawBox(_playerInFrame.Left(), _playerInFrame.Top(), _playerInFrame.Right(), _playerInFrame.Bottom(),
+		0xffffffff, false);
 
 	efcMng.Draw(offset);						//エフェクト
 
@@ -544,6 +548,7 @@ void GameScene::Draw()
 	//58
 	if (timeCun >= (TIME_MAX - 3))
 	{
+		//-1回避
 		sceneCun = max(TIME_MAX - timeCun - 1,0);
 		//58
 		if (((GetNowCount() - timeStart) * 0.001) <= TIME_MAX)

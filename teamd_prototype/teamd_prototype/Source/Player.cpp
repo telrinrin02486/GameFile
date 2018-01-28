@@ -85,12 +85,12 @@ void Player::Update(bool canOperate_) {
 void Player::Draw(const Vector2& offset_) {
 	Point2 s = (_rect.LT() - offset_).ToPoint2();
 	Point2 n = (_rect.RB() - offset_).ToPoint2();
-
+	Vector2 scalingRatio = Vector2(PLAYER_SIZE / Vector2(IMG_SIZE_X, IMG_SIZE_Y));
 
 	DrawRotaGraph3(s.x + ((n.x - s.x) / 2), s.y + ((n.y - s.y) / 2),
-					(IMG_SIZE_X / 2), (IMG_SIZE_Y / 2), EXT_RATE_X, EXT_RATE_Y, (PI * 0),
+					(IMG_SIZE_X / 2), (IMG_SIZE_Y / 2), scalingRatio.x, scalingRatio.y, (PI * 0),
 					_handle[state][aniCnt], true, isDirRight);
-	//DrawBox(s.x, s.y, n.x, n.y, 0xffffffff, false);
+	DrawBox(s.x, s.y, n.x, n.y, 0xffffffff, false);
 	aniFram++;
 	DrawFormatString(s.x, s.y - 15, 0xffffffff, "weight:%d", _weight);
 

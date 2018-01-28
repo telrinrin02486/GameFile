@@ -162,9 +162,11 @@
     <ClInclude Include="TutrialScene.h">
       <Filter>Source\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="GabyoMan.h" />
     <ClInclude Include="Source\BloodE.h">
       <Filter>Source\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="GabyoMan.h">
+      <Filter>Source\Actor\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -268,9 +270,11 @@
     <ClCompile Include="TutrialScene.cpp">
       <Filter>Source\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="GabyoMan.cpp" />
     <ClCompile Include="Source\BloodE.cpp">
       <Filter>Source\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="GabyoMan.cpp">
+      <Filter>Source\Actor\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
