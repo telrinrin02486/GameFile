@@ -28,6 +28,7 @@ using namespace std;
 #include "../BloodManager.h"
 
 #include "SoundManager.h"
+#include "../EnemyFactory.h"
 
 constexpr unsigned int ENEMY_MAX = 50;
 //---------------------------------------------------------------------
@@ -210,6 +211,30 @@ void GameScene::Update()
 		//}
 		//eの生成
 		//カメラに入っていない位置にらんだむで出現させるンゴ。
+		size_t enemyNum_Max = 50;
+		if (_enemis.size() < enemyNum_Max) {
+			int w, h;
+			GetWindowSize(&w, &h);
+			float posX = static_cast<float>(rand() % ((_maxLimit - w) * 2) + _minLimit);
+			//生成禁止区域なら、なかったことにしちゃお！
+			//下駄はかせておく
+			if (!(posX > camera.Pos().x - 500.0f) || !(posX < camera.Pos().x + camera.WindowSize().x + 300.0f)) {
+				EnemyFactory& ef = EnemyFactory::Instance();
+				_enemis.push_back(ef.Create(EnemyName::NYN,Vector2(posX,_groundPosY),*_player));
+			}
+		}
+		//houseの生成
+		size_t houseNum_Max = 15;
+		if (_houses.size() < houseNum_Max) {
+			int w, h;
+			GetWindowSize(&w, &h);
+			float posX = static_cast<float>(rand() % ((_maxLimit - w) * 2) + _minLimit);
+			//生成禁止区域なら、なかったことにしちゃお！
+			//下駄はかせておく
+			if (!(posX > camera.Pos().x - 500.0f) || !(posX < camera.Pos().x + camera.WindowSize().x + 300.0f)) {
+				_houses.push_back(new House(Vector2(posX, _groundPosY)));
+			}
+		}
 		//eの死亡確認
 		for (auto it = _enemis.begin(); it != _enemis.end();) {
 			if ((*it)->GetState() == Enemy::State::isDed) {

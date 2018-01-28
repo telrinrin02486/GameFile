@@ -22,6 +22,7 @@
     <ClInclude Include="Blood.h" />
     <ClInclude Include="BloodManager.h" />
     <ClInclude Include="CharaCollider.h" />
+    <ClInclude Include="EnemyFactory.h" />
     <ClInclude Include="GabyoMan.h" />
     <ClInclude Include="House.h" />
     <ClInclude Include="Source\BaseScene.h" />
@@ -63,6 +64,7 @@
     <ClCompile Include="Blood.cpp" />
     <ClCompile Include="BloodManager.cpp" />
     <ClCompile Include="CharaCollider.cpp" />
+    <ClCompile Include="EnemyFactory.cpp" />
     <ClCompile Include="GabyoMan.cpp" />
     <ClCompile Include="House.cpp" />
     <ClCompile Include="Source\BaseScene.cpp" />
