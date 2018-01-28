@@ -14,7 +14,6 @@
 
 class CB_1;
 class Player;
-class House;
 class EnemyNyn;
 class TutrialScene : public BaseScene
 {
@@ -22,7 +21,6 @@ private:
 
 	Player	*_player;
 	EnemyNyn *enemy;
-	//std::list<EnemyNyn*> _nyns;
 	
 
 	Vector2 _playerStartPos;

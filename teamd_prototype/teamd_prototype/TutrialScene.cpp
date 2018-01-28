@@ -19,8 +19,8 @@ using namespace std;
 #include "Camera.h"
 
 #include "Player.h"
-#include "CB_1.h"
-#include "../House.h"//なぜかこいつだけこうしないと反応しない。ん？
+
+
 #include "EnemyNyn.h"
 
 #include "Collision.h"
@@ -70,7 +70,7 @@ void TutrialScene::Initialize()
 
 	int w, h;
 	GetWindowSize(&w, &h);
-	Vector2 pos = { _player->Pos().x, _player->Pos().y };
+	Vector2 pos = { _player->Pos().x -300, _player->Pos().y };
 	enemy = new EnemyNyn(pos, *_player);
 
 }
@@ -81,9 +81,7 @@ void TutrialScene::Initialize()
 void TutrialScene::Finalize()
 {
 	//各種開放
-
 	delete _player;
-
 	delete enemy;
 }
 
@@ -100,7 +98,7 @@ void TutrialScene::Update()
 	int windowWidth, windowHeight;
 	GetWindowSize(&windowWidth, &windowHeight);
 
-	//resultへ
+	//titleへ
 	if (key.GetKeyUp(KEY_INPUT_RETURN))
 	{
 		SceneManager::GetInstance().ChangeScene(SType_TITLE);
@@ -108,14 +106,6 @@ void TutrialScene::Update()
 	}
 	else
 	{
-		//破壊対象オブジェクトのリセット
-		if (key.GetKeyUp(KEY_INPUT_1))
-		{
-			//これ結構怖いなぁ。
-			//finalize忘れてたらメモリリーク起こるじゃん
-			Finalize();
-			Initialize();//リセット
-		}
 		//　更新---------------------------------------------------------------
 		_player->Update(true);
 		if (enemy != nullptr)
