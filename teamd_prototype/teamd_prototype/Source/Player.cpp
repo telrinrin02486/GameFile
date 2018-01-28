@@ -7,6 +7,7 @@
 #include "Enemy.h"
 #include "../House.h"
 #include "Collision.h"
+#include "EffectManager.h"
 
 Player::Player(const Vector2 pos_)
 	:_startPos(pos_),
@@ -169,11 +170,21 @@ void Player::setMove()
 		(aniFram / ANIM_SPEED) % 2 == 1 ? aniCnt = 0: aniCnt = 1;
 		break;
 	case ANI_WEIGH:
-		if (aniFram % ANIM_SPEED*2 == 0)
+	{
+		//このアニメのあいだ落下エフェクト出し続ける
+		//ちょっと間をあける
+		if (!(aniFram % 5)) {
+			EffectManager& em = EffectManager::Instance();
+			em.EffectCreate(_rect.Center(), EFFECT_TYPE::EFFECT_TYPE_FALL);
+		}
+		if (aniFram % ANIM_SPEED * 2 == 0)
 		{
+			EffectManager& em = EffectManager::Instance();
+			em.EffectCreate(_rect.Center(), EFFECT_TYPE::EFFECT_TYPE_SMOKE);
 			state = ANI_DEF;
 		}
 		break;
+	}
 	case ANI_JUMP:
 		if (aniFram % ANIM_SPEED == 0)
 		{
