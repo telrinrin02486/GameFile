@@ -28,7 +28,7 @@ using namespace std;
 #include "../BloodManager.h"
 
 #include "SoundManager.h"
-//#include "../EnemyFactory.h"
+//#include "../EnemyFactory.h"/*EnemyFactorのソースが存在しないので一時コメント*/
 
 constexpr unsigned int ENEMY_MAX = 50;
 //---------------------------------------------------------------------
@@ -219,6 +219,7 @@ void GameScene::Update()
 			//生成禁止区域なら、なかったことにしちゃお！
 			//下駄はかせておく
 			if (!(posX > camera.Pos().x - 500.0f) || !(posX < camera.Pos().x + camera.WindowSize().x + 300.0f)) {
+				/*EnemyFactorのソースが存在しないので一時コメント*/
 				//EnemyFactory& ef = EnemyFactory::Instance();
 				//_enemis.push_back(ef.Create(EnemyName::NYN,Vector2(posX,_groundPosY),*_player));
 			}

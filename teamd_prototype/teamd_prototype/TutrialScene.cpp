@@ -19,14 +19,8 @@ using namespace std;
 #include "Camera.h"
 
 #include "Player.h"
-#include "CB_1.h"
-#include "../House.h"//なぜかこいつだけこうしないと反応しない。ん？
-#include "EnemyNyn.h"
 
-#include "Collision.h"
 #include "SceneManager.h"
-#include "../BloodManager.h"
-
 #include "SoundManager.h"
 
 //---------------------------------------------------------------------
@@ -59,8 +53,6 @@ TutrialScene::~TutrialScene()
 void TutrialScene::Initialize()
 {
 	EffectManager& efMng = EffectManager::Instance();
-	BloodManager& bloodMng = BloodManager::Instance();
-	bloodMng.Init();
 	//背景画像をロード
 	backImg = LoadGraph("../image/haikei.jpg");
 
@@ -71,7 +63,7 @@ void TutrialScene::Initialize()
 	int w, h;
 	GetWindowSize(&w, &h);
 	Vector2 pos = { _player->Pos().x, _player->Pos().y };
-	enemy = new EnemyNyn(pos, *_player);
+	//enemy = new EnemyNyn(pos, *_player);
 	
 }
 
@@ -84,7 +76,7 @@ void TutrialScene::Finalize()
 
 	delete _player;
 
-	delete enemy;
+	//delete enemy;
 }
 
 //---------------------------------------------------------------------
@@ -93,14 +85,13 @@ void TutrialScene::Finalize()
 void TutrialScene::Update()
 {
 	EffectManager& efcMng = EffectManager::Instance();
-	BloodManager& bloodMng = BloodManager::Instance();
 	bool deadFlg = false;
 	KeyInput& key = KeyInput::GetInstance();
 	Camera& camera = Camera::Instance();
 	int windowWidth, windowHeight;
 	GetWindowSize(&windowWidth, &windowHeight);
 
-	//resultへ
+	//titleへ
 	if (key.GetKeyUp(KEY_INPUT_RETURN))
 	{
 		SceneManager::GetInstance().ChangeScene(SType_TITLE);
@@ -108,34 +99,11 @@ void TutrialScene::Update()
 	}
 	else
 	{
-		//破壊対象オブジェクトのリセット
-		if (key.GetKeyUp(KEY_INPUT_1)) 
-		{
-			//これ結構怖いなぁ。
-			//finalize忘れてたらメモリリーク起こるじゃん
-			Finalize();
-			Initialize();//リセット
-		}
+		
 		//　更新---------------------------------------------------------------
 		_player->Update(true);
-		if (enemy != nullptr)
-		{
-			enemy->Update();
-		}
-		bloodMng.Update();
-		
-		
-		if (enemy != nullptr)
-		{
-			if (enemy->GetState() == Enemy::State::isDed)
-			{
-				//SE呼び出し
-				//キャラクタが持ってた方が可用性は高い、が知らん
-				SoundManager::GetInstance().Play(TENKA);
-				delete enemy;
-				enemy = nullptr;
-			}
-		}
+		//enemy->Update();
+	
 		
 		
 		//カメラの移動
@@ -154,8 +122,6 @@ void TutrialScene::Update()
 		}
 		
 		
-
-		
 		//こっから↓は押し出しのみ！とかならわかりやすいかな
 		Rect2 plr = _player->Rect();
 		bool pgflg = false;
@@ -168,25 +134,6 @@ void TutrialScene::Update()
 			pgflg = true;
 		}
 		
-		//enemy
-		if (enemy != nullptr)
-		{
-			bool nynGroundFlg = false;
-			Rect2 nynRect = enemy->Rect();
-			//飛びすぎちゃうなぁ。
-			if (IsHit(_player->Rect(), enemy->Rect()))
-			{
-				enemy->OnCollided(*_player);
-			}
-			//ground
-			if (enemy->Rect().Bottom() > _groundPosY)
-			{
-				nynRect.Move(Vector2(0.0f, _groundPosY - enemy->Rect().Bottom()));
-				enemy->SetRect(nynRect);
-				nynGroundFlg = true;
-			}
-			enemy->SetGroundFlag(nynGroundFlg);
-		}
 		
 		_player->SetGroundFlg(pgflg);
 		//プレイヤーが地面に降り立った瞬間揺れを設定
@@ -213,7 +160,6 @@ void TutrialScene::Draw()
 
 	//パラメタ取得やらなんやら
 	EffectManager& efcMng = EffectManager::Instance();
-	BloodManager& bloodMng = BloodManager::Instance();
 	Camera& camera = Camera::Instance();
 	Vector2 offset = camera.Pos() + camera.Offset();
 	int windowW, windowH;
@@ -230,15 +176,8 @@ void TutrialScene::Draw()
 	
 	//player
 	_player->Draw(offset);
-
 	//enemy
-	//////////
-	if (enemy != nullptr)
-	{
-		enemy->Draw(camera);
-	}
-	//血
-	bloodMng.Draw(camera);
+	//enemy->Draw();
 	
 	//エフェクト
 	efcMng.Draw(offset);						
