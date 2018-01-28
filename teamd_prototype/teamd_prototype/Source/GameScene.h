@@ -33,6 +33,8 @@ private:
 	bool _prevPlayerGroundFlg;
 	int	_crusheCount;
 
+	int _endTime;
+
 	int _minLimit, _maxLimit;
 
 	//ŠJnŠÔ

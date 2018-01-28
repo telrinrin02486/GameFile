@@ -45,6 +45,8 @@ GameScene::GameScene()
 	_maxLimit = static_cast<float>(w) + 2000;
 
 	SoundManager::GetInstance().PlayLoop(BGM_GAME);
+
+	_endTime = 60;//終了後の余韻(フレーム単位
 }
 
 //---------------------------------------------------------------------
@@ -60,6 +62,7 @@ GameScene::~GameScene()
 //---------------------------------------------------------------------
 void GameScene::Initialize()
 {
+	GameScene();
 	EffectManager& efMng = EffectManager::Instance();
 	BloodManager& bloodMng = BloodManager::Instance();
 	bloodMng.Init();
@@ -388,7 +391,14 @@ void GameScene::Update()
 		{
 			TimeCunter();
 		}
-		
+		//時間になったら
+		if (SceneEndFlg)
+		{
+			if (--_endTime < 0) {
+				SceneManager::GetInstance().ChangeScene(SType_RESULT);
+				SoundManager::GetInstance().Stop(BGM_GAME);
+			}
+		}
 	}
 }
 //---------------------------------------------------------------------
@@ -398,14 +408,6 @@ void GameScene::TimeCunter()
 {
 	//経過時間
 	timeCun = (GetNowCount() - timeStart) * 0.001;
-
-	//時間になったら
-	if (timeCun > TIME_MAX)
-	{
-		SceneManager::GetInstance().ChangeScene(SType_RESULT);
-		SoundManager::GetInstance().Stop(BGM_GAME);
-	}
-
 
 }
 
