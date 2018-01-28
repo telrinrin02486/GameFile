@@ -5,12 +5,13 @@
 //Enemy‚Í‚Â‚Ô‚ê‚È‚­‚Ä‚à‚¢‚¢‚ñ‚¶‚á‚È‚©‚ë‚¤‚©
 //ˆêu‚ÅÁ–Å‚µ‚Ü‚¹‚¢I
 
-enum EnemyName {
-	NOT_NAME,
+enum EnemyName : int{
+	NOT_NAME = -1,
 
 	NYN,
 	GABYO,
 
+	NUM,
 };
 
 //“GŠî‘b
