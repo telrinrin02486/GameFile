@@ -42,6 +42,9 @@ public:
 		return __name;
 	}
 	virtual Vector2 Pos() const = 0;
+	//“–‚½‚è”»’è‚ÉŽg‚¤
+	virtual Rect2 Rect() const = 0;
+	virtual bool IsGround() const = 0;
 
 	inline void SetGroundFlag(bool groundFlag_) {
 		__isGround = groundFlag_;
@@ -51,8 +54,6 @@ public:
 	}
 	virtual void SetRect(const Rect2& rect_) = 0;
 
-	//“–‚½‚è”»’è‚ÉŽg‚¤
-	virtual Rect2 Rect() const = 0;
 
 
 

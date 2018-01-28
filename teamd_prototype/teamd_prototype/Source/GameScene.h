@@ -28,7 +28,7 @@ private:
 
 	Vector2 _playerStartPos;
 	Rect2	_playerInFrame;//プレイヤーを追いかける枠（カメラ用
-
+	Point2 _barrenRange;//初期生成時、敵がわかない範囲
 	float _groundPosY;
 	bool _prevPlayerGroundFlg;
 	int	_crusheCount;

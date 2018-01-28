@@ -36,7 +36,7 @@ constexpr unsigned int ENEMY_MAX = 50;
 GameScene::GameScene()
 	:_playerInFrame(170,-150,0,0)
 {
-	_groundPosY = 400.0f;
+	_groundPosY = 500.0f;
 	int w, h;
 	GetWindowSize(&w, &h);
 	_playerInFrame.ReSize(Vector2(w - 340, h + 100));
@@ -68,18 +68,25 @@ void GameScene::Initialize()
 	bloodMng.Init();
 	int windowWidth, windowHight;
 	GetWindowSize(&windowWidth, &windowHight);
-	float barrenRangeWidth = windowWidth / 3;//不毛地帯の横幅
+	_barrenRange = { _minLimit,_minLimit+400 };//不毛地帯の横幅
 	//シーン切り替えフラグ
 	_isChange = false;
 	_crusheCount = 0;
-
-	_player = new Player(Vector2(0.0f,50.0f));
+	//初期生成
+	_playerStartPos = Vector2(_minLimit, 50.0f);
+	_player = new Player(_playerStartPos);
 	_prevPlayerGroundFlg = _player->IsGround();
 	//e
 	for (int i = 0; i < 30; ++i) {
 		int w, h;
 		GetWindowSize(&w, &h);
-		Vector2 pos = { static_cast<float>(rand() % ((_maxLimit-w)*2) + _minLimit),_groundPosY };
+		float posX = static_cast<float>(rand() % ((_maxLimit - w) * 2) + _minLimit);
+		//生成禁止区域なら、なかったことにしちゃお！
+		if (posX > _barrenRange.x && posX < _barrenRange.y) {
+			//--i;
+			continue;
+		}
+		Vector2 pos = {posX,_groundPosY };
 		_enemis.push_back(new EnemyNyn(pos, *_player));
 
 	}
@@ -87,7 +94,13 @@ void GameScene::Initialize()
 	for (int i = 0; i < 10; ++i) {
 		int w, h;
 		GetWindowSize(&w, &h);
-		Vector2 pos = { static_cast<float>(rand() % ((_maxLimit - w) * 2) + _minLimit),_groundPosY };
+		float posX = static_cast<float>(rand() % ((_maxLimit - w) * 2) + _minLimit);
+		//生成禁止区域なら、なかったことにしちゃお！
+		if (posX > _barrenRange.x && posX < _barrenRange.y) {
+			--i;
+			continue;
+		}
+		Vector2 pos = { posX,_groundPosY };
 		_enemis.push_back(new GabyoMan(pos, *_player));
 
 	}

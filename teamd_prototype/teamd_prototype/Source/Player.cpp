@@ -6,6 +6,7 @@
 #include "Const.h"
 #include "Enemy.h"
 #include "../House.h"
+#include "Collision.h"
 
 Player::Player(const Vector2 pos_)
 	:_startPos(pos_),
@@ -63,6 +64,16 @@ void Player::Update(bool canOperate_) {
 	if (_isGround) {
 		dir.y = 0.0f;
 	}
+
+	//判定から抜けてる
+	if (!_collFlag.CalledConf()) {
+		//横もしくは縦
+		if (_collFlag.SideAndBottomHit()) {
+			_collFlag.ClearSideAndBottomHitFlag();
+		}
+	}
+	_collFlag.SetPrevCalledFlag();
+
 	//ジャンプ
 	if (state != ANI_DAMAGE) {
 		if (_isGround) {
@@ -91,9 +102,9 @@ void Player::Draw(const Vector2& offset_) {
 	DrawRotaGraph3(s.x + ((n.x - s.x) / 2), s.y + ((n.y - s.y) / 2),
 					(IMG_SIZE_X / 2), (IMG_SIZE_Y / 2), scalingRatio.x, scalingRatio.y, (PI * 0),
 					_handle[state][aniCnt], true, isDirRight);
-	DrawBox(s.x, s.y, n.x, n.y, 0xffffffff, false);
+	//DrawBox(s.x, s.y, n.x, n.y, 0xffffffff, false);
 	aniFram++;
-	DrawFormatString(s.x, s.y - 15, 0xffffffff, "weight:%d", _weight);
+	//DrawFormatString(s.x, s.y - 15, 0xffffffff, "weight:%d", _weight);
 
 }
 
@@ -203,15 +214,31 @@ void Player::OnCollided(const Enemy& enemy_) {
 		break;
 	case EnemyName::GABYO:
 	{
-		if (state != ANI_DAMAGE) {
-			state = ANI_DAMAGE;
-			aniFram = 0;
+		_collFlag.SetCalledFlag();
+		//横もしくは下からあたってたなら終わり！
+		if (_collFlag.SideAndBottomHit()) {
+			return;
 		}
-		//吹き飛び
-		Vector2 n = _rect.Center();
-		Vector2 s = enemy_.Pos();
-		Vector2 flyVec = (n - s).Normalize() * 10.0f;
-		_vec = flyVec;
+		Rect2 ol = Overlap(Rect(), enemy_.Rect());
+		//方向取得
+		//上から&&接地ならいたい
+		if ((_vec.y > 0.0f && ol.W() > ol.H()) || _vec.y > abs(_vec.x) + 5.0f) {
+			if (enemy_.IsGround()) {
+				if (state != ANI_DAMAGE) {
+					state = ANI_DAMAGE;
+					aniFram = 0;
+				}
+				//吹き飛び
+				Vector2 n = _rect.Center();
+				Vector2 s = enemy_.Pos();
+				Vector2 flyVec = (n - s).Normalize() * 15.0f;
+				_vec = flyVec;
+			}
+		}
+		else {
+			_collFlag.SetSideAndBottomHitFlag();
+		}
+
 		break;
 	}
 	default:

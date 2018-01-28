@@ -126,6 +126,10 @@ public:
 	Rect2 Rect() const override {
 		return Rect2(_param.pos, _param.size);
 	}
+	bool IsGround() const override {
+		return _param.isGround;
+	}
+
 	void SetRect(const Rect2& rect_) override{
 		_param.pos = rect_.LT();
 		_param.size = rect_.Size();
