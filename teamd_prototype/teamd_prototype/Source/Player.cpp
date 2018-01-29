@@ -131,11 +131,6 @@ void Player::setState(KeyInput& key)
 			state = ANI_WALK;
 			isDirRight = true;
 		}
-		else if (key.GetKey(KEY_INPUT_SPACE))
-		{
-			state = ANI_DAMAGE;
-			aniFram = 0;
-		}
 		else
 		{
 			state = ANI_DEF;

@@ -128,7 +128,7 @@ void GameScene::Initialize()
 	}
 
 	//開始時間の取得
-	timeCun = 0;
+	timeCun = TIME_MAX;
 	timeStart = GetNowCount();
 
 	//変更●-------------
@@ -446,7 +446,7 @@ void GameScene::Update()
 		//	消滅処理-----------------------------------------------------------
 		efcMng.Delete();
 
-		if (timeCun < TIME_MAX)
+		if (timeCun > 0)
 		{
 			TimeCunter();
 		}
@@ -466,7 +466,7 @@ void GameScene::Update()
 void GameScene::TimeCunter()
 {
 	//経過時間
-	timeCun = (GetNowCount() - timeStart) * 0.001;
+	timeCun = TIME_MAX - (GetNowCount() - timeStart) * 0.001;
 
 }
 
@@ -587,15 +587,15 @@ void GameScene::Draw()
 		int num1;
 		int num2;
 
-		if (timeCun < TIME_MAX)
+		if (timeCun > 0)
 		{
-			num1 = ((GetNowCount() - timeStart) % 100) / 10;
-			num2 = ((GetNowCount() - timeStart) % 1000) / 100;
+			num1 = 10 - ((GetNowCount() - timeStart) % 100) / 10;
+			num2 = 10 - ((GetNowCount() - timeStart) % 1000) / 100;
 		}
 		else
 		{
-			num1 = 0;
-			num2 = 0;
+			num1 = TIME_MAX;
+			num2 = TIME_MAX;
 		}
 
 
@@ -610,12 +610,12 @@ void GameScene::Draw()
 
 	//終わる３秒前
 	//58
-	if (timeCun >= (TIME_MAX - 3))
+	if (timeCun < 3)
 	{
 		//-1回避
-		sceneCun = max(TIME_MAX - timeCun - 1,0);
+		sceneCun = max(timeCun, 0);
 		//58
-		if (((GetNowCount() - timeStart) * 0.001) <= TIME_MAX)
+		if (((GetNowCount() - timeStart) * 0.001) < TIME_MAX)
 		{
 			DrawGraph(500, 200, countNumImg[sceneCun], true);
 		}
