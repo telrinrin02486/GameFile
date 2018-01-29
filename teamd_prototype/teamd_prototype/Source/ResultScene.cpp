@@ -97,8 +97,15 @@ void ResultScene::Update()
 //---------------------------------------------------------------------
 void ResultScene::Draw()
 {
+	ImageMng *ui = ImageMng::GetInstance();
 	//背景を描画するぜ
-	ImageMng::GetInstance()->UiDraw(ID_resultBack, ID_resultButtom2,maskCnt);
+	ui->UiDraw(ID_resultBack, ID_resultButtom2,maskCnt);
+	//背景マスク
+	DrawExtendGraph(ui->GetUIID(ID_resultBackMask)->posL.x, ui->GetUIID(ID_resultBackMask)->posL.y,
+					ui->GetUIID(ID_resultBackMask)->posR.x, ui->GetUIID(ID_resultBackMask)->posR.y,
+					ui->GetUIID(ID_resultBackMask)->image, true);
+
+	//スコア
 	DrawFormatString(250, 250, 0xffffff00, "破壊スコア：%d", SceneManager::GetInstance().GetScore());
 
 }

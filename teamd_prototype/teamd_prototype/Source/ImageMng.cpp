@@ -56,7 +56,8 @@ ImageMng::ImageMng()
 	setUIID("../image/UI/tutrial/text9.png", ID_tut_text9, { 0, 400 }, { WINDOW_WIDTH,WINDOW_HEIGHT });
 
 	//resultUIÅAîwåiÇÃÉçÅ[Éh
-	setUIID("../image/result.png", ID_resultBack, { 0, 0 }, { WINDOW_WIDTH,WINDOW_HEIGHT });
+	setUIID("../image/UI/result/result.png", ID_resultBack, { 0, 0 }, { WINDOW_WIDTH,WINDOW_HEIGHT });
+	setUIID("../image/UI/mask/maskResult.png", ID_resultBackMask, { 0, 0 }, { WINDOW_WIDTH,WINDOW_HEIGHT });
 	setUIID("../image/UI/result/resultButtom1.png", ID_resultButtom1, { buttomPos1.x, buttomPos1.y } ,{ buttomPos1.x +150,buttomPos1.y +50});
 	setUIID("../image/UI/result/resultButtom2.png", ID_resultButtom2, { buttomPos2.x, buttomPos2.y } ,{ buttomPos2.x +150,buttomPos2.y +50});
 

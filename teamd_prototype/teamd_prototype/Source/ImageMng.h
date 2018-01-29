@@ -44,6 +44,7 @@ enum ID_UI
 	ID_resultButtom1,
 	ID_resultButtom2,
 	ID_mask,
+	ID_resultBackMask,
 	ID_MAX
 };
 

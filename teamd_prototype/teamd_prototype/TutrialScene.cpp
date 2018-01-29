@@ -102,7 +102,7 @@ void TutrialScene::Update()
 	}
 	else
 	{
-		if (key.GetKeyUp(KEY_INPUT_RETURN))
+		if (key.GetKeyUp(KEY_INPUT_RETURN) && (uiID < ID_tut_text9))
 		{
 			uiID++;
 		}
@@ -288,9 +288,17 @@ void TutrialScene::textDraw(int id)
 	{
 		//yazirusi
 		DrawExtendGraph(ui->GetUIID(ID_tut_yazirusi)->posL.x, ui->GetUIID(ID_tut_yazirusi)->posL.y,
-			ui->GetUIID(ID_tut_yazirusi)->posR.x, ui->GetUIID(ID_tut_yazirusi)->posR.y,
-			ui->GetUIID(ID_tut_yazirusi)->image, true);
+						ui->GetUIID(ID_tut_yazirusi)->posR.x, ui->GetUIID(ID_tut_yazirusi)->posR.y,
+						ui->GetUIID(ID_tut_yazirusi)->image, true);
 	}
+
+	//if (id == ID_tut_text9)
+	//{
+	//	//yazirusi
+	//	DrawExtendGraph(ui->GetUIID(ID_tut_yazirusi)->posL.x, ui->GetUIID(ID_tut_yazirusi)->posL.y,
+	//					ui->GetUIID(ID_tut_yazirusi)->posR.x, ui->GetUIID(ID_tut_yazirusi)->posR.y,
+	//					ui->GetUIID(ID_tut_yazirusi)->image, true);
+	//}
 	
 }
 
