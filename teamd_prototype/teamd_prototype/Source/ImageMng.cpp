@@ -42,6 +42,19 @@ ImageMng::ImageMng()
 	setUIID("../image/UI/title/startButtom.png", ID_startButtom, { buttomPos1.x, buttomPos1.y }, { buttomPos1.x +150,buttomPos1.y +50});
 	setUIID("../image/UI/title/tutorialButtom.png", ID_tutorialButtom, { buttomPos2.x, buttomPos2.y }, { buttomPos2.x +150, buttomPos2.y + 50});
 
+	//tutrialUI
+	setUIID("../image/UI/mask/tutrialMask.png", ID_tut_mask, { 0, 400 }, { WINDOW_WIDTH,WINDOW_HEIGHT });
+	setUIID("../image/UI/tutrial/yazirusi.png", ID_tut_yazirusi, { 0, 0 }, { 0,0 });
+	setUIID("../image/UI/tutrial/text1.png", ID_tut_text1, { 0, 400 }, { WINDOW_WIDTH,WINDOW_HEIGHT });
+	setUIID("../image/UI/tutrial/text2.png", ID_tut_text2, { 0, 400 }, { WINDOW_WIDTH,WINDOW_HEIGHT });
+	setUIID("../image/UI/tutrial/text3.png", ID_tut_text3, { 0, 400 }, { WINDOW_WIDTH,WINDOW_HEIGHT });
+	setUIID("../image/UI/tutrial/text4.png", ID_tut_text4, { 0, 400 }, { WINDOW_WIDTH,WINDOW_HEIGHT });
+	setUIID("../image/UI/tutrial/text5.png", ID_tut_text5, { 0, 400 }, { WINDOW_WIDTH,WINDOW_HEIGHT });
+	setUIID("../image/UI/tutrial/text6.png", ID_tut_text6, { 0, 400 }, { WINDOW_WIDTH,WINDOW_HEIGHT });
+	setUIID("../image/UI/tutrial/text7.png", ID_tut_text7, { 0, 400 }, { WINDOW_WIDTH,WINDOW_HEIGHT });
+	setUIID("../image/UI/tutrial/text8.png", ID_tut_text8, { 0, 400 }, { WINDOW_WIDTH,WINDOW_HEIGHT });
+	setUIID("../image/UI/tutrial/text9.png", ID_tut_text9, { 0, 400 }, { WINDOW_WIDTH,WINDOW_HEIGHT });
+
 	//resultUIÅAîwåiÇÃÉçÅ[Éh
 	setUIID("../image/result.png", ID_resultBack, { 0, 0 }, { WINDOW_WIDTH,WINDOW_HEIGHT });
 	setUIID("../image/UI/result/resultButtom1.png", ID_resultButtom1, { buttomPos1.x, buttomPos1.y } ,{ buttomPos1.x +150,buttomPos1.y +50});
@@ -174,6 +187,8 @@ const int *ImageMng::GetImgDivID(string fileName, Vector2 divCnt, Vector2 divSiz
 
 void ImageMng::UiDraw(ID_UI startID, ID_UI endID, int _maskCnt)
 {
+	
+
 	int id = startID;
 	while (id <= endID)
 	{
@@ -182,14 +197,12 @@ void ImageMng::UiDraw(ID_UI startID, ID_UI endID, int _maskCnt)
 						GetUIID(id)->image, true);
 		id++;
 	}
-
 	//ç≈å„Ç…maskï`âÊ
-	if((_maskCnt / MASK_CNT) % 2 == 0 )
+	if ((_maskCnt / MASK_CNT) % 2 == 0)
 
 	{
 		DrawExtendGraph(GetUIID(ID_mask)->posL.x, GetUIID(ID_mask)->posL.y,
 			GetUIID(ID_mask)->posR.x, GetUIID(ID_mask)->posR.y,
 			GetUIID(ID_mask)->image, true);
 	}
-
 }

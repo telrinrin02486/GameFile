@@ -16,9 +16,9 @@
 #define MASK_CNT 15
 
 //UI_POS
-const Vector2 titlePos = {400,120};//titlePos
-const Vector2 buttomPos1 = { 400,250 };//buttomPos1
-const Vector2 buttomPos2 = { 400,350 };//buttomPos2
+const Vector2 titlePos = {400,120};
+const Vector2 buttomPos1 = { 400,250 };
+const Vector2 buttomPos2 = { 400,350 };
 
 
 enum ID_UI
@@ -27,6 +27,19 @@ enum ID_UI
 	ID_title,
 	ID_startButtom,
 	ID_tutorialButtom,
+
+	ID_tut_mask,
+	ID_tut_yazirusi,
+	ID_tut_text1,
+	ID_tut_text2,
+	ID_tut_text3,
+	ID_tut_text4,
+	ID_tut_text5,
+	ID_tut_text6,
+	ID_tut_text7,
+	ID_tut_text8,
+	ID_tut_text9,
+
 	ID_resultBack,
 	ID_resultButtom1,
 	ID_resultButtom2,

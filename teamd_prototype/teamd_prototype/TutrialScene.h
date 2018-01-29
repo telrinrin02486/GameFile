@@ -6,7 +6,7 @@
 
 //=====================================================================
 //						  TutrialScene.h
-//						ゲーム管理クラス
+//						チュートリアル管理クラス
 //=====================================================================
 
 //MAX 60秒
@@ -14,14 +14,16 @@
 
 class CB_1;
 class Player;
+class House;
 class EnemyNyn;
 class TutrialScene : public BaseScene
 {
 private:
 
-	Player	*_player;
-	EnemyNyn *enemy;
-	
+	Player		*_player;
+	House		*house;
+	int uiID;
+	bool tutFlag;
 
 	Vector2 _playerStartPos;
 	Rect2	_playerInFrame;//プレイヤーを追いかける枠（カメラ用
@@ -42,5 +44,10 @@ public:
 	void Finalize();	//終了処理
 	void Update();		//更新
 	void Draw();		//描画
-
+	void modul1();
+	void modul2();
+	void modul3();
+	void modul4();
+	void modul5();
+	void textDraw(int id);
 };

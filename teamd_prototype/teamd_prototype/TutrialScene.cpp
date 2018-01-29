@@ -1,6 +1,6 @@
 //=====================================================================
 //						  TutrialScene.cpp
-//						ゲーム管理クラス
+//						チュートリアル管理クラス
 //=====================================================================
 using namespace std;
 
@@ -19,13 +19,10 @@ using namespace std;
 #include "Camera.h"
 
 #include "Player.h"
-
-
-#include "EnemyNyn.h"
+#include "../House.h"
 
 #include "Collision.h"
 #include "SceneManager.h"
-#include "../BloodManager.h"
 
 #include "SoundManager.h"
 
@@ -58,21 +55,21 @@ TutrialScene::~TutrialScene()
 //---------------------------------------------------------------------
 void TutrialScene::Initialize()
 {
-	EffectManager& efMng = EffectManager::Instance();
-	BloodManager& bloodMng = BloodManager::Instance();
-	bloodMng.Init();
+	
 	//背景画像をロード
 	backImg = LoadGraph("../image/haikei.jpg");
-
 	_player = new Player(Vector2(0.0f,50.0f));
 	_player->SetPos({ WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2 });//tutrialなのでstartPosの再設定
 	_prevPlayerGroundFlg = _player->IsGround();
 
 	int w, h;
 	GetWindowSize(&w, &h);
-	Vector2 pos = { _player->Pos().x -300, _player->Pos().y };
-	enemy = new EnemyNyn(pos, *_player);
+	Vector2 pos = { _player->Pos().x - 300, _player->Pos().y };
+	house = new House(pos);
 
+	//矢印の座標セット
+	ImageMng::GetInstance()->setUIID("../image/UI/tutrial/yazirusi.png", ID_tut_yazirusi, { pos.x - 100 ,pos.y-100}, pos);
+	uiID = ID_tut_text1;
 }
 
 //---------------------------------------------------------------------
@@ -82,7 +79,7 @@ void TutrialScene::Finalize()
 {
 	//各種開放
 	delete _player;
-	delete enemy;
+	delete house;
 }
 
 //---------------------------------------------------------------------
@@ -91,7 +88,6 @@ void TutrialScene::Finalize()
 void TutrialScene::Update()
 {
 	EffectManager& efcMng = EffectManager::Instance();
-	BloodManager& bloodMng = BloodManager::Instance();
 	bool deadFlg = false;
 	KeyInput& key = KeyInput::GetInstance();
 	Camera& camera = Camera::Instance();
@@ -99,99 +95,22 @@ void TutrialScene::Update()
 	GetWindowSize(&windowWidth, &windowHeight);
 
 	//titleへ
-	if (key.GetKeyUp(KEY_INPUT_RETURN))
+	if (key.GetKeyUp(KEY_INPUT_TAB))
 	{
 		SceneManager::GetInstance().ChangeScene(SType_TITLE);
 		SoundManager::GetInstance().Stop(BGM_TUTRIAL);
 	}
 	else
 	{
-		//　更新---------------------------------------------------------------
-		_player->Update(true);
-		if (enemy != nullptr)
+		if (key.GetKeyUp(KEY_INPUT_RETURN))
 		{
-			enemy->Update();
+			uiID++;
 		}
-		bloodMng.Update();
-
-
-		if (enemy != nullptr)
-		{
-			if (enemy->GetState() == Enemy::State::isDed)
-			{
-				//SE呼び出し
-				//キャラクタが持ってた方が可用性は高い、が知らん
-				SoundManager::GetInstance().Play(TENKA);
-				delete enemy;
-				enemy = nullptr;
-			}
-		}
-
-
-		//カメラの移動
-		//カメラ動かし
-		{
-			Rect2 playerRect = _player->Rect();
-			Vector2 framePos = _playerInFrame.LT() + (camera.Pos() + camera.Offset());
-			Vector2 frameSize = _playerInFrame.Size();
-			//カメラのフレーム内から出てたら、そいつに合わせるように移動させる
-			//→プレイヤーの矩形に合わせればいい。
-			framePos.x = max(min(framePos.x, playerRect.Left()), playerRect.Right() - frameSize.x);
-			framePos.y = max(min(framePos.y, playerRect.Top()), playerRect.Bottom() - frameSize.y);
-
-			Vector2 moveValue = framePos - (_playerInFrame.LT() + (camera.Pos() + camera.Offset()));
-			camera.Move(moveValue);
-		}
-
-
-
-
-		//こっから↓は押し出しのみ！とかならわかりやすいかな
-		Rect2 plr = _player->Rect();
-		bool pgflg = false;
-
-		//プレイヤーと地面
-		if (_player->Rect().Bottom() >_groundPosY)
-		{
-			plr.Move(Vector2(0.0f, _groundPosY - _player->Rect().Bottom()));
-			_player->SetRect(plr);
-			pgflg = true;
-		}
-
-		//enemy
-		if (enemy != nullptr)
-		{
-			bool nynGroundFlg = false;
-			Rect2 nynRect = enemy->Rect();
-			//飛びすぎちゃうなぁ。
-			if (IsHit(_player->Rect(), enemy->Rect()))
-			{
-				enemy->OnCollided(*_player);
-			}
-			//ground
-			if (enemy->Rect().Bottom() > _groundPosY)
-			{
-				nynRect.Move(Vector2(0.0f, _groundPosY - enemy->Rect().Bottom()));
-				enemy->SetRect(nynRect);
-				nynGroundFlg = true;
-			}
-			enemy->SetGroundFlag(nynGroundFlg);
-		}
-
-		_player->SetGroundFlg(pgflg);
-		//プレイヤーが地面に降り立った瞬間揺れを設定
-		if (!_prevPlayerGroundFlg && _player->IsGround())
-		{
-			camera.SetEarthquake(Vector2(0.0f, 5.0f));
-		}
-		_prevPlayerGroundFlg = _player->IsGround();
-
-		efcMng.Update();
-		camera.Update();
-
-		//	消滅処理-----------------------------------------------------------
-		efcMng.Delete();
-
+		modul1();
+		modul2();
+		modul3();
+		modul4();
+		modul5();
 	}
 }
 
@@ -203,7 +122,6 @@ void TutrialScene::Draw()
 
 	//パラメタ取得やらなんやら
 	EffectManager& efcMng = EffectManager::Instance();
-	BloodManager& bloodMng = BloodManager::Instance();
 	Camera& camera = Camera::Instance();
 	Vector2 offset = camera.Pos() + camera.Offset();
 	int windowW, windowH;
@@ -221,17 +139,159 @@ void TutrialScene::Draw()
 	//player
 	_player->Draw(offset);
 
-	//enemy
-	//////////
-	if (enemy != nullptr)
+	//house
+	if (house != nullptr)
 	{
-		enemy->Draw(camera);
+		house->Draw(camera);
 	}
-	//血
-	bloodMng.Draw(camera);
 
 	//エフェクト
 	efcMng.Draw(offset);
-
-
+	textDraw(uiID);
 }
+
+void TutrialScene::modul1()
+{
+	if (uiID > ID_tut_text5)
+	{
+		_player->Update(true);
+	}
+
+	if (house != nullptr)
+	{
+		house->Update();
+	}
+	if (house != nullptr)
+	{
+		if (house->IsDead())
+		{
+			SoundManager::GetInstance().Play(TENKA);
+			SoundManager::GetInstance().Play(HIT_1);
+			delete house;
+			house = nullptr;
+		}
+	}
+}
+
+void TutrialScene::modul2()
+{
+	//カメラの移動
+	//カメラ動かし
+	Camera& camera = Camera::Instance();
+	Rect2 playerRect = _player->Rect();
+	Vector2 framePos = _playerInFrame.LT() + (camera.Pos() + camera.Offset());
+	Vector2 frameSize = _playerInFrame.Size();
+	//カメラのフレーム内から出てたら、そいつに合わせるように移動させる
+	//→プレイヤーの矩形に合わせればいい。
+	framePos.x = max(min(framePos.x, playerRect.Left()), playerRect.Right() - frameSize.x);
+	framePos.y = max(min(framePos.y, playerRect.Top()), playerRect.Bottom() - frameSize.y);
+
+	Vector2 moveValue = framePos - (_playerInFrame.LT() + (camera.Pos() + camera.Offset()));
+	camera.Move(moveValue);
+}
+
+void TutrialScene::modul3()
+{
+	if (house != nullptr)
+	{
+		if (IsHit(house->Rect(), _player->Rect()))
+		{
+			house->OnCollided(*_player);
+		}
+	}
+}
+
+void TutrialScene::modul4()
+{
+	//こっから↓は押し出しのみ！とかならわかりやすいかな
+	Rect2 plr = _player->Rect();
+	bool pgflg = false;
+	//プレイヤーと地面
+	if (_player->Rect().Bottom() >_groundPosY)
+	{
+		plr.Move(Vector2(0.0f, _groundPosY - _player->Rect().Bottom()));
+		_player->SetRect(plr);
+		pgflg = true;
+	}
+	//おうち
+	if (house != nullptr)
+	{
+		Rect2 hr = house->Rect();
+		bool houseGroundFlg = false;
+		//とplayer
+		if (IsHit(_player->Rect(), house->Rect()))
+		{
+			if (!house->SideHitFlag()) {
+				//横からは当たってほしくないので、汎用は使わない
+				Rect2 ol = Overlap(hr, plr);
+				Vector2 cbCenter = hr.Center();
+				Vector2 plCenter = plr.Center();
+				Vector2 moveValue = Vector2::ZERO;
+				Vector2 vec = plCenter - cbCenter;
+				//縦への押し出し
+				moveValue.y = ol.Size().y;
+				if (vec.y < 0.0f)
+				{
+					moveValue.y *= -1.0f;
+				}
+				//player
+				plr.Move(moveValue);
+				_player->SetRect(plr);
+				pgflg = true;
+				houseGroundFlg = true;
+			}
+		}
+		//と地面
+		if (house->Rect().Bottom() > _groundPosY)
+		{
+			hr.Move(Vector2(0.0f, _groundPosY - house->Rect().Bottom()));
+			house->SetRect(hr);
+			houseGroundFlg = true;
+		}
+		house->SetGroundFlag(houseGroundFlg);
+	}
+	_player->SetGroundFlg(pgflg);
+}
+
+void TutrialScene::modul5()
+{
+	EffectManager& efcMng = EffectManager::Instance();
+	Camera& camera = Camera::Instance();
+	//プレイヤーが地面に降り立った瞬間揺れを設定
+	if (!_prevPlayerGroundFlg && _player->IsGround())
+	{
+		camera.SetEarthquake(Vector2(0.0f, 5.0f));
+	}
+	_prevPlayerGroundFlg = _player->IsGround();
+
+	efcMng.Update();
+	camera.Update();
+
+	//	消滅処理-----------------------------------------------------------
+	efcMng.Delete();
+}
+
+void TutrialScene::textDraw(int id)
+{
+	ImageMng *ui = ImageMng::GetInstance();
+	//mask
+	DrawExtendGraph(ui->GetUIID(ID_tut_mask)->posL.x, ui->GetUIID(ID_tut_mask)->posL.y,
+					ui->GetUIID(ID_tut_mask)->posR.x, ui->GetUIID(ID_tut_mask)->posR.y,
+					ui->GetUIID(ID_tut_mask)->image, true);
+
+	//text
+	DrawExtendGraph(ui->GetUIID(id)->posL.x, ui->GetUIID(id)->posL.y,
+					ui->GetUIID(id)->posR.x, ui->GetUIID(id)->posR.y,
+					ui->GetUIID(id)->image, true);
+
+	if (id == ID_tut_text5)
+	{
+		//yazirusi
+		DrawExtendGraph(ui->GetUIID(ID_tut_yazirusi)->posL.x, ui->GetUIID(ID_tut_yazirusi)->posL.y,
+			ui->GetUIID(ID_tut_yazirusi)->posR.x, ui->GetUIID(ID_tut_yazirusi)->posR.y,
+			ui->GetUIID(ID_tut_yazirusi)->image, true);
+	}
+	
+}
+
+
