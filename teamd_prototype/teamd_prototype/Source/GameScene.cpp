@@ -222,6 +222,7 @@ void GameScene::Update()
 				/*EnemyFactorのソースが存在しないので一時コメント*/
 				//EnemyFactory& ef = EnemyFactory::Instance();
 				//_enemis.push_back(ef.Create(EnemyName::NYN,Vector2(posX,_groundPosY),*_player));
+				_enemis.push_back(new EnemyNyn(Vector2(posX, _groundPosY), *_player));
 			}
 		}
 		//houseの生成
