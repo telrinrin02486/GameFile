@@ -437,7 +437,7 @@ void GameScene::Update()
 			Vector2 pos = _player->Rect().Center();
 			pos.y += _player->Rect().H() * 0.25f;
 			em.EffectCreate(pos, EFFECT_TYPE::EFFECT_TYPE_SMOKE);
-			camera.SetEarthquake(Vector2(0.0f, 5.0f));
+			camera.SetEarthquake(Vector2(0.0f, _player->Vec().y));
 		}
 		_prevPlayerGroundFlg = _player->IsGround();
 
