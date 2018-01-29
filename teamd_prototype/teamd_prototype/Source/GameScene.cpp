@@ -69,7 +69,7 @@ void GameScene::Initialize()
 	bloodMng.Init();
 	int windowWidth, windowHight;
 	GetWindowSize(&windowWidth, &windowHight);
-	_barrenRange = { _minLimit,_minLimit+400 };//不毛地帯の横幅
+	_barrenRange = { _minLimit-100,_minLimit+500 };//不毛地帯の横幅
 	//シーン切り替えフラグ
 	_isChange = false;
 	_crusheCount = 0;
@@ -117,7 +117,13 @@ void GameScene::Initialize()
 	for (int i = 0; i < 10; ++i) {
 		int w, h;
 		GetWindowSize(&w, &h);
-		Vector2 pos = { static_cast<float>(rand() % ((_maxLimit - w) * 2) + _minLimit),_groundPosY };
+		float posX = static_cast<float>(rand() % ((_maxLimit - w) * 2) + _minLimit);
+		//生成禁止区域なら、なかったことにしちゃお！
+		if (posX > _barrenRange.x && posX < _barrenRange.y) {
+			--i;
+			continue;
+		}
+		Vector2 pos = { posX,_groundPosY };
 		_houses.push_back(new House(pos));
 	}
 
@@ -427,6 +433,10 @@ void GameScene::Update()
 		_player->SetGroundFlg(pgflg);
 		//プレイヤーが地面に降り立った瞬間揺れを設定
 		if (!_prevPlayerGroundFlg && _player->IsGround()) {
+			EffectManager& em = EffectManager::Instance();
+			Vector2 pos = _player->Rect().Center();
+			pos.y += _player->Rect().H() * 0.25f;
+			em.EffectCreate(pos, EFFECT_TYPE::EFFECT_TYPE_SMOKE);
 			camera.SetEarthquake(Vector2(0.0f, 5.0f));
 		}
 		_prevPlayerGroundFlg = _player->IsGround();

@@ -40,7 +40,7 @@ void Player::Update(bool canOperate_) {
 	Vector2 dir = _vec;
 	constexpr float moveSpeed = 5.0f;
 	constexpr float jumpPower = 15.0f;
-	constexpr float stampPower = 10.0f;
+	constexpr float stampPower = 5.0f;
 	constexpr float a = 9.8f*(1.0f / 20.0f);
 	if (state != ANI_DAMAGE) {
 		if (canOperate_) {
@@ -175,8 +175,6 @@ void Player::setMove()
 		}
 		if (aniFram % ANIM_SPEED * 2 == 0)
 		{
-			EffectManager& em = EffectManager::Instance();
-			em.EffectCreate(_rect.Center(), EFFECT_TYPE::EFFECT_TYPE_SMOKE);
 			state = ANI_DEF;
 		}
 		break;
