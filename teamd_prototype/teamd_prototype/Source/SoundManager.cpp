@@ -22,22 +22,25 @@ void SoundManager::Initialize()
 {
 	char filePath[SOUND_MAX][256] =
 	{
-		"../Sound/musmus/BGM/tutrialBGM.mp3",		//tutrialBGM
-		"../Sound/musmus/BGM/titleBGM.mp3",			//titleBGM
-		"../Sound/musmus/BGM/resultBGM.mp3",		//resultBGM
-		"../Sound/musmus/BGM/gameBGM.mp3",			//gameBGM
-		"../Sound/musmus/Button/btn1.mp3",			//title,resultに使用するbutton
-		"../Sound/musmus/Button/btn2.mp3",
-		"../Sound/musmus/SceneSwitch/st012.mp3",
-		"../Sound/taira-komori/SceneSwitch/Cute.mp3",
-		"../Sound/other/whistle.mp3",
-		"../Sound/taira-komori/SE/Kick.mp3",
-		"../Sound/vita-chi/Scream/Man.wav",
-		"../Sound/vita-chi/Scream/Woman.wav",
+		"../Sound/musmus/BGM/tutrialBGM.mp3",			// BGM_TUTRIAL	：tutrialBGM
+		"../Sound/musmus/BGM/titleBGM.mp3",				// BGM_TITLE	：titleBGM
+		"../Sound/musmus/BGM/resultBGM.mp3",			// BGM_RESULT	：resultBGM
+		"../Sound/musmus/BGM/gameBGM.mp3",				// BGM_GAME		：gameBGM
+		"../Sound/musmus/Button/btn1.mp3",				// BUTTON_1		：title,resultに使用するbutton
+		"../Sound/musmus/Button/btn2.mp3",				// BUTTON_2
+		"../Sound/musmus/SceneSwitch/st012.mp3",		// SS_1
+		"../Sound/taira-komori/SceneSwitch/Cute.mp3",	// SS_2
+		"../Sound/other/whistle.mp3",					// SE_WHISTLE
+		"../Sound/taira-komori/SE/Kick.mp3",			// SE_STEPS
+		"../Sound/On-Jin/BloodSplash.mp3",				// SE_BLOOD
+		"../Sound/On-Jin/collapse.mp3",					// SE_MASH
+		"../Sound/On-Jin/Fall.mp3",						// SE_FALL
+		"../Sound/vita-chi/Scream/Man.wav",				// SCR_MAN
+		"../Sound/vita-chi/Scream/Woman.wav",			// SCR_WOMAN
 
-		"../Sound/hit1.wav",
-		"../Sound/tenka.wav",
-		"../Sound/bakuhatu.wav"//まだないです
+		"../Sound/hit1.wav",							// HIT_1,
+		"../Sound/tenka.wav",							// TENKA,
+		"../Sound/bakuhatu.wav"//まだないです			// EXPLOSION,
 	};
 
 	for (int i = 0; i < SOUND_MAX; i++)
