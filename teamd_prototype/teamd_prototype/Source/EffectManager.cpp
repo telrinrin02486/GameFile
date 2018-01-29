@@ -153,7 +153,7 @@ void EffectManager::EffectCreate( Vector2 pos, EFFECT_TYPE effectType )
 		newSmoke->Initialize( pos );
 		newSmoke->SetImg( _img[ EFFECT_TYPE_SMOKE ] );
 		_effects.push_back( newSmoke );
-		soundMng.Play(SOUND_TYPE::EXPLOSION);
+		soundMng.Play(SOUND_TYPE::SE_STEPS);
 	}
 		break;
 
