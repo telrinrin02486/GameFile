@@ -48,6 +48,8 @@ GameScene::GameScene()
 	SoundManager::GetInstance().PlayLoop(BGM_GAME);
 
 	_endTime = 60;//終了後の余韻(フレーム単位
+
+
 }
 
 //---------------------------------------------------------------------
@@ -144,6 +146,8 @@ void GameScene::Initialize()
 	sceneCun = 0;
 	SceneStartFlg = false;
 	SceneEndFlg = false;
+
+	endcun = 0;
 	//----------
 }
 
@@ -610,23 +614,24 @@ void GameScene::Draw()
 
 	//終わる３秒前
 	//58
-	if (timeCun < 3)
+	if (timeCun <= 3)
 	{
 		//-1回避
 		sceneCun = max(timeCun, 0);
 		//58
-		if (((GetNowCount() - timeStart) * 0.001) < TIME_MAX)
+		if (timeCun > 0)
 		{
-			DrawGraph(500, 200, countNumImg[sceneCun], true);
+			DrawGraph(500, 200, countNumImg[timeCun-1], true);
 		}
 
 		//61
-		if (((GetNowCount() - timeStart) * 0.001) >= TIME_MAX)
+		if (timeCun <= 0)
 		{
 			DrawGraph(400, 200, endImg, true);
+			endcun++;
 		}
 
-		if (((GetNowCount() - timeStart) * 0.001) >= (TIME_MAX + 1))
+		if (endcun >= 30)
 		{
 			SceneEndFlg = true;
 		}

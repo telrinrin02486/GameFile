@@ -8,6 +8,10 @@ private:
 	int resultButtom1;
 	int resultButtom2;
 	
+	int scoreImg;
+	int numImg[10];
+
+
 public:
 	ResultScene();
 	~ResultScene();

@@ -43,6 +43,12 @@ void ResultScene::Initialize()
 	maskCnt = 0;
 	SceneManager::GetInstance().setNextSceneType(SType_GAME);
 	SoundManager::GetInstance().PlayLoop(BGM_RESULT);
+
+	scoreImg = LoadGraph("../image/Score.png");
+
+	LoadDivGraph("../image/Num.png", 10, 10, 1, 22, 36, numImg);
+
+
 }
 
 //---------------------------------------------------------------------
@@ -106,7 +112,13 @@ void ResultScene::Draw()
 					ui->GetUIID(ID_resultBackMask)->image, true);
 
 	//スコア
-	DrawFormatString(250, 250, 0xffffff00, "破壊スコア：%d", SceneManager::GetInstance().GetScore());
+	//DrawFormatString(250, 250, 0xffffff00, "破壊スコア：%d", SceneManager::GetInstance().GetScore());
+
+	DrawGraph(200, 200, scoreImg, true);
+
+	DrawGraph(310, 200, numImg[(SceneManager::GetInstance().GetScore() / 100) % 10], true);
+	DrawGraph(346, 200, numImg[(SceneManager::GetInstance().GetScore() / 10) % 10], true);
+	DrawGraph(382, 200, numImg[(SceneManager::GetInstance().GetScore() / 1) % 10], true);
 
 }
 
