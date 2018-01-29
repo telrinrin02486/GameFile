@@ -153,7 +153,7 @@ void EffectManager::EffectCreate( Vector2 pos, EFFECT_TYPE effectType )
 		newSmoke->Initialize( pos );
 		newSmoke->SetImg( _img[ EFFECT_TYPE_SMOKE ] );
 		_effects.push_back( newSmoke );
-		soundMng.Play(SOUND_TYPE::EXPLOSION);
+		soundMng.Play(SOUND_TYPE::SE_STEPS);
 	}
 		break;
 
@@ -163,6 +163,8 @@ void EffectManager::EffectCreate( Vector2 pos, EFFECT_TYPE effectType )
 		newBloodE->Initialize( pos );
 		newBloodE->SetImg( _img[ EFFECT_TYPE_BLOOD ] );
 		_effects.push_back( newBloodE );
+		soundMng.Play(SOUND_TYPE::SE_BLOOD);
+		soundMng.Play(SOUND_TYPE::SE_MASH);
 	}
 		break;
 
@@ -172,6 +174,7 @@ void EffectManager::EffectCreate( Vector2 pos, EFFECT_TYPE effectType )
 		newFall->Initialize( pos );
 		newFall->SetImg( _img[ EFFECT_TYPE_FALL ] );
 		_effects.push_back( newFall );
+		soundMng.Play(SOUND_TYPE::SE_FALL);
 	}
 		break;
 
