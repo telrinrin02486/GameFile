@@ -145,7 +145,7 @@ void Player::setState(KeyInput& key)
 	else
 	{
 		//åªç›stateÇ™jumpÅAweighÅAdamage ÅAÇ©!_isGround
-		 if (((GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_3) != 0) || key.GetKeyDown(KEY_INPUT_DOWN))
+		 if ((((GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_3) != 0) || key.GetKeyDown(KEY_INPUT_DOWN)) && !_isGround)
 		{
 			state = ANI_WEIGH;
 			aniFram = 1;

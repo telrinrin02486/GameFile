@@ -193,20 +193,7 @@ void GameScene::Update()
 	int windowWidth, windowHeight;
 	GetWindowSize(&windowWidth, &windowHeight);
 
-	//resultへ
-	if (key.GetKeyUp(KEY_INPUT_2))
-	{
-		SceneManager::GetInstance().ChangeScene(SType_RESULT);
-		SoundManager::GetInstance().Stop(BGM_GAME);
-	}
-	else 
-	{
-		if (key.GetKeyUp(KEY_INPUT_1)) {
-			//これ結構怖いなぁ。
-			//finalize忘れてたらメモリリーク起こるじゃん
-			Finalize();
-			Initialize();//リセット
-		}
+	
 		//　更新---------------------------------------------------------------
 		_player->Update(SceneStartFlg && !SceneEndFlg);
 		for (auto e : _enemis) {
@@ -462,7 +449,6 @@ void GameScene::Update()
 				SoundManager::GetInstance().Stop(BGM_GAME);
 			}
 		}
-	}
 }
 //---------------------------------------------------------------------
 //　時間カウント

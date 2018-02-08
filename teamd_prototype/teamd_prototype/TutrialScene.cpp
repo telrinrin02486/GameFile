@@ -70,6 +70,9 @@ void TutrialScene::Initialize()
 	//矢印の座標セット
 	ImageMng::GetInstance()->setUIID("../image/UI/tutrial/yazirusi.png", ID_tut_yazirusi, { pos.x - 100 ,pos.y-100}, pos);
 	uiID = ID_tut_text1;
+
+	nowPad = 0;
+	oldPad = nowPad;
 }
 
 //---------------------------------------------------------------------
@@ -83,7 +86,8 @@ void TutrialScene::Finalize()
 }
 
 //---------------------------------------------------------------------
-//　更新
+//　
+
 //---------------------------------------------------------------------
 void TutrialScene::Update()
 {
@@ -93,17 +97,22 @@ void TutrialScene::Update()
 	Camera& camera = Camera::Instance();
 	int windowWidth, windowHeight;
 	GetWindowSize(&windowWidth, &windowHeight);
+	nowPad = GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_4;
 
 	//titleへ
-	if (key.GetKeyUp(KEY_INPUT_TAB))
+	if (((nowPad == 0 && oldPad != 0) || key.GetKeyUp(KEY_INPUT_RETURN)) && (uiID >= ID_tut_text9) && house == nullptr)
 	{
 		SceneManager::GetInstance().ChangeScene(SType_TITLE);
 		SoundManager::GetInstance().Stop(BGM_TUTRIAL);
 	}
 	else
 	{
-		if (key.GetKeyUp(KEY_INPUT_RETURN) && (uiID < ID_tut_text9))
+		if (((nowPad == 0 && oldPad != 0) || key.GetKeyUp(KEY_INPUT_RETURN)) && (uiID < ID_tut_text9))
 		{
+			if (!SoundManager::GetInstance().PlayCheak(BUTTON_1))
+			{
+				SoundManager::GetInstance().Play(BUTTON_1);
+			}
 			uiID++;
 		}
 		modul1();
@@ -112,6 +121,8 @@ void TutrialScene::Update()
 		modul4();
 		modul5();
 	}
+
+	oldPad = nowPad;
 }
 
 //---------------------------------------------------------------------

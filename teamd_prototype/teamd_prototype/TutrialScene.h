@@ -33,6 +33,7 @@ private:
 
 	int _minLimit, _maxLimit;
 
+	int nowPad, oldPad;
 
 
 public:
