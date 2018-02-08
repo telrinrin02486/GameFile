@@ -39,6 +39,7 @@ enum ID_UI
 	ID_tut_text7,
 	ID_tut_text8,
 	ID_tut_text9,
+	ID_tut_next,
 
 	ID_resultBack,
 	ID_resultButtom1,

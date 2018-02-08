@@ -54,6 +54,7 @@ ImageMng::ImageMng()
 	setUIID("../image/UI/tutrial/text7.png", ID_tut_text7, { 0, 400 }, { WINDOW_WIDTH,WINDOW_HEIGHT });
 	setUIID("../image/UI/tutrial/text8.png", ID_tut_text8, { 0, 400 }, { WINDOW_WIDTH,WINDOW_HEIGHT });
 	setUIID("../image/UI/tutrial/text9.png", ID_tut_text9, { 0, 400 }, { WINDOW_WIDTH,WINDOW_HEIGHT });
+	setUIID("../image/UI/tutrial/next.png", ID_tut_next, { 0, 400 }, { WINDOW_WIDTH,WINDOW_HEIGHT });
 
 	//resultUIÅAîwåiÇÃÉçÅ[Éh
 	setUIID("../image/UI/result/result.png", ID_resultBack, { 0, 0 }, { WINDOW_WIDTH,WINDOW_HEIGHT });

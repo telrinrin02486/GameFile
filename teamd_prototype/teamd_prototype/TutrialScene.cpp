@@ -68,9 +68,10 @@ void TutrialScene::Initialize()
 	house = new House(pos);
 
 	//矢印の座標セット
-	ImageMng::GetInstance()->setUIID("../image/UI/tutrial/yazirusi.png", ID_tut_yazirusi, { pos.x - 100 ,pos.y-100}, pos);
+	ImageMng::GetInstance()->setUIID("../image/UI/tutrial/yazirusi.png", ID_tut_yazirusi, { pos.x - 100 ,pos.y}, {pos.x,pos.y +100});
 	uiID = ID_tut_text1;
 
+	weigStep = false;
 	nowPad = 0;
 	oldPad = nowPad;
 }
@@ -97,7 +98,7 @@ void TutrialScene::Update()
 	Camera& camera = Camera::Instance();
 	int windowWidth, windowHeight;
 	GetWindowSize(&windowWidth, &windowHeight);
-	nowPad = GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_4;
+	nowPad = GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_2;
 
 	//titleへ
 	if (((nowPad == 0 && oldPad != 0) || key.GetKeyUp(KEY_INPUT_RETURN)) && (uiID >= ID_tut_text9) && house == nullptr)
@@ -107,13 +108,17 @@ void TutrialScene::Update()
 	}
 	else
 	{
-		if (((nowPad == 0 && oldPad != 0) || key.GetKeyUp(KEY_INPUT_RETURN)) && (uiID < ID_tut_text9))
+		if (((nowPad == 0 && oldPad != 0) || key.GetKeyUp(KEY_INPUT_RETURN)) && (uiID < ID_tut_text9) && !weigStep)
 		{
 			if (!SoundManager::GetInstance().PlayCheak(BUTTON_1))
 			{
 				SoundManager::GetInstance().Play(BUTTON_1);
 			}
-			uiID++;
+			if (uiID == ID_tut_text4)
+			{
+				weigStep = true;
+			}
+				uiID++;
 		}
 		modul1();
 		modul2();
@@ -158,12 +163,12 @@ void TutrialScene::Draw()
 
 	//エフェクト
 	efcMng.Draw(offset);
-	textDraw(uiID);
+	textDraw(uiID, offset);
 }
 
 void TutrialScene::modul1()
 {
-	if (uiID > ID_tut_text5)
+	if (uiID > ID_tut_text4)
 	{
 		_player->Update(true);
 	}
@@ -180,6 +185,7 @@ void TutrialScene::modul1()
 			SoundManager::GetInstance().Play(HIT_1);
 			delete house;
 			house = nullptr;
+			weigStep = false;
 		}
 	}
 }
@@ -282,7 +288,7 @@ void TutrialScene::modul5()
 	efcMng.Delete();
 }
 
-void TutrialScene::textDraw(int id)
+void TutrialScene::textDraw(int id, const Vector2 offset_)
 {
 	ImageMng *ui = ImageMng::GetInstance();
 	//mask
@@ -295,22 +301,28 @@ void TutrialScene::textDraw(int id)
 					ui->GetUIID(id)->posR.x, ui->GetUIID(id)->posR.y,
 					ui->GetUIID(id)->image, true);
 
-	if (id == ID_tut_text5)
+	if (id == ID_tut_text5 && house != nullptr)
 	{
 		//yazirusi
-		DrawExtendGraph(ui->GetUIID(ID_tut_yazirusi)->posL.x, ui->GetUIID(ID_tut_yazirusi)->posL.y,
-						ui->GetUIID(ID_tut_yazirusi)->posR.x, ui->GetUIID(ID_tut_yazirusi)->posR.y,
+		DrawExtendGraph(ui->GetUIID(ID_tut_yazirusi)->posL.x - offset_.x, ui->GetUIID(ID_tut_yazirusi)->posL.y - offset_.y,
+						ui->GetUIID(ID_tut_yazirusi)->posR.x - offset_.x, ui->GetUIID(ID_tut_yazirusi)->posR.y - offset_.y,
 						ui->GetUIID(ID_tut_yazirusi)->image, true);
 	}
 
-	//if (id == ID_tut_text9)
-	//{
-	//	//yazirusi
-	//	DrawExtendGraph(ui->GetUIID(ID_tut_yazirusi)->posL.x, ui->GetUIID(ID_tut_yazirusi)->posL.y,
-	//					ui->GetUIID(ID_tut_yazirusi)->posR.x, ui->GetUIID(ID_tut_yazirusi)->posR.y,
-	//					ui->GetUIID(ID_tut_yazirusi)->image, true);
-	//}
-	
+	if (id != ID_tut_text5)
+	{
+		//nextButton
+		DrawExtendGraph(ui->GetUIID(ID_tut_next)->posL.x, ui->GetUIID(ID_tut_next)->posL.y,
+						ui->GetUIID(ID_tut_next)->posR.x, ui->GetUIID(ID_tut_next)->posR.y,
+						ui->GetUIID(ID_tut_next)->image, true);
+	}
+	else if (house == nullptr)
+	{
+		//nextButton
+		DrawExtendGraph(ui->GetUIID(ID_tut_next)->posL.x, ui->GetUIID(ID_tut_next)->posL.y,
+						ui->GetUIID(ID_tut_next)->posR.x, ui->GetUIID(ID_tut_next)->posR.y,
+						ui->GetUIID(ID_tut_next)->image, true);
+	}
 }
 
 

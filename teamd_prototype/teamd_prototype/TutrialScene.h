@@ -34,7 +34,8 @@ private:
 	int _minLimit, _maxLimit;
 
 	int nowPad, oldPad;
-
+	bool weigStep;
+	Vector2 yaziPos;
 
 public:
 	TutrialScene();	//コンストラクタ
@@ -50,5 +51,5 @@ public:
 	void modul3();
 	void modul4();
 	void modul5();
-	void textDraw(int id);
+	void textDraw(int id, const Vector2 offset_);
 };
