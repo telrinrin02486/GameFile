@@ -11,7 +11,7 @@ private:
 	int scoreImg;
 	int numImg[10];
 
-
+	int nowPad, oldPad;
 public:
 	ResultScene();
 	~ResultScene();

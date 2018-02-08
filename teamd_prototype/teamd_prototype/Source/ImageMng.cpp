@@ -38,7 +38,7 @@ ImageMng::ImageMng()
 
 	//titleUIÅAîwåiÇÃÉçÅ[Éh
 	setUIID("../image/sceneBack/title/titleBack.png", ID_titleBack, { 0, 0 }, { WINDOW_WIDTH,WINDOW_HEIGHT });
-	setUIID("../image/UI/title/titleImage.png", ID_title, { titlePos.x, titlePos.y }, { titlePos.x +300,titlePos.y +100});
+	setUIID("../image/UI/title/titleImage.png", ID_title, { titlePos.x, titlePos.y }, { titlePos.x +350,titlePos.y +100});
 	setUIID("../image/UI/title/startButtom.png", ID_startButtom, { buttomPos1.x, buttomPos1.y }, { buttomPos1.x +150,buttomPos1.y +50});
 	setUIID("../image/UI/title/tutorialButtom.png", ID_tutorialButtom, { buttomPos2.x, buttomPos2.y }, { buttomPos2.x +150, buttomPos2.y + 50});
 

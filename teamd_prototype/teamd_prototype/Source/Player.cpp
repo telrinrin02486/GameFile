@@ -45,22 +45,23 @@ void Player::Update(bool canOperate_) {
 	if (state != ANI_DAMAGE) {
 		if (canOperate_) {
 			//移動
-			if (key.GetKey(KEY_INPUT_LEFT)) {
+			if (((GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_LEFT) != 0) || key.GetKey(KEY_INPUT_LEFT)) {
 				dir.x = -moveSpeed;
 			}
-			if (key.GetKey(KEY_INPUT_RIGHT)) {
+			if (((GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_RIGHT) != 0) || key.GetKey(KEY_INPUT_RIGHT)) {
 				dir.x = moveSpeed;
 			}
 			if (key.GetKey(KEY_INPUT_D)) {
 				dir.x *= 3.0f;
 			}
 			//攻撃（踏みつぶし
-			if (key.GetKey(KEY_INPUT_DOWN)) {
+			if (((GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_3) != 0) || key.GetKey(KEY_INPUT_DOWN)) {
 				dir.y += stampPower;
 			}
 		}
 	}
 
+	
 	_rect.Move(dir);
 	if (_isGround) {
 		dir.y = 0.0f;
@@ -79,7 +80,7 @@ void Player::Update(bool canOperate_) {
 	if (state != ANI_DAMAGE) {
 		if (_isGround) {
 			if (canOperate_) {
-				if (key.GetKey(KEY_INPUT_UP)) {
+				if (((GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_4) != 0) || key.GetKey(KEY_INPUT_UP)) {
 					dir.y = -jumpPower;
 				}
 			}
@@ -105,7 +106,12 @@ void Player::Draw(const Vector2& offset_) {
 					_handle[state][aniCnt], true, isDirRight);
 	
 	aniFram++;
-	
+
+	//pad接続確認
+	if (GetJoypadNum() == 0)
+	{
+		printfDx("pad接続なし");
+	}
 
 }
 
@@ -115,18 +121,18 @@ void Player::setState(KeyInput& key)
 	//jump、tample、damage中に移動アニメーションに入ること防止
 	if (state != ANI_JUMP && state != ANI_WEIGH && _isGround && state != ANI_DAMAGE)
 	{
-		if (key.GetKeyDown(KEY_INPUT_UP))
+		if (((GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_4) != 0) || key.GetKeyDown(KEY_INPUT_UP))
 		{
 			state = ANI_JUMP;
 			aniFram = 1;
 			aniCnt = 0;
 		}
-		else if (key.GetKey(KEY_INPUT_LEFT))
+		else if (((GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_LEFT) != 0) || key.GetKey(KEY_INPUT_LEFT))
 		{
 			state = ANI_WALK;
 			isDirRight = false;
 		}
-		else if (key.GetKey(KEY_INPUT_RIGHT))
+		else if (((GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_RIGHT) != 0) || key.GetKey(KEY_INPUT_RIGHT))
 		{
 			state = ANI_WALK;
 			isDirRight = true;
@@ -139,7 +145,7 @@ void Player::setState(KeyInput& key)
 	else
 	{
 		//現在stateがjump、weigh、damage 、か!_isGround
-		 if (key.GetKeyDown(KEY_INPUT_DOWN))
+		 if (((GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_3) != 0) || key.GetKeyDown(KEY_INPUT_DOWN))
 		{
 			state = ANI_WEIGH;
 			aniFram = 1;

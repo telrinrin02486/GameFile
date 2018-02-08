@@ -41,7 +41,7 @@ void SceneManager::Initialize()
 	
 	//title‚©‚ç‚Ì‘JˆÚ‚ª‚í‚¸‚ç‚í‚µ‚¯‚ê‚Î
 	//ƒRƒR‚Ì¶¬‚ðgame‚É•Ï‚¦‚Ä
-	_scene = new TitleScene();
+	_scene = new ResultScene();
 	_st = SType_TITLE;
 	_scene->Initialize();
 }

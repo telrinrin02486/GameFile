@@ -17,8 +17,8 @@
 
 //UI_POS
 const Vector2 titlePos = {400,120};
-const Vector2 buttomPos1 = { 400,250 };
-const Vector2 buttomPos2 = { 400,350 };
+const Vector2 buttomPos1 = { 500,250 };
+const Vector2 buttomPos2 = { 500,350 };
 
 
 enum ID_UI

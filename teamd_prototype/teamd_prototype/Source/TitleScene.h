@@ -5,7 +5,7 @@
 class TitleScene : public BaseScene
 {
 private:
-	
+	int nowPad,oldPad;
 
 public:
 	TitleScene();
