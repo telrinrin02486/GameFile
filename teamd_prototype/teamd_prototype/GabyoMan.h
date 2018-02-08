@@ -82,6 +82,10 @@ public:
 			handle(), pos(), size(), vec(), life(),
 			prevState(), nowState() 
 		{}
+		~Parameter() {
+			if (prevState) { delete prevState; }
+			if (nowState) { delete nowState; }
+		}
 		int		handle;//画像ハンドル
 		Vector2	pos;//座標
 		Vector2 size;//おおきさ
@@ -90,7 +94,7 @@ public:
 		int		ghostTime;//無敵タイム
 		CollFlag collFlag;//フラグ群
 						  //判定用
-		std::vector<CharaCollider*> _collider;
+		//std::vector<CharaCollider*> _collider;
 
 		//基礎クラスがもってるパラメタ
 		bool&	isGround;//接地フラグ
